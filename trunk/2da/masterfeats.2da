@@ -1,0 +1,23 @@
+2DA V2.0
+
+           LABEL                     STRREF   DESCRIPTION ICON            
+0          ImprovedCritical          6489     16932231    ife_impcrit     
+1          WeaponFocus               6490     16932259    ife_wepfoc      
+2          WeaponSpecialization      6491     16932263    ife_wepspec     
+3          SpellFocus                6492     16932251    ife_magic       
+4          SkillFocus                6493     16932250    ife_skfoc       
+5          FavoredEnemy              6566     16932477    ife_racehate    
+6          GreaterSpellFocus         2838     16932609    ife_magic       
+7          ArcaneDefense             2839     16932631    ife_magic       
+8          ResistEnergy              2840     16932643    ife_magic       
+9          WeaponOfChoice            83313    16933095    ife_X2WpCh      
+10         EpicWeaponFocus           83475    16932835    ife_X2EWpFo     
+11         EpicWeaponSpec            83481    16932873    ife_X2WpSpec    
+12         OverwhelmingCritical      83480    16932925    ife_X2OvCrit    
+13         DevastatingCrit           83482    16932711    ife_X2DevCrit   
+14         EpicSpell                 83483    83484       ife_X2ESpell    
+15         EpicSkillFocus            83485    16932803    ife_X2skfoc     
+16         EpicSpellFocus            83486    16932826    ife_X2magic     
+17         EpicEnergyResistance      83487    16932749    ife_X2EResi     
+18         ImprovedAlignBasedCasting 16927216 16934769    ife_magic       
+19         DivineSpellPenetration    16927217 ****        ife_X2EpSpPntra 
