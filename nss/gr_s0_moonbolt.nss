@@ -124,7 +124,7 @@ void main() {
         if(GRGetIsLiving(spInfo.oTarget)) {
             DelayCommand(fDelay+0.1, ApplyMoonBoltStrengthDamage(spInfo.oTarget, iDamage));
             DelayCommand(fDelay+0.1, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget));
-        } else if(GRGetRacialType(spInfo.oTarget)==RACIAL_TYPE_UNDEAD)) {
+        } else if(GRGetRacialType(spInfo.oTarget)==RACIAL_TYPE_UNDEAD) {
             if(!GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC)) {
                 fDuration = GRGetDuration(GRGetMetamagicAdjustedDamage(4, 1, spInfo.iMetamagic, 0));
                 DelayCommand(fDelay+0.1, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eProne, spInfo.oTarget, fDuration));

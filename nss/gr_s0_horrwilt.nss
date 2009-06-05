@@ -139,8 +139,8 @@ void main() {
                     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget));
                     if(spInfo.iSpellID==SPELL_GR_DEADLY_SUNSTROKE) {
                         if(!bSaveMade) {
-                            GRApplyFatigueToObject(spInfo.oTarget, spInfo.iSpellID);
-                            if(bExtremeHeat) GRApplyExhaustionToObject(spInfo.oTarget, spInfo.iSpellID);
+                            GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget);
+                            if(bExtremeHeat) GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_EXHAUSTION, spInfo.oTarget);
                         }
                     }
                 }

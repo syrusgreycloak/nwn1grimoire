@@ -132,7 +132,7 @@ void main() {
     if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
         if(iDamage>0) GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, spInfo.oTarget);
-        DelayCommand(RoundsToSeconds(1), DoContinuingDamage(spInfo.oTarget));
+        DelayCommand(RoundsToSeconds(1), DoContinuingDamage(spInfo));
     }
 
     if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);

@@ -149,7 +149,7 @@ void main() {
         SetCommandable(FALSE, spInfo.oTarget);
         DelayCommand(fDuration, SetCommandable(TRUE, spInfo.oTarget));
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
-        DelayCommand(RoundsToSeconds(1), ApplyCocoonEffects(spInfo));
+        DelayCommand(RoundsToSeconds(1), ApplyCocoonEffects(spInfo, iDamage));
     }
 
     if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);

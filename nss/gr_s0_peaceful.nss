@@ -111,7 +111,7 @@ void main() {
 
     while(GetIsObjectValid(spInfo.oTarget) && iNumCreatures>0) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_ALLALLIES, oCaster)) {
-            GRRemoveSpellEffects(SPELL_GR_PEACEFUL_SERENITY, spInfo.oTarget)
+            GRRemoveSpellEffects(SPELL_GR_PEACEFUL_SERENITY, spInfo.oTarget);
             GRRemoveEffects(EFFECT_TYPE_FRIGHTENED, spInfo.oTarget);
             GRRemoveSpellSubschoolEffects(SPELL_SUBSCHOOL_COMPULSION, spInfo.oTarget);
             fDelay = GetDistanceBetweenLocations(spInfo.lTarget, GetLocation(spInfo.oTarget))/20.0f;

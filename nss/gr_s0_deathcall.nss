@@ -112,7 +112,7 @@ void main() {
                 fDelay = GetDistanceBetween(oCaster, spInfo.oTarget)/20.0f;
                 DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget));
                 if(!GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC)) {
-                    GRApplyFatigueToObject(spInfo.oTarget, spInfo.iSpellID);
+                    GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget);
                 }
             }
         }

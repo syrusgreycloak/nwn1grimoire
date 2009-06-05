@@ -39,6 +39,6 @@ void main() {
     } /*else {
         //AutoDebugString("You are not a cleric.");
     }*/
-    GRRemoveExhaustionEffects(oPC);
-    GRRemoveFatigueEffects(oPC);
+    GRRemoveSpecialEffect(SPECIALEFFECT_TYPE_EXHAUSTION, oPC);
+    GRRemoveSpecialEffect(SPECIALEFFECT_TYPE_FATIGUE, oPC);
 }

@@ -128,7 +128,7 @@ void main() {
                     eDam = EffectDamage(iDamage, iEnergyType);
                     eLink = EffectLinkEffects(eDam, eVis);
                     if(iSecDamage>0) eLink = EffectLinkEffects(eLink, EffectDamage(iSecDamage, spInfo.iSecDmgType));
-                    DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
+                    DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget));
                 }
             }
         }

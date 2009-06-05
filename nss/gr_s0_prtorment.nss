@@ -26,6 +26,7 @@
 void DoPricklingTormentCheck(struct SpellStruct spInfo) {
 
     if(GetHasSpellEffect(SPELL_GR_PRICKLING_TORMENT, spInfo.oTarget)) {
+        int iSecDamage = 0;
         int iAction = GetCurrentAction(spInfo.oTarget);
 
         if(iAction == ACTION_DISABLETRAP || iAction == ACTION_TAUNT || iAction == ACTION_PICKPOCKET || iAction ==ACTION_ATTACKOBJECT ||
