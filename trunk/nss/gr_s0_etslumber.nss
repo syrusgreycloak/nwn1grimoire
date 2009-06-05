@@ -25,12 +25,12 @@
 //*:**************************************************************************
 void GRDoEternalSlumberSave(object oTarget, int iDC, object oCaster) {
 
-    if(GRGetSaveResult(oTarget, SAVING_THROW_WILL, iDC, SAVING_THROW_TYPE_SLEEP, oCaster)) {
+    if(GRGetSaveResult(SAVING_THROW_WILL, oTarget, iDC, SAVING_THROW_TYPE_SLEEP, oCaster)) {
         GRRemoveSpellEffects(SPELL_GR_ETERNAL_SLUMBER, oTarget, oCaster);
     }
 
     if(GetHasSpellEffect(SPELL_GR_ETERNAL_SLUMBER, oTarget)) {
-        DelayCommand(GRGetDuration(1, DUR_TYPE_DAYS), GRDoEternalSlumber(oTarget, iDC, oCaster));
+        DelayCommand(GRGetDuration(1, DUR_TYPE_DAYS), GRDoEternalSlumberSave(oTarget, iDC, oCaster));
     }
 }
 //*:**************************************************************************
@@ -113,14 +113,14 @@ void main() {
     SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_ETERNAL_SLUMBER));
     if(GRGetIsLiving(spInfo.oTarget)) {
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
-            if(!GRGetSaveResult(spInfo.oTarget, SAVING_THROW_WILL, spInfo.iDC, SAVING_THROW_TYPE_SLEEP, oCaster)) {
+            if(!GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC, SAVING_THROW_TYPE_SLEEP, oCaster)) {
                 GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
                 GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eSleep, spInfo.oTarget);
             }
         }
     }
     if(GetHasSpellEffect(SPELL_GR_ETERNAL_SLUMBER, spInfo.oTarget)) {
-        DelayCommand(GRGetDuration(1, DUR_TYPE_DAYS), GRDoEternalSlumber(spInfo.oTarget, spInfo.iDC, oCaster));
+        DelayCommand(GRGetDuration(1, DUR_TYPE_DAYS), GRDoEternalSlumberSave(spInfo.oTarget, spInfo.iDC, oCaster));
     }
 
     if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);

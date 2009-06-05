@@ -104,7 +104,7 @@ void main() {
     object oAOE = GRGetAOEAtLocation(spInfo.lTarget, AOE_TYPE_FUGUE, oCaster);
     GRSetAOESpellId(spInfo.iSpellID, oAOE);
     GRSetSpellInfo(spInfo, oAOE);
-    SetLocalInt(oCaster, "GR_"+IntToString(iSpellID)+"_REQCONCENTRATION", TRUE);
+    SetLocalInt(oCaster, "GR_"+IntToString(spInfo.iSpellID)+"_REQCONCENTRATION", TRUE);
 
     if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);
     //*:**********************************************

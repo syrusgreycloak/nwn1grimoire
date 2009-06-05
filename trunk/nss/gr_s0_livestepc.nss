@@ -43,7 +43,6 @@ int GRDoMoveActionCheck(object oTarget) {
             case ACTION_ITEMCASTSPELL:
                 bMoveAction = FALSE;
                 break;
-            }
         }
     }
 

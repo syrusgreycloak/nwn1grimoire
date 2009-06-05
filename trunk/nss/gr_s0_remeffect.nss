@@ -219,7 +219,7 @@ void main() {
                         GRRemoveSpellEffects(SPELL_INFESTATION_OF_MAGGOTS, spInfo.oTarget);
                         break;
                     case SPELL_REMOVE_CURSE:
-                        GRRemoveMultipleSpellEffects(SPELL_CURSE_OF_BLADES, SPELL_GREATER_CURSE_OF_BLADES, spInfo.oTarget));
+                        GRRemoveMultipleSpellEffects(SPELL_CURSE_OF_BLADES, SPELL_GREATER_CURSE_OF_BLADES, spInfo.oTarget);
                     case SPELL_GR_FREEDOM:
                     case SPELL_REMOVE_PARALYSIS:
                         GRRemoveSpellEffects(SPELL_GR_TOUCH_OF_VECNA, spInfo.oTarget, OBJECT_INVALID, FALSE);

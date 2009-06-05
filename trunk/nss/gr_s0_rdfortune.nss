@@ -100,12 +100,13 @@ void main() {
     //*:**********************************************
     effect eVis     = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
     effect eDur     = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+    effect eImm;
     effect eLink;
 
     switch(spInfo.iSpellID) {
         case SPELL_GR_RUIN_DELVERS_FORTUNE_FORT:
             effect eFort = EffectSavingThrowIncrease(SAVING_THROW_FORT, iCHAMod);
-            effect eImm  = EffectImmunity(IMMUNITY_TYPE_POISON);
+            eImm  = EffectImmunity(IMMUNITY_TYPE_POISON);
             eLink = EffectLinkEffects(eDur, eFort);
             eLink = EffectLinkEffects(eLink, eImm);
             break;
@@ -117,7 +118,7 @@ void main() {
             break;
         case SPELL_GR_RUIN_DELVERS_FORTUNE_WILL:
             effect eWill = EffectSavingThrowIncrease(SAVING_THROW_WILL, iCHAMod);
-            effect eImm  = EffectImmunity(IMMUNITY_TYPE_FEAR);
+            eImm  = EffectImmunity(IMMUNITY_TYPE_FEAR);
             eLink = EffectLinkEffects(eDur, eWill);
             eLink = EffectLinkEffects(eLink, eImm);
             break;
@@ -125,7 +126,7 @@ void main() {
             effect eTHP  = EffectTemporaryHitpoints(iDamage + iCHAMod);
             eLink = EffectLinkEffects(eLink, eTHP);
             break;
-
+    }
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************

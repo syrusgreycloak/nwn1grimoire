@@ -21,7 +21,7 @@
 
 //*:**********************************************
 //*:* Constant Libraries
-#include "GR_IC_FEATS"
+//#include "GR_IC_FEATS" - INCLUDED IN GR_IN_LIB
 
 //*:**********************************************
 //*:* Function Libraries

@@ -109,11 +109,11 @@ void main() {
                 0.0f, FALSE, FALSE)==0) {
 
                 GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, spInfo.oTarget, fDuration);
-                GRApplyFatigueToObject(spInfo.oTarget, spInfo.iSpellID);
+                GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget);
                 SetLocalInt(spInfo.oTarget, "GR_FEVERDREAM_DC", spInfo.iDC + iLuminousSwarmDCBonus);
 
                 if(!GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC + iPricklingTormentDCBonus)) {
-                    GRApplyExhaustionToObject(spInfo.oTarget, spInfo.iSpellID);
+                    GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_EXHAUSTION, spInfo.oTarget);
                 }
 
                 DelayCommand(fDuration, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDelay));

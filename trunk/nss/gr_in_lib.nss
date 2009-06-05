@@ -23,6 +23,7 @@
 //*:* Constant Libraries
 #include "GR_IC_LIB"
 #include "GR_IC_SPELLS"
+#include "GR_IC_FEATS"
 
 //*:**********************************************
 //*:* Function Libraries

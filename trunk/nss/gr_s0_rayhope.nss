@@ -80,7 +80,7 @@ void main() {
     int     iOppositeSpell  = SPELL_GR_SORROW;
 
     if(spInfo.iSpellID==SPELL_GR_SORROW) {
-            iVistype = VFX_IMP_HEAD_EVIL;
+            iVisType = VFX_IMP_HEAD_EVIL;
             iDurType = VFX_DUR_MIND_AFFECTING_NEGATIVE;
             bHostile = TRUE;
             iOppositeSpell = SPELL_GR_RAY_OF_HOPE;

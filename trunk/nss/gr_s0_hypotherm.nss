@@ -114,7 +114,7 @@ void main() {
             }
         }
         if(!GRGetSpellDmgSaveMade(spInfo.iSpellID, oCaster)) {
-            GRApplyFatigueToObject(spInfo.oTarget, spInfo.iSpellID);
+            GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget);
         }
     }
 
