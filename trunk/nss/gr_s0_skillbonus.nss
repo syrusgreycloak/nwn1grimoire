@@ -342,7 +342,7 @@ void main() {
         //*:**********************************************
         case 1828:  // Potion of Vision
         case SPELL_FIND_TRAPS:
-            iBonus = (spInfo.iSpellID==1828 ? 30 : MinInt(10, spInfo.iCasterLevel/2);
+            iBonus = (spInfo.iSpellID==1828 ? 30 : MinInt(10, spInfo.iCasterLevel/2));
             iSkill = SKILL_SEARCH;
             /*** NWN1 SINGLE ***/ iVisual = VFX_IMP_KNOCK;
             /*** NWN2 SPECIFIC ***
@@ -409,7 +409,7 @@ void main() {
             else if(iBonus2>-1) iBonus = iBonus2;
             if(iBonus==10 && spInfo.iSpellID!=SPELL_GR_INSIDIOUS_INSIGHT) {
                 //*** NWN2 SINGLE ***/ iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
-                iBonus = (spInfo.iSpellID==SPELL_GR_GLIBNESS ? 30 : MinInt(20, MaxInt(0, spInfo.iCasterLevel/2));
+                iBonus = (spInfo.iSpellID==SPELL_GR_GLIBNESS ? 30 : MinInt(20, MaxInt(0, spInfo.iCasterLevel/2)));
             }
             break;
         //*:**********************************************

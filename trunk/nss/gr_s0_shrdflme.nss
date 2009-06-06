@@ -25,14 +25,15 @@
 //*:**************************************************************************
 void RunDelayedActions(struct SpellStruct spInfo) {
     if(GetHasSpellEffect(SPELL_SHROUD_OF_FLAME, spInfo.oTarget)) {
+        float fDelay = 0.0f;
         int iEnergyType = GetLocalInt(spInfo.oTarget, "GR_SHROUDFLAME_ENERGYTYPE");
         int iVisualType = GRGetEnergyVisualType(VFX_IMP_FLAME_M, iEnergyType);
         int iSaveType   = GRGetEnergySaveType(iEnergyType);
-        int iDamage = GRGetSpellDamageAmount(spInfo, REFLEX_NEGATES, oCaster, iSaveType, fDelay);
+        int iDamage = GRGetSpellDamageAmount(spInfo, REFLEX_NEGATES, spInfo.oCaster, iSaveType, fDelay);
         int iSecDamage = 0;
 
         if(GRGetSpellHasSecondaryDamage(spInfo)) {
-            iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo, REFLEX_NEGATES, oCaster);
+            iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo, REFLEX_NEGATES, spInfo.oCaster);
             if(spInfo.iSecDmgAmountType==SECDMG_TYPE_HALF) {
                 iDamage = iSecDamage;
             }

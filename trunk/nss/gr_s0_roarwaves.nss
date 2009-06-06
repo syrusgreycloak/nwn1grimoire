@@ -104,7 +104,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget;
+    GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
     spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget);
 
     while(GetIsObjectValid(spInfo.oTarget) && iNumCreatures>0) {
