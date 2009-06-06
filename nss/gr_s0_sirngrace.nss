@@ -109,7 +109,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(oCaster, EventSpellCastAt(oCaster, SPELL_GR_SIRINES_GRACE, FALSE));
+    SignalEvent(oCaster, EventSpellCastAt(oCaster, SPELL_GR_SIRENES_GRACE, FALSE));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oCaster);
     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oCaster, fDuration);
     GRApplySpecialEffectToObject(DURATION_TYPE_TEMPORARY, SPECIALEFFECT_TYPE_WATER_BREATHING, oCaster, fDuration);
