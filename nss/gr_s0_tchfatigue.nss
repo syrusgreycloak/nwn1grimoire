@@ -100,13 +100,13 @@ void main() {
     //*:**********************************************
     if(TouchAttackMelee(spInfo.oTarget)) {
         SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_TOUCH_OF_FATIGUE));
-        if(!GRGetTargetFatigued(spInfo.oTarget)) {
+        if(!GRGetHasSpecialEffect(SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget)) {
             if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
                 if(!GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC)) {
                     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
                     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, spInfo.oTarget);
-                    GRApplyFatigueToObject(spInfo.oTarget, spInfo.iSpellID);
-                    DelayCommand(fDuration, GRRemoveFatigueEffects(spInfo.oTarget, spInfo.iSpellID));
+                    GRApplySpecialEffectToObject(DURATION_TYPE_PERMANENT, SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget);
+                    DelayCommand(fDuration, GRRemoveSpecialEffect(SPECIALEFFECT_TYPE_FATIGUE, spInfo.oTarget, oCaster));
                 }
             }
         }

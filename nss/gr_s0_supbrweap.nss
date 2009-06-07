@@ -65,7 +65,7 @@ void main() {
     //*:* Declare Spell Specific Variables & impose limiting
     //*:**********************************************
 
-    //*:* float   fDuration       = GRGetSpellDuration(spInfo);
+    float   fDuration       = GRGetSpellDuration(spInfo);
     //*:* float   fDelay          = 0.0f;
     //*:* float   fRange          = FeetToMeters(15.0);
     //*:* int     iDurationType   = DURATION_TYPE_TEMPORARY;

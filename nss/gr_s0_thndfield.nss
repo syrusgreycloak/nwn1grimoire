@@ -19,7 +19,7 @@
 #include "GR_IN_SPELLS"
 #include "GR_IN_SPELLHOOK"
 
-//#include "GR_IN_ENERGY"
+#include "GR_IN_ENERGY"
 
 //*:**************************************************************************
 //*:* Main function
@@ -50,10 +50,10 @@ void main() {
     //*:**********************************************
     //*:* Energy Spell Info
     //*:**********************************************
-    //int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
-    //int     iSpellType      = GRGetEnergySpellType(iEnergyType);
+    int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
+    int     iSpellType      = GRGetEnergySpellType(iEnergyType);
 
-    //spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
+    spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
 
     //*:**********************************************
     //*:* Spellcast Hook Code

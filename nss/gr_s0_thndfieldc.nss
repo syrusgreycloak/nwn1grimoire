@@ -19,7 +19,7 @@
 #include "GR_IN_SPELLS"
 #include "GR_IN_SPELLHOOK"
 
-//#include "GR_IN_ENERGY"
+#include "GR_IN_ENERGY"
 
 //*:**************************************************************************
 //*:* Main function
@@ -55,8 +55,8 @@ void main() {
     //*:**********************************************
     //*:* Energy Spell Info
     //*:**********************************************
-    //int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
-    //int     iSpellType      = GRGetEnergySpellType(iEnergyType);
+    int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
+    int     iSpellType      = GRGetEnergySpellType(iEnergyType);
 
     //spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
 
@@ -75,8 +75,8 @@ void main() {
     //*:* float   fRange          = FeetToMeters(15.0);
     //*:* int     iDurationType   = DURATION_TYPE_TEMPORARY;
 
-    //int     iSaveType       = GRGetEnergySaveType(iEnergyType);
-    //int     iVisualType     = GRGetEnergyVisualType(VFX_IMP_SONIC, iEnergyType);
+    int     iSaveType       = GRGetEnergySaveType(iEnergyType);
+    int     iVisualType     = GRGetEnergyVisualType(VFX_IMP_SONIC, iEnergyType);
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible

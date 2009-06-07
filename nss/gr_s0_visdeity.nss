@@ -22,6 +22,7 @@
 //*:* Function Libraries
 #include "GR_IN_SPELLS"
 #include "GR_IN_SPELLHOOK"
+#include "GR_IN_ITEMPROP"
 
 //*:* #include "GR_IN_ENERGY"
 
@@ -209,7 +210,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     SignalEvent(oCaster, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
-    GRRemoveMultipleSpellEffects(SPELL_GREATER_VISAGE_OF_THE DEITY, SPELL_VISAGE_OF_THE_DEITY, oCaster, TRUE, SPELL_LESSER_VISAGE_OF_THE_DEITY);
+    GRRemoveMultipleSpellEffects(SPELL_GREATER_VISAGE_OF_THE_DEITY, SPELL_VISAGE_OF_THE_DEITY, oCaster, TRUE, SPELL_LESSER_VISAGE_OF_THE_DEITY);
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpact, oCaster);
     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oCaster));
     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oCaster, fDuration));

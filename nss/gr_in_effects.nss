@@ -66,6 +66,7 @@ void GRApplySpecialEffectToObject(int iDurationType, int iEffectType, object oTa
 void GRDoSpecialEffectHeartbeat(int iEffectType, object oTarget);
 void GRRemoveSpecialEffect(int iEffectType, object oTarget, object oCreator=OBJECT_INVALID, int iEffSubType=0);
 int GRGetSpecialEffectSubType(int iEffectType, object oTarget);
+int GRGetHasSpecialEffect(int iEffectType, object oTarget);
 //*:**************************************************************************
 
 
@@ -1381,6 +1382,5 @@ void GRDoSpecialEffectHeartbeat(int iEffectType, object oTarget) {
         }
     }
 }
-
 //*:**************************************************************************
 //*:**************************************************************************
