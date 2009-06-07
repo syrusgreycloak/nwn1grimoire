@@ -19,6 +19,7 @@
 //#include "GR_IN_SPELLS" - included in GR_IN_HASTE
 #include "GR_IN_HASTE"
 #include "GR_IN_SPELLHOOK"
+#include "GR_IN_ITEMPROP"
 
 //*:* #include "GR_IN_ENERGY"
 
