@@ -132,7 +132,7 @@ void main() {
     //*:* 6 - 10
     } else if(iPercentRoll < 11) { // faerie fire on target, DC 11
         int iSpellID = SPELL_GR_FAERIE_FIRE;
-        AssignCommand(oCastingObject, ActionCastSpellAtObject(iSpellID, spInfo.oTarget, METAMAGIC_NONE, TRUE, 11, PROJECTILE_PATH_DEFAULT, TRUE));
+        AssignCommand(oCastingObject, ActionCastSpellAtObject(iSpellID, spInfo.oTarget, METAMAGIC_NONE, TRUE, 11, PROJECTILE_PATH_TYPE_DEFAULT, TRUE));
     //*:* 11 - 15
     } else if(iPercentRoll < 16) { // delude wielder into thinking it's another effect
         int iFakeSpellID;
@@ -178,7 +178,7 @@ void main() {
         DelayCommand(GRGetDuration(5), SetWeather(oArea, WEATHER_USE_AREA_SETTINGS));
     //*:* 34 - 36
     } else if(iPercentRoll < 37) { // summon penguin, rat, or cow
-        DoSillySummon(oTarget);
+        DoSillySummon(spInfo.oTarget);
     //*:* 37 - 43
     } else if(iPercentRoll < 44) { // lightning bolt
         int iDamage = d6(6);
@@ -215,7 +215,7 @@ void main() {
     //*:* 50 - 53
     } else if(iPercentRoll < 54) { // enlarge target
         int iSpellID = SPELL_ENLARGE_PERSON;
-        AssignCommand(oCastingObject, ActionCastSpellAtObject(iSpellID, spInfo.oTarget, METAMAGIC_NONE, TRUE, 11, PROJECTILE_PATH_DEFAULT, TRUE));
+        AssignCommand(oCastingObject, ActionCastSpellAtObject(iSpellID, spInfo.oTarget, METAMAGIC_NONE, TRUE, 11, PROJECTILE_PATH_TYPE_DEFAULT, TRUE));
     //*:* 54 - 58
     } else if(iPercentRoll < 59) { // darkness around target
         effect eAOE = GREffectAreaOfEffect(AOE_PER_DARKNESS);
@@ -240,7 +240,7 @@ void main() {
     //*:* 66 - 69
     } else if(iPercentRoll < 70) { // reduce wielder
         int iSpellID = SPELL_GR_REDUCE;
-        AssignCommand(oCastingObject, ActionCastSpellAtObject(iSpellID, oCaster, METAMAGIC_NONE, TRUE, 13, PROJECTILE_PATH_DEFAULT, TRUE));
+        AssignCommand(oCastingObject, ActionCastSpellAtObject(iSpellID, oCaster, METAMAGIC_NONE, TRUE, 13, PROJECTILE_PATH_TYPE_DEFAULT, TRUE));
     //*:* 70 - 76
     } else if(iPercentRoll < 77) { // fireball
         AssignCommand(oCastingObject, ActionCastSpellAtObject(SPELL_FIREBALL, spInfo.oTarget, METAMAGIC_NONE, TRUE, 0,

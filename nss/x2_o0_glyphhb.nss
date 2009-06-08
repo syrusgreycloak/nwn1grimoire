@@ -155,7 +155,7 @@ void main() {
         //*:* replaced effect search loop with below function
         //*:* not sure if spell id check will work
         //*:**********************************************
-        if(!GRGetHasEffectTypeFromSpell(OBJECT_SELF, EFFECT_TYPE_VISUALEFFECT, spInfo.iSpellID, OBJECT_SELF)) {
+        if(!GRGetHasEffectTypeFromSpell(EFFECT_TYPE_VISUALEFFECT, OBJECT_SELF, spInfo.iSpellID, OBJECT_SELF)) {
             DestroyObject(OBJECT_SELF);
             return;
         }
