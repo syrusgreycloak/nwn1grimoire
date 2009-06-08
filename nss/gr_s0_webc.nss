@@ -91,8 +91,9 @@ void main() {
     effect eVis     = EffectVisualEffect(VFX_DUR_WEB);
     effect eInvis   = EffectInvisibility(INVISIBILITY_TYPE_DARKNESS);
     effect eSicken  = GREffectSickened();
+    effect eLink    = EffectLinkEffects(eWeb, eVis);
 
-    if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS) eLink = EffectLinkEffect(eLink, eInvis);
+    if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS) eLink = EffectLinkEffects(eLink, eInvis);
 
     //*:**********************************************
     //*:* Apply effects
@@ -116,7 +117,7 @@ void main() {
                 }
             }
         }
-        oTarget = GetNextInPersistentObject();
+        spInfo.oTarget = GetNextInPersistentObject();
     }
 
     //if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);

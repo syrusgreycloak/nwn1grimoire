@@ -67,7 +67,7 @@ void main() {
     //*:* Declare Spell Specific Variables & impose limiting
     //*:**********************************************
 
-    //*:* float   fDuration       = GRGetSpellDuration(spInfo);
+    float   fDuration       = GRGetSpellDuration(spInfo);
     //*:* float   fRange          = FeetToMeters(15.0);
     float   fDelay;
 
@@ -99,7 +99,7 @@ void main() {
     while(GetIsObjectValid(spInfo.oTarget)) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_ALLALLIES, oCaster)) {
             fDelay = GetRandomDelay();
-            SignalEvent(oTarget, EventSpellCastAt(oCaster, SPELLABILITY_MUMMY_BOLSTER_UNDEAD, FALSE));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELLABILITY_MUMMY_BOLSTER_UNDEAD, FALSE));
             DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eTurn, spInfo.oTarget, fDuration));
             DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget));
         }

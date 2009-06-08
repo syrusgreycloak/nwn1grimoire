@@ -71,7 +71,7 @@ void main() {
     //*:* float   fRange          = FeetToMeters(15.0);
 
     int     iDamageType;
-    int     iTouchAttack    = TouchAttackRanged(oTarget);
+    int     iTouchAttack    = TouchAttackRanged(spInfo.oTarget);
     int     iACDec          = 2;
     int     iSaveType;
 
@@ -92,7 +92,7 @@ void main() {
     //*:**********************************************
     //*:* if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_EXTEND)) fDuration *= 2;
     //*:* if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_WIDEN)) fRange *= 2;
-    iDamage = GRGetSpellDamageAmount(spInfo, REFLEX_HALF, oCaster, iSaveType, fDelay);
+    iDamage = GRGetSpellDamageAmount(spInfo, REFLEX_HALF, oCaster, iSaveType);
     /* if(GRGetSpellHasSecondaryDamage(spInfo)) {
         iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
         if(spInfo.iSecDmgAmountType==SECDMG_TYPE_HALF) {

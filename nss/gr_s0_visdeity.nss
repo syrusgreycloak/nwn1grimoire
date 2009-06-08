@@ -95,7 +95,7 @@ void main() {
 
     switch(spInfo.iSpellID) {
         case SPELL_GR_LESSER_VISAGE_OF_THE_DEITY:
-            bHasHigherEffect = GetHasSpellEffect(SPELL_VISAGE_OF_THE_DEITY, oCaster) || GetHasSpellEffect(SPELL_GREATER_VISAGE_OF_THE_DEITY, oCaster);
+            bHasHigherEffect = GetHasSpellEffect(SPELL_GR_VISAGE_OF_THE_DEITY, oCaster) || GetHasSpellEffect(SPELL_GREATER_VISAGE_OF_THE_DEITY, oCaster);
             break;
         case SPELL_GR_VISAGE_OF_THE_DEITY:
             bHasHigherEffect = GetHasSpellEffect(SPELL_GREATER_VISAGE_OF_THE_DEITY, oCaster);
@@ -182,6 +182,7 @@ void main() {
             effect eDEXBonus    = EffectAbilityIncrease(ABILITY_DEXTERITY, iDEXBonus);
             effect eCONBonus    = EffectAbilityIncrease(ABILITY_CONSTITUTION, iCONBonus);
             effect eINTBonus    = EffectAbilityIncrease(ABILITY_INTELLIGENCE, iINTBonus);
+            effect eWISBonus    = EffectAbilityIncrease(ABILITY_WISDOM, iWISBonus);
             eLink = EffectLinkEffects(eLink, eACIncrease);
             eLink = EffectLinkEffects(eLink, eSTRBonus);
             eLink = EffectLinkEffects(eLink, eDEXBonus);
@@ -196,7 +197,7 @@ void main() {
                     effect eWISBonus        = EffectAbilityIncrease(ABILITY_WISDOM, iWISBonus);
                     eLink = EffectLinkEffects(eLink, eDiseaseImmune);
                     eLink = EffectLinkEffects(eLink, eSaveBonus);
-                    eLink = EffectLinkEffects(eLink, eWisBonus);
+                    eLink = EffectLinkEffects(eLink, eWISBonus);
                     break;
                 case ALIGNMENT_EVIL:
                     effect ePoisonImmune    = EffectImmunity(IMMUNITY_TYPE_POISON);
@@ -210,7 +211,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     SignalEvent(oCaster, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
-    GRRemoveMultipleSpellEffects(SPELL_GREATER_VISAGE_OF_THE_DEITY, SPELL_VISAGE_OF_THE_DEITY, oCaster, TRUE, SPELL_LESSER_VISAGE_OF_THE_DEITY);
+    GRRemoveMultipleSpellEffects(SPELL_GREATER_VISAGE_OF_THE_DEITY, SPELL_GR_VISAGE_OF_THE_DEITY, oCaster, TRUE, SPELL_LESSER_VISAGE_OF_THE_DEITY);
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpact, oCaster);
     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oCaster));
     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oCaster, fDuration));
