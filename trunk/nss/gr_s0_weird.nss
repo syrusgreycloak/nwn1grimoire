@@ -69,6 +69,8 @@ void main() {
     float   fRange              = FeetToMeters(15.0);
     float   fDelay;
 
+    int     iSTR;
+
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
     //*:**********************************************
@@ -115,7 +117,7 @@ void main() {
             fDelay = GetRandomDelay(3.0, 4.0);
             SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_WEIRD));
             if(!GRGetSpellResisted(oCaster, spInfo.oTarget, fDelay)) {
-                iDC = GRGetSpellSaveDC(oCaster, spInfo.oTarget);
+                spInfo.iDC = GRGetSpellSaveDC(oCaster, spInfo.oTarget);
                 if(!GetIsImmune(spInfo.oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster) && !GetIsImmune(spInfo.oTarget, IMMUNITY_TYPE_FEAR, oCaster)
                     /*** NWN2 SPECIFIC ***  && !GetHasFeat(FEAT_IMMUNITY_PHANTASMS, spInfo.oTarget) /**/) {
                     if(GetHitDice(spInfo.oTarget) >= 4) {
@@ -134,7 +136,7 @@ void main() {
                                 if(iSecDamage>0) eDam = EffectLinkEffects(eDam, EffectDamage(iSecDamage, spInfo.iSecDmgType));
                                 DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget));
                                 DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, spInfo.oTarget));
-                                DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eSTR, spInfo.oTarget, fStrDur));
+                                DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eSTR, spInfo.oTarget, fSTRDuration));
                                 DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eStun, spInfo.oTarget, fDuration));
                             } else {
                                 DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDeath, spInfo.oTarget));

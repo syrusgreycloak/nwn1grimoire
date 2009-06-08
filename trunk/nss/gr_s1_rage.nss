@@ -24,13 +24,6 @@
 
 //*:* #include "GR_IN_ENERGY"
 //*:**************************************************************************
-//*:* Supporting functions
-//*:**************************************************************************
-void DoRemoveRageFatigue(object oCaster, int iSpellID) {
-    GRRemoveFatigueEffects(oCaster, iSpellID);
-}
-
-//*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
 void main() {
@@ -122,8 +115,7 @@ void main() {
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oCaster, fDuration);
         GRCheckAndApplyEpicRageFeats(iConMod);
         if(GetLevelByClass(CLASS_TYPE_BARBARIAN, oCaster)<17) { // Tireless Rage given at level 17
-            DelayCommand(fDuration, GRApplyFatigueToObject(oCaster, spInfo.iSpellID));
-            DelayCommand(fDuration + TurnsToSeconds(1), DoRemoveRageFatigue(oCaster, spInfo.iSpellID));
+            DelayCommand(fDuration, GRApplySpecialEffectToObject(DURATION_TYPE_TEMPORARY, SPECIALEFFECT_TYPE_FATIGUE, oCaster, TurnsToSeconds(1)));
         }
     }
 

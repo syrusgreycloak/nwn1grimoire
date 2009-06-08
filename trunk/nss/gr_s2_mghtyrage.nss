@@ -16,6 +16,7 @@
 //*:* Function Libraries
 #include "GR_IN_SPELLS"
 #include "GR_IN_SPELLHOOK"
+#include "GR_IN_FEATS"
 
 //*:* #include "GR_IN_ENERGY"
 
@@ -90,6 +91,7 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
+    effect eVis     = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
     effect eStr     = EffectAbilityIncrease(ABILITY_CONSTITUTION, 8);
     effect eCon     = EffectAbilityIncrease(ABILITY_STRENGTH, 8);
     effect eSave    = EffectSavingThrowIncrease(SAVING_THROW_WILL, 4);

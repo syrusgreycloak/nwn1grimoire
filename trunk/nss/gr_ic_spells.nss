@@ -133,6 +133,7 @@ const int     SPELL_GREATER_CURSE_OF_BLADES                             = 1036  
 const int     SPELL_SHOUT                                               = 1037                                      ;
 const int     SPELL_GREATER_SHOUT                                       = 1038                                      ;
 const int     SPELL_HISS_OF_SLEEP                                       = 1039                                      ;
+const int     SPELL_LESSER_VISAGE_OF_THE_DEITY                          = 1040                                      ;
 const int     SPELL_GREATER_VISAGE_OF_THE_DEITY                         = 1041                                      ;
 const int     SPELL_CREEPING_COLD                                       = 1042                                      ;
 const int     SPELL_GREATER_CREEPING_COLD                               = 1043                                      ;

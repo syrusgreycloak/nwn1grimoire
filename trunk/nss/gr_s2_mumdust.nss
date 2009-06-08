@@ -71,6 +71,7 @@ void main() {
     int     i, j;
     int     iNumToSummon    = 2;
     string  sSummon         = "X2_S_MUMMYWARR";
+    object  oSummon;
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible

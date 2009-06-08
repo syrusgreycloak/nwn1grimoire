@@ -72,7 +72,7 @@ void main() {
     float   fRange          = 15.0f;
 
     int     iStunTime;
-    int     iAppType        = GetAppearanceType(oTarget);
+    int     iAppType        = GetAppearanceType(spInfo.oTarget);
     int     bImmune         = FALSE;
     //*:**********************************************
     //*:* Resolve Metamagic, if possible

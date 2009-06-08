@@ -12,10 +12,12 @@
 //*:* Include the following files
 //*:**************************************************************************
 //*:* Game Libraries
+#include "X2_INC_SHIFTER"
 
 //*:**********************************************
 //*:* Function Libraries
-#include "GR_IN_SPELLS"
+//#include "GR_IN_SPELLS"  --- INCLUDED IN GR_IN_CREATURE
+#include "GR_IN_CREATURE"
 #include "GR_IN_SPELLHOOK"
 
 //*:* #include "GR_IN_ENERGY"
