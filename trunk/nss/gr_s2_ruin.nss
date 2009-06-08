@@ -73,9 +73,9 @@ void main() {
     //*:**********************************************
 
     //*:* float   fDuration       = GRGetSpellDuration(spInfo);
+    float   fDist           = GetDistanceBetween(oCaster, spInfo.oTarget);
     float   fDelay          = fDist/(3.0 * log(fDist) + 2.0);
     //*:* float   fRange          = FeetToMeters(15.0);
-    float   fDist           = GetDistanceBetween(oCaster, spInfo.oTarget);
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
@@ -115,7 +115,7 @@ void main() {
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpact, spInfo.oTarget);
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVisBlood, spInfo.oTarget);
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVisBone, spInfo.oTarget);
-        DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, spInfo.oTarget));
+        DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDmg, spInfo.oTarget));
     }
 
     if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);
