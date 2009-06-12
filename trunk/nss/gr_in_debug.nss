@@ -37,7 +37,11 @@ void AutoDebugString(string sDebugString) {
     }
 
     if(GetLocalInt(GetModule(),"GR_G_DEBUG_SENDPC")) {
-        oPC  = GetFirstPC();
+        if(GetIsPC(OBJECT_SELF)) {
+            oPC = OBJECT_SELF;
+        } else {
+            oPC  = GetFirstPC();
+        }
     }
 
     if(GetIsObjectValid(oPC)) {

@@ -19,7 +19,6 @@
 //*:* Function Libraries
 #include "GR_IN_SPELLS"
 #include "GR_IN_SPELLHOOK"
-#include "GR_IN_ITEMPROP"
 
 //*:* #include "GR_IN_ENERGY"
 

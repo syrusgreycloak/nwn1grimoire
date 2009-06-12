@@ -21,7 +21,6 @@
 //*:* Include the following files
 //*:**************************************************************************
 //*:* Game Libraries
-#include "X2_INC_ITEMPROP"
 #include "X2_INC_SWITCHES"
 
 //*:**********************************************
@@ -29,6 +28,9 @@
 
 //*:**********************************************
 //*:* Function Libraries
+#include "GR_IN_ITEMPROP"
+
+#include "GR_IN_DEBUG"
 
 //*:**************************************************************************
 int GRUseMagicDeviceCheck();
@@ -189,10 +191,10 @@ int GRGetSpellCastOnSequencerItem(object oItem) {
 //*:* functions are called here DOES MATTER, changing
 //*:* it WILL break the crafting subsystems
 //*:**********************************************
-int GRSpellhookAbortSpell() {
+int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJECT_INVALID) {
 
-   object oTarget = GetSpellTargetObject();
-   object oDebugPC = GetFirstPC();
+   if(!GetIsObjectValid(oTarget)) oTarget = GetSpellTargetObject();
+   if(!GetIsObjectValid(oDebugPC)) oDebugPC = GetFirstPC();
 
    int nContinue;
 
@@ -205,20 +207,20 @@ int GRSpellhookAbortSpell() {
     //*:* Chapter 2 of Hordes of the Underdark.
     //*:**********************************************
     if(!GetIsPC(OBJECT_SELF)) {
-        //AutoDebugString("Casting Object is not a PC");
+        AutoDebugString("Casting Object is not a PC");
         if(!GetIsDMPossessed(OBJECT_SELF)) {
-            //AutoDebugString("Casting object is not possessed by a DM");
+            AutoDebugString("Casting object is not possessed by a DM");
             if(!GetLocalInt(GetModule(), "GR_L_ALWAYS_ALLOW_NPCS")) {
-                //AutoDebugString("No global npc allow set.");
+                AutoDebugString("No global npc allow set.");
                 if(!GetLocalInt(GetArea(OBJECT_SELF), "X2_L_WILD_MAGIC") || !GetLocalInt(GetModule(), "GR_L_ALWAYS_ALLOW_NPCS")) {
-                    //AutoDebugString("No area npc allow set.");
-                    //AutoDebugString("Returning early from spellhook function.");
+                    AutoDebugString("No area npc allow set.");
+                    AutoDebugString("Returning early from spellhook function.");
                     return TRUE;
                 } else {
-                    //AutoDebugString("Continuing spellhooking function for NPC.");
+                    AutoDebugString("Continuing spellhooking function for NPC.");
                 }
             } else {
-                //AutoDebugString("Continuing spellhooking function for NPC.");
+                AutoDebugString("Continuing spellhooking function for NPC.");
             }
         }
     }
@@ -227,16 +229,16 @@ int GRSpellhookAbortSpell() {
     //*:* Run use magic device skill check
     //*:**********************************************
     nContinue = GRUseMagicDeviceCheck();
-    //AutoDebugString("Checking X2UseMagicDeviceCheck. Value is: "+IntToString(nContinue));
+    AutoDebugString("Checking X2UseMagicDeviceCheck. Value is: " + GRBooleanToString(nContinue));
 
     if(nContinue) {
         //*:**********************************************
         // run any user defined spellscript here
         //*:**********************************************
-        //AutoDebugString("Running user defined spell script.");
+        AutoDebugString("Running user defined spell script.");
         nContinue = GRRunUserDefinedSpellScript();
     } else {
-        //AutoDebugString("Skipping user defined spell script.");
+        AutoDebugString("Skipping user defined spell script.");
     }
 
     //*:**********************************************
