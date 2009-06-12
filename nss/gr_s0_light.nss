@@ -26,15 +26,19 @@
 #include "GR_IN_ITEMPROP"
 
 //*:* #include "GR_IN_ENERGY"
+#include "GR_IN_DEBUG"
 
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
 void main() {
+    AutoDebugString("Entering spell script for spell " + GRSpellToString(GetSpellId()));
     //*:**********************************************
     //*:* Declare major variables
     //*:**********************************************
     object  oCaster         = OBJECT_SELF;
+
+    AutoDebugString("Getting spell struct");
     struct  SpellStruct spInfo = GRGetSpellStruct(GetSpellId(), oCaster);
 
     //*:* int     iDieType          = 0;
@@ -51,6 +55,7 @@ void main() {
     //*:**********************************************
     //*:* Set the info about the spell on the caster
     //*:**********************************************
+    AutoDebugString("Storing spell struct on caster");
     GRSetSpellInfo(spInfo, oCaster);
 
     //*:**********************************************
@@ -64,7 +69,12 @@ void main() {
     //*:**********************************************
     //*:* Spellcast Hook Code
     //*:**********************************************
-    if(!GRSpellhookAbortSpell()) return;
+    AutoDebugString("Checking spellhook");
+    if(!GRSpellhookAbortSpell()) {
+        AutoDebugString("Spellhook returned 'TRUE'.  Aborting spell.");
+        return;
+    }
+
     spInfo = GRGetSpellInfoFromObject(spInfo.iSpellID, oCaster);
 
     //*:**********************************************
@@ -100,6 +110,7 @@ void main() {
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
     //*:**********************************************
+    AutoDebugString("Resolving metamagic");
     if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_EXTEND)) fDuration *= 2;
     if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_WIDEN)) {
         iAOEType = (spInfo.iSpellID==SPELL_LIGHT ? AOE_MOB_LIGHT_WIDE : AOE_MOB_DAYLIGHT_WIDE);
@@ -116,6 +127,7 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
+    AutoDebugString("Setting effect variables");
     effect eVis     = EffectVisualEffect(iVisualType);
     /*** NWN1 SINGLE ***/ effect eDur     = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eAOE     = GREffectAreaOfEffect(iAOEType);
@@ -126,6 +138,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    AutoDebugString("Applying spell effects");
     //*:* Handle spell cast on item....
     if(GetObjectType(spInfo.oTarget)==OBJECT_TYPE_ITEM && !CIGetIsCraftFeatBaseItem(spInfo.oTarget)) {
         // Do not allow casting on non-equippable items
