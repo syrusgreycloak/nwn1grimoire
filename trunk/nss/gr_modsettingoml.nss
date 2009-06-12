@@ -14,6 +14,8 @@
 //*:**************************************************************************
 //*:* Updated On: November 5, 2008
 //*:**************************************************************************
+#include "h2_core_i"
+
 struct stVariable {
     string sVarName;
     string sVarType;
@@ -45,6 +47,7 @@ void GRLoadModuleSettings() {
         stVtoSet.sVarData = Get2DAString("mod_settings", "Value", iCounter);
         iCounter++;
     }
+    h2_CopyEventVariablesToCoreDataPoint();
 }
 
 
