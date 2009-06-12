@@ -38,7 +38,7 @@ string GRGetModuleOverrideSpellscript();
 int GRCastOnItemWasAllowed(object oItem);
 int GRGetSpellCastOnSequencerItem(object oItem);
 int GRRunUserDefinedSpellScript();
-int GRSpellhookAbortSpell();
+int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJECT_INVALID);
 //*:**************************************************************************
 
 //*:**********************************************

@@ -16,6 +16,9 @@
 //*:**********************************************
 //*:* Function Libraries
 #include "GR_IN_HEALHARM" // - includes "GR_IN_SPELLS"
+#include "GR_IN_UNDWATER"
+#include "GR_IN_DOMAINS"
+#include "GR_IN_DEITIES"
 
 //*:* #include "GR_IN_ENERGY"
 //*:**************************************************************************
@@ -67,7 +70,7 @@ void main() {
         //*:* Armor check - Chain Shirt is Light
         //*:* Hide is Medium
         //*:**********************************************
-        object oArmor = GetItemInSlot(INVENTORY_SLOT_CHEST, spSpellInfo.oTarget);
+        object oArmor = GetItemInSlot(INVENTORY_SLOT_CHEST, spInfo.oTarget);
         int iArmorType = GRGetArmorType(oArmor);
         string sArmorName = GetName(oArmor);
         int iFailureAmount = 0;
@@ -160,7 +163,7 @@ void main() {
         int iPos;
         int iDescriptor;
 
-        for(iPos=1; iPos<=3; i++) {
+        for(iPos=1; iPos<=3; iPos++) {
             iDescriptor = GRGetSpellDescriptor(spInfo.iSpellID, oCaster, iPos);
             switch(iDescriptor) {
                 case SPELL_TYPE_EVIL:
@@ -372,11 +375,11 @@ void main() {
     //*:**********************************************
     //*:* - Incapacitate and Condemned effects
     //*:**********************************************
-    if(GRGetIsHealingSpell(oCaster) && GRGetIsImmuneToMagicalHealing(spInfo.oTarget)) {
+    if(GRGetIsHealingSpell(spInfo.iSpellID, oCaster) && GRGetIsImmuneToMagicalHealing(spInfo.oTarget)) {
             SetModuleOverrideSpellScriptFinished();
     }
     if(GetHasSpellEffect(SPELL_GR_INCAPACITATE, spInfo.oTarget)) {
-        if(GRGetIsHealingSpell(oCaster)) {
+        if(GRGetIsHealingSpell(spInfo.iSpellID, oCaster)) {
             if(spInfo.iSpellID!=SPELL_HEAL && spInfo.iSpellID!=SPELL_MASS_HEAL && spInfo.iSpellID!=SPELL_MASS_CURE_CRITICAL_WOUNDS) {
                 SetModuleOverrideSpellScriptFinished();
             }
@@ -428,18 +431,18 @@ void main() {
             spInfo.iSpellID==668 ||    // item teleport spell
             spInfo.iSpellID==SPELL_ETHEREALNESS ||
             GRGetSpellSubschool(spInfo.iSpellID)==SPELL_SUBSCHOOL_TELEPORTATION ||
-            GRGetSpellHasDescriptor(spInfo.iSpellID, SPELL_TYPE_TELEPORTATION) {
+            GRGetSpellHasDescriptor(spInfo.iSpellID, SPELL_TYPE_TELEPORTATION)) {
                 if(GetIsPC(oCaster))
                     SendMessageToPC(oCaster, GetStringByStrRef(16939232));
                 SetModuleOverrideSpellScriptFinished();
                 GRClearSpellInfo(spInfo.iSpellID, oCaster);
                 return;
         }
-    } else if(GetHasSpellEffect(SPELL_GR_DIMENSIONAL_ANCHOR, oTarget) || GetLocalInt(oTarget,"SG_TELEPORT_BLOCKED")) {
+    } else if(GetHasSpellEffect(SPELL_GR_DIMENSIONAL_ANCHOR, spInfo.oTarget) || GetLocalInt(spInfo.oTarget, "GR_TELEPORT_BLOCKED")) {
         if(spInfo.iSpellID==SPELL_BANISHMENT ||
             spInfo.iSpellID==SPELL_DISMISSAL ||
             GRGetSpellSubschool(spInfo.iSpellID)==SPELL_SUBSCHOOL_TELEPORTATION ||
-            GRGetSpellHasDescriptor(spInfo.iSpellID, SPELL_TYPE_TELEPORTATION) {
+            GRGetSpellHasDescriptor(spInfo.iSpellID, SPELL_TYPE_TELEPORTATION)) {
                 SetModuleOverrideSpellScriptFinished();
                 GRClearSpellInfo(spInfo.iSpellID, oCaster);
                 return;
@@ -451,14 +454,14 @@ void main() {
     if(GRGetSpellHasDescriptor(spInfo.iSpellID, SPELL_TYPE_FIRE, oCaster)) {
         if(GetIsObjectValid(spInfo.oTarget) && GetHasSpellEffect(SPELL_GR_AURA_AGAINST_FLAME, spInfo.oTarget)) {
             int iCounterCheck = d20() + GetLevelByClass(CLASS_TYPE_CLERIC, spInfo.oTarget);
-            iDC = 11 + iCasterLevel;
-            if(iCounterCheck>=iDC) {
+            spInfo.iDC = 11 + spInfo.iCasterLevel;
+            if(iCounterCheck>=spInfo.iDC) {
                 GRRemoveSpellEffects(SPELL_GR_AURA_AGAINST_FLAME, spInfo.oTarget);
                 SetModuleOverrideSpellScriptFinished();
                 if(GetIsPC(spInfo.oTarget)) {
                     string sSpellName = GetStringByStrRef(StringToInt(Get2DAString("spells", "Name", spInfo.iSpellID)));
                     SendMessageToPC(spInfo.oTarget, GetStringByStrRef(16939233)+sSpellName+GetStringByStrRef(16939234));
-                    SendMessageToPC(spInfo.oTarget, GetStringByStrRef(16939235);
+                    SendMessageToPC(spInfo.oTarget, GetStringByStrRef(16939235));
                 }
                 GRClearSpellInfo(spInfo.iSpellID, oCaster);
                 return;
