@@ -37,16 +37,17 @@ void GRLoadModuleSettings() {
     struct  stVariable stVtoSet;
     int     iCounter = 0;
 
-    stVtoSet.sVarName = Get2DAString("mod_settings", "Name", iCounter);
-    stVtoSet.sVarType = Get2DAString("mod_settings", "Type", iCounter);
-    stVtoSet.sVarData = Get2DAString("mod_settings", "Value", iCounter);
-
     while(stVtoSet.sVarName!="END_OF_FILE") {
         GRSetModuleVariable(stVtoSet);
 
-        iCounter++;
         stVtoSet.sVarName = Get2DAString("mod_settings", "Name", iCounter);
         stVtoSet.sVarType = Get2DAString("mod_settings", "Type", iCounter);
         stVtoSet.sVarData = Get2DAString("mod_settings", "Value", iCounter);
+        iCounter++;
     }
+}
+
+
+void main() {
+    GRLoadModuleSettings();
 }
