@@ -23,7 +23,6 @@
 #include "GR_IN_LIGHTDARK"
 //#include "GR_IN_SPELLS" - INCLUDED IN GR_IN_LIGHTDARK
 #include "GR_IN_SPELLHOOK"
-#include "GR_IN_ITEMPROP"
 
 //*:* #include "GR_IN_ENERGY"
 #include "GR_IN_DEBUG"

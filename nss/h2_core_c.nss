@@ -99,12 +99,12 @@ const int H2_FORCE_CLOCK_UPDATE = FALSE;
 const int H2_SHOW_DAY_BEFORE_MONTH_IN_LOGIN = FALSE;
 
 //Set this to the welcome message you want to be sent to all players (and DMs) that log into your module.
-const string H2_TEXT_ON_LOGIN_MESSAGE = "Welcome to HCR2";
+const string H2_TEXT_ON_LOGIN_MESSAGE = "Welcome to a Grimoire V3 enabled-module";
 
 //Set this to true to indicate that you have read this file and made your adjustments to the above settings
 //according to your module's needs. If this value is false all who login to the server will receive
 //a message stating you have not altered it instead of the above H2_TEXT_ON_LOGIN_MESSAGE.
 //The default value is FALSE.
-const int H2_READ_CHECK = FALSE;
+const int H2_READ_CHECK = TRUE;
 
 //End of user configurable constant declarations.
