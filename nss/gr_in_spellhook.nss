@@ -94,13 +94,17 @@ int GRCastOnItemWasAllowed(object oItem) {
 //*:**********************************************
 string GRGetModuleOverrideSpellscript() {
 
+    AutoDebugString("Inside GRGetModuleOverrideSpellscript()");
     string  sScript = GetLocalString(OBJECT_SELF, "GR_BYPASS_SPELLHOOK");
+    AutoDebugString("Checking if caster has a generic bypass spellhook script assigned.  Script value: " + sScript);
 
     if(sScript=="") {
         sScript = GetLocalString(OBJECT_SELF, "GR_"+IntToString(GetSpellId())+"_SCRIPT");
+        AutoDebugString("Checking if caster has a bypass spellhook script assigned for spell " + GRSpellToString(GetSpellId()) + ".  Script value: " + sScript);
     }
     if(sScript=="") {
         sScript = GetLocalString(GetModule(), "X2_S_UD_SPELLSCRIPT");
+        AutoDebugString("Assigning global spellhook script.  Script value: " + sScript);
     }
 
     return sScript;
@@ -223,13 +227,15 @@ int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJ
                 AutoDebugString("Continuing spellhooking function for NPC.");
             }
         }
+    } else {
+        AutoDebugString("Casting object is a PC");
     }
 
     //*:**********************************************
     //*:* Run use magic device skill check
     //*:**********************************************
     nContinue = GRUseMagicDeviceCheck();
-    AutoDebugString("Checking X2UseMagicDeviceCheck. Value is: " + GRBooleanToString(nContinue));
+    AutoDebugString("Checking X2UseMagicDeviceCheck. Value of nContinue is: " + GRBooleanToString(nContinue));
 
     if(nContinue) {
         //*:**********************************************

@@ -21,6 +21,8 @@
 #include "GR_IN_DEITIES"
 
 //*:* #include "GR_IN_ENERGY"
+#include "GR_IN_DEBUG"
+
 //*:**************************************************************************
 //*:* Supporting functions
 //*:**************************************************************************
@@ -40,6 +42,7 @@ int PassConcentrationCheck(int iDC, int iStrRef, object oCaster, int iSpellID) {
 //*:* Main function
 //*:**************************************************************************
 void main() {
+    AutoDebugString("Entering spellhook script");
     //*:**********************************************
     //*:* Declare major variables
     //*:**********************************************
@@ -438,7 +441,7 @@ void main() {
                 GRClearSpellInfo(spInfo.iSpellID, oCaster);
                 return;
         }
-    } else if(GetHasSpellEffect(SPELL_GR_DIMENSIONAL_ANCHOR, spInfo.oTarget) || GetLocalInt(spInfo.oTarget, "GR_TELEPORT_BLOCKED")) {
+    } else if(GetHasSpellEffect(SPELL_GR_DIMENSIONAL_ANCHOR, spInfo.oTarget) || GetLocalInt(spInfo.oTarget,"SG_TELEPORT_BLOCKED")) {
         if(spInfo.iSpellID==SPELL_BANISHMENT ||
             spInfo.iSpellID==SPELL_DISMISSAL ||
             GRGetSpellSubschool(spInfo.iSpellID)==SPELL_SUBSCHOOL_TELEPORTATION ||
