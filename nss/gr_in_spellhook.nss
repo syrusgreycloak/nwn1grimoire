@@ -30,7 +30,7 @@
 //*:* Function Libraries
 #include "GR_IN_ITEMPROP"
 
-#include "GR_IN_DEBUG"
+//#include "GR_IN_DEBUG"
 
 //*:**************************************************************************
 int GRUseMagicDeviceCheck();
@@ -52,6 +52,8 @@ int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJ
 //*:**********************************************
 int GRUseMagicDeviceCheck() {
     int nRet = ExecuteScriptAndReturnInt(GetLocalString(GetModule(),"GR_UMDCHECK_STRING"), OBJECT_SELF);
+    //AutoDebugString("Inside GRUseMagicDeviceCheck.  Executing script " + GetLocalString(GetModule(), "GR_UMDCHECK_STRING"));
+
     return nRet;
 }
 
@@ -94,17 +96,17 @@ int GRCastOnItemWasAllowed(object oItem) {
 //*:**********************************************
 string GRGetModuleOverrideSpellscript() {
 
-    AutoDebugString("Inside GRGetModuleOverrideSpellscript()");
+    //AutoDebugString("Inside GRGetModuleOverrideSpellscript()");
     string  sScript = GetLocalString(OBJECT_SELF, "GR_BYPASS_SPELLHOOK");
-    AutoDebugString("Checking if caster has a generic bypass spellhook script assigned.  Script value: " + sScript);
+    //AutoDebugString("Checking if caster has a generic bypass spellhook script assigned.  Script value: " + sScript);
 
     if(sScript=="") {
         sScript = GetLocalString(OBJECT_SELF, "GR_"+IntToString(GetSpellId())+"_SCRIPT");
-        AutoDebugString("Checking if caster has a bypass spellhook script assigned for spell " + GRSpellToString(GetSpellId()) + ".  Script value: " + sScript);
+        //AutoDebugString("Checking if caster has a bypass spellhook script assigned for spell " + GRSpellToString(GetSpellId()) + ".  Script value: " + sScript);
     }
     if(sScript=="") {
         sScript = GetLocalString(GetModule(), "X2_S_UD_SPELLSCRIPT");
-        AutoDebugString("Assigning global spellhook script.  Script value: " + sScript);
+        //AutoDebugString("Assigning global spellhook script.  Script value: " + sScript);
     }
 
     return sScript;
@@ -211,40 +213,40 @@ int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJ
     //*:* Chapter 2 of Hordes of the Underdark.
     //*:**********************************************
     if(!GetIsPC(OBJECT_SELF)) {
-        AutoDebugString("Casting Object is not a PC");
+        //AutoDebugString("Casting Object is not a PC");
         if(!GetIsDMPossessed(OBJECT_SELF)) {
-            AutoDebugString("Casting object is not possessed by a DM");
+            //AutoDebugString("Casting object is not possessed by a DM");
             if(!GetLocalInt(GetModule(), "GR_L_ALWAYS_ALLOW_NPCS")) {
-                AutoDebugString("No global npc allow set.");
+                //AutoDebugString("No global npc allow set.");
                 if(!GetLocalInt(GetArea(OBJECT_SELF), "X2_L_WILD_MAGIC") || !GetLocalInt(GetModule(), "GR_L_ALWAYS_ALLOW_NPCS")) {
-                    AutoDebugString("No area npc allow set.");
-                    AutoDebugString("Returning early from spellhook function.");
+                    //AutoDebugString("No area npc allow set.");
+                    //AutoDebugString("Returning early from spellhook function.");
                     return TRUE;
                 } else {
-                    AutoDebugString("Continuing spellhooking function for NPC.");
+                    //AutoDebugString("Continuing spellhooking function for NPC.");
                 }
             } else {
-                AutoDebugString("Continuing spellhooking function for NPC.");
+                //AutoDebugString("Continuing spellhooking function for NPC.");
             }
         }
     } else {
-        AutoDebugString("Casting object is a PC");
+        //AutoDebugString("Casting object is a PC");
     }
 
     //*:**********************************************
     //*:* Run use magic device skill check
     //*:**********************************************
     nContinue = GRUseMagicDeviceCheck();
-    AutoDebugString("Checking X2UseMagicDeviceCheck. Value of nContinue is: " + GRBooleanToString(nContinue));
+    //AutoDebugString("Result of GRUseMagicDeviceCheck is: " + GRBooleanToString(nContinue));
 
     if(nContinue) {
         //*:**********************************************
         // run any user defined spellscript here
         //*:**********************************************
-        AutoDebugString("Running user defined spell script.");
+        //AutoDebugString("Running user defined spell script.");
         nContinue = GRRunUserDefinedSpellScript();
     } else {
-        AutoDebugString("Skipping user defined spell script.");
+        //AutoDebugString("Skipping user defined spell script.");
     }
 
     //*:**********************************************
