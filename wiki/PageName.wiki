@@ -3,20 +3,20 @@
 = Tested Spells =
 
 == Sorcerer Level 0 ==
-Electric Jolt
-Light
-Open/Close
+  * Electric Jolt
+  * Light
+  * Open/Close
 
 == Sorcerer Level 1 ==
-Acid Spittle
-Alarm
-Appraising Touch
-Arcane Bolt
-Babau Slime
-Benign Transposition
-Blades of Fire
-Burning Hands
-Cause Fear
+  * Acid Spittle
+  * Alarm
+  * Appraising Touch
+  * Arcane Bolt
+  * Babau Slime
+  * Benign Transposition
+  * Blades of Fire
+  * Burning Hands
+  * Cause Fear
 
 == Sorcerer Level 2==
-Aganazzar's Scorcher
+  * Aganazzar's Scorcher
