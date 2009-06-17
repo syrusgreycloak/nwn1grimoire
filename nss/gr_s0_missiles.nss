@@ -156,7 +156,14 @@ void main() {
 
     int     iAttackResult;
 
-    int     iSaveType           = GRGetEnergySaveType(iEnergyType);
+    int     iSaveType;
+
+    if(iEnergyType!=DAMAGE_TYPE_MAGICAL) {
+        iSaveType = GRGetEnergySaveType(iEnergyType);
+    } else {
+        iSaveType = SAVING_THROW_TYPE_SPELL;
+    }
+
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
