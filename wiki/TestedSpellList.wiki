@@ -1,13 +1,15 @@
 #summary Listing of tested spells
 
 = Tested Spells =
-
-== Sorcerer Level 0 ==
+== Sorcerer/Wizard ==
+=== Level 0 ===
+  * Acid Splash
   * Electric Jolt
   * Light
   * Open/Close
-
-== Sorcerer Level 1 ==
+  * Ray of Frost
+  * Touch of Fatigue
+=== Level 1 ===
   * Acid Spittle
   * Alarm
   * Appraising Touch
@@ -17,6 +19,10 @@
   * Blades of Fire
   * Burning Hands
   * Cause Fear
-
-== Sorcerer Level 2==
+  * Chameleon Skin
+  * Chill Touch
+=== Level 2 ===
   * Aganazzar's Scorcher
+  * Balagarn's Iron Horn
+=== Level 3 ===
+  * Armor of Undeath
