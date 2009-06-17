@@ -19,7 +19,7 @@
 #include "GR_IN_SPELLHOOK"
 
 //*:* #include "GR_IN_ENERGY"
-
+#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -78,7 +78,7 @@ void main() {
     //*:* float   fRange          = FeetToMeters(15.0);
 
     object  oFamiliar       = GetAssociate(ASSOCIATE_TYPE_FAMILIAR, oCaster);
-
+    AutoDebugString("Associate familiar name is " + GetName(oFamiliar));
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
     //*:**********************************************
@@ -95,17 +95,33 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
-    effect eLink, eImpLink, eTempHP;
+    effect eLink, eImpLink;
     effect eVis         = EffectVisualEffect(VFX_IMP_HOLY_AID);
     effect eDur         = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
 
+    // Enhance Familiar effects
+    effect eAttBonus    = EffectAttackIncrease(iBonus);
+    effect eSaveBonus   = EffectSavingThrowIncrease(SAVING_THROW_ALL, iBonus);
+    effect eDamageBonus = EffectDamageIncrease(GRGetDamageBonusValue(iBonus));
+    effect eACBonus     = EffectACIncrease(iBonus);
+
+    // Fortify Familiar effects
+    effect eMissChance  = EffectConcealment(50);
+    effect eACIncrease  = EffectACIncrease(2, AC_NATURAL_BONUS);
+    effect eTempHP      = EffectTemporaryHitpoints(iDamage);
+    effect eACVis       = EffectVisualEffect(VFX_IMP_AC_BONUS);
+    effect eTempVis     = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
+    effect eVisLink     = EffectLinkEffects(eACVis, eTempVis);
+
+    // Augment Familiar effects
+    effect eSTRBonus    = EffectAbilityIncrease(ABILITY_STRENGTH, iBonus);
+    effect eDEXBonus    = EffectAbilityIncrease(ABILITY_DEXTERITY, iBonus);
+    effect eCONBonus    = EffectAbilityIncrease(ABILITY_CONSTITUTION, iBonus);
+    effect eDmgReduction= EffectDamageReduction(5, DAMAGE_POWER_PLUS_ONE);
+    effect eAugSaveBns  = EffectSavingThrowIncrease(SAVING_THROW_ALL, 2);
+
     switch(spInfo.iSpellID) {
         case SPELL_ENHANCE_FAMILIAR:
-            effect eAttBonus    = EffectAttackIncrease(iBonus);
-            effect eSaveBonus   = EffectSavingThrowIncrease(SAVING_THROW_ALL, iBonus);
-            effect eDamageBonus = EffectDamageIncrease(GRGetDamageBonusValue(iBonus));
-            effect eACBonus     = EffectACIncrease(iBonus);
-
             eLink = EffectLinkEffects(eAttBonus, eSaveBonus);
             eLink = EffectLinkEffects(eLink, eDamageBonus);
             eLink = EffectLinkEffects(eLink, eACBonus);
@@ -113,28 +129,15 @@ void main() {
             eImpLink = eVis;
             break;
         case SPELL_GR_FORTIFY_FAMILIAR:
-            effect eMissChance  = EffectConcealment(50);
-            effect eACIncrease  = EffectACIncrease(2, AC_NATURAL_BONUS);
-            eTempHP      = EffectTemporaryHitpoints(iDamage);
-            effect eACVis       = EffectVisualEffect(VFX_IMP_AC_BONUS);
-            effect eTempVis     = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
-            effect eVisLink     = EffectLinkEffects(eACVis, eTempVis);
-
             eLink = EffectLinkEffects(eMissChance, eACIncrease);
             eImpLink = eVisLink;
             break;
-
         case SPELL_GR_AUGMENT_FAMILIAR:
-            effect eSTRBonus    = EffectAbilityIncrease(ABILITY_STRENGTH, iBonus);
-            effect eDEXBonus    = EffectAbilityIncrease(ABILITY_DEXTERITY, iBonus);
-            effect eCONBonus    = EffectAbilityIncrease(ABILITY_CONSTITUTION, iBonus);
-            effect eDmgReduction= EffectDamageReduction(5, DAMAGE_POWER_PLUS_ONE);
-            effect eAugSaveBns  = EffectSavingThrowIncrease(SAVING_THROW_ALL, 2);
-
+            AutoDebugString("Attempting setup of effects for Augment Familiar");
             eLink = EffectLinkEffects(eSTRBonus, eDEXBonus);
             eLink = EffectLinkEffects(eLink, eCONBonus);
             eLink = EffectLinkEffects(eLink, eDmgReduction);
-            eLink = EffectLinkEffects(eLink, eSaveBonus);
+            eLink = EffectLinkEffects(eLink, eAugSaveBns);
             eLink = EffectLinkEffects(eLink, eDur);
             eImpLink = eVis;
             break;
@@ -147,6 +150,7 @@ void main() {
         SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
         GRRemoveSpellEffects(spInfo.iSpellID, spInfo.oTarget);
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpLink, spInfo.oTarget);
+        AutoDebugString("Applying spell effects");
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
         if(spInfo.iSpellID==SPELL_GR_FORTIFY_FAMILIAR) {
             GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eTempHP, spInfo.oTarget, GRGetDuration(1, DUR_TYPE_HOURS));

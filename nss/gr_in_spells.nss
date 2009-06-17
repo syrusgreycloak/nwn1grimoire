@@ -28,10 +28,9 @@
 //*:**********************************************
 //*:* Function Libraries
 #include "GR_IN_AOE"
-#include "GR_IN_EFFECTS" //- INCLUDED IN GR_IN_FATIGUE
+#include "GR_IN_EFFECTS"
 //#include "GR_IN_LIB" - INCLUDED IN GR_IN_RACIAL & GR_IN_EFFECTS
 #include "GR_IN_RACIAL"
-//#include "GR_IN_FATIGUE"
 
 //*:**************************************************************************
 //*:* Constants
@@ -283,7 +282,7 @@ int GRGetSpellDamageAmount(struct SpellStruct spSpellInfo, int iSaveInfo = SPELL
     }
 
     if(iSaveInfo==REFLEX_HALF) {
-        int iNewDamage = GRGetReflexAdjustedDamage(iDamage, spSpellInfo.oTarget, spSpellInfo.iDC, iSavingThrow, oCaster);
+        int iNewDamage = GRGetReflexAdjustedDamage(iDamage, spSpellInfo.oTarget, spSpellInfo.iDC, iSaveType, oCaster);
         int bHasEvasion = GetHasFeat(FEAT_EVASION, spSpellInfo.oTarget);
         int bHasImprovedEvasion = GetHasFeat(FEAT_IMPROVED_EVASION, spSpellInfo.oTarget);
 
