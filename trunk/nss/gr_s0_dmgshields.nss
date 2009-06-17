@@ -44,7 +44,7 @@
 #include "GR_IN_SPELLHOOK"
 
 #include "GR_IN_ENERGY"
-
+//#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Supporting functions
 //*:**************************************************************************
@@ -109,9 +109,13 @@ void main() {
     //*:**********************************************
     //*:* Energy Spell Info
     //*:**********************************************
+    //AutoDebugString("Casting spell " + GRSpellToString(spInfo.iSpellID) +".  bEnergySpell = " + GRBooleanToString(bEnergySpell));
     if(bEnergySpell) {
         iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
         iSpellType      = GRGetEnergySpellType(iEnergyType);
+
+        //AutoDebugString("iEnergyType = " + IntToString(iEnergyType));
+        //AutoDebugString("iSpellType = " + IntToString(iSpellType));
 
         spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
     }
@@ -249,7 +253,10 @@ void main() {
 
     } else {
         eShield = EffectDamageShield(iBonusAmt, iRandomAmt, iEnergyType);
+        //AutoDebugString("Creating damage shield effect.  Bonus = " + IntToString(iBonusAmt) + " Random = " + IntToString(iRandomAmt) + " energy = " + IntToString(iEnergyType));
     }
+    eLink = EffectLinkEffects(eLink, eShield);
+
 
     switch(spInfo.iSpellID) {
         case SPELL_GR_MASS_FIRE_SHIELD_HOT:
