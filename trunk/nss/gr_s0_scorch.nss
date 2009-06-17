@@ -68,7 +68,7 @@ void main() {
     //*:**********************************************
 
     float   fDuration       = GRGetSpellDuration(spInfo, iEnergyType);
-    float   fDelay          = 0.0f;
+    float   fDelay          = 1.5f;
     float   fRange          = FeetToMeters(30.0);
 
     int     iVisualType     = GRGetEnergyVisualType(VFX_IMP_FLAME_S, iEnergyType);
