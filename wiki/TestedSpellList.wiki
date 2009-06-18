@@ -21,8 +21,13 @@
   * Cause Fear
   * Chameleon Skin
   * Chill Touch
+  * Jet of Steam
 === Level 2 ===
   * Aganazzar's Scorcher
   * Balagarn's Iron Horn
 === Level 3 ===
   * Armor of Undeath
+=== Level 7 ===
+  * Freezing Curse
+=== Level 8 ===
+  * Shadow Storm
