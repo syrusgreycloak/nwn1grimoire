@@ -14,6 +14,7 @@
   * Alarm
   * Appraising Touch
   * Arcane Bolt
+  * Augment Familiar
   * Babau Slime
   * Benign Transposition
   * Blades of Fire
@@ -21,6 +22,7 @@
   * Cause Fear
   * Chameleon Skin
   * Chill Touch
+  * Chromatic Orb Lvls 1-5
   * Jet of Steam
 === Level 2 ===
   * Aganazzar's Scorcher
