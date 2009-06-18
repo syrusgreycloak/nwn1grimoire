@@ -27,8 +27,15 @@
 === Level 2 ===
   * Aganazzar's Scorcher
   * Balagarn's Iron Horn
+  * Blur
 === Level 3 ===
   * Armor of Undeath
+  * Ice Burst
+=== Level 4 ===
+  * Dimension Door
+=== Level 6 ===
+  * Disintegrate
+  * Storm of Fire and Ice
 === Level 7 ===
   * Freezing Curse
 === Level 8 ===
