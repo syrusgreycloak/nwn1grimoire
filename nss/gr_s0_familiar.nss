@@ -19,7 +19,7 @@
 #include "GR_IN_SPELLHOOK"
 
 //*:* #include "GR_IN_ENERGY"
-#include "GR_IN_DEBUG"
+//#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -78,7 +78,9 @@ void main() {
     //*:* float   fRange          = FeetToMeters(15.0);
 
     object  oFamiliar       = GetAssociate(ASSOCIATE_TYPE_FAMILIAR, oCaster);
-    AutoDebugString("Associate familiar name is " + GetName(oFamiliar));
+    spInfo.oTarget = oFamiliar;
+
+    //AutoDebugString("Associate familiar name is " + GetName(oFamiliar));
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
     //*:**********************************************
@@ -133,7 +135,7 @@ void main() {
             eImpLink = eVisLink;
             break;
         case SPELL_GR_AUGMENT_FAMILIAR:
-            AutoDebugString("Attempting setup of effects for Augment Familiar");
+            //AutoDebugString("Attempting setup of effects for Augment Familiar");
             eLink = EffectLinkEffects(eSTRBonus, eDEXBonus);
             eLink = EffectLinkEffects(eLink, eCONBonus);
             eLink = EffectLinkEffects(eLink, eDmgReduction);
@@ -146,11 +148,15 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    //AutoDebugString("Target is " + GetName(spInfo.oTarget));
+    //AutoDebugString("Familiar is " + GetName(oFamiliar));
     if(GetIsObjectValid(spInfo.oTarget) && spInfo.oTarget==oFamiliar) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
         GRRemoveSpellEffects(spInfo.iSpellID, spInfo.oTarget);
+
+        //AutoDebugString("Applying effects to familiar " + GetName(spInfo.oTarget));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpLink, spInfo.oTarget);
-        AutoDebugString("Applying spell effects");
+        //AutoDebugString("Applying spell effects");
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
         if(spInfo.iSpellID==SPELL_GR_FORTIFY_FAMILIAR) {
             GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eTempHP, spInfo.oTarget, GRGetDuration(1, DUR_TYPE_HOURS));
