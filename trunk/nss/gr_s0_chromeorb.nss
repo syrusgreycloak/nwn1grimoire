@@ -44,8 +44,7 @@ void main() {
     int     iSavingThrow        = 0;  // for Special Powers that provide additional saves.
     float   fRange              = 0.0f;
     int     iVisualType;
-    effect  eSpecial;
-    effect  eApply;
+    effect  eSpecial, eApply, eLight, eAttack, eSave, eAC, eStr, eDex;
 
     switch(spInfo.iSpellID) {
         case SPELL_GR_CHROMATIC_ORB_LVLS15:
@@ -55,10 +54,10 @@ void main() {
             iDieType    = 4;
             iNumDice    = 1;
             iVisualType = VFX_COM_HIT_SONIC;
-            effect eLight      = EffectVisualEffect(VFX_DUR_LIGHT_WHITE_20);
-            effect eAttack     = EffectAttackDecrease(4);
-            effect eSave       = EffectSavingThrowDecrease(SAVING_THROW_ALL, 4);
-            effect eAC         = EffectACDecrease(4, AC_DEFLECTION_BONUS);
+            eLight      = EffectVisualEffect(VFX_DUR_LIGHT_WHITE_20);
+            eAttack     = EffectAttackDecrease(4);
+            eSave       = EffectSavingThrowDecrease(SAVING_THROW_ALL, 4);
+            eAC         = EffectACDecrease(4, AC_DEFLECTION_BONUS);
             eApply      = EffectLinkEffects(eLight, eAttack);
             eApply      = EffectLinkEffects(eApply, eSave);
             eApply      = EffectLinkEffects(eApply, eAC);
@@ -69,8 +68,8 @@ void main() {
             iDieType    = 6;
             iNumDice    = 1;
             iVisualType = VFX_COM_HIT_NEGATIVE;
-            effect eStr        = EffectAbilityDecrease(ABILITY_STRENGTH, 1);
-            effect eDex        = EffectAbilityDecrease(ABILITY_DEXTERITY, 1);
+            eStr        = EffectAbilityDecrease(ABILITY_STRENGTH, 1);
+            eDex        = EffectAbilityDecrease(ABILITY_DEXTERITY, 1);
             eApply      = EffectLinkEffects(eStr, eDex);
             iDurAmount  = 1;
             iRequiredLevel = 2;
