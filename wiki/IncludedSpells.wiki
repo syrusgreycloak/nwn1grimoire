@@ -1,0 +1,746 @@
+#summary List of spells included in the Grimoire
+
+= Introduction =
+
+The following is a list of spells included in the Grimoire spell haks (including the original NWN spells that were not dropped).  Currently the list has approximately 737 spells.  As of 6/23/09, most of these spells still require testing.
+
+
+= Details =
+
+  * Abundant Step
+  * Acid Fog
+  * Acid Spittle
+  * Acid Splash
+  * Acid Storm
+  * Aganazzar's Scorcher
+  * Aid
+  * Aid, Mass
+  * Alarm
+  * Alarm, Greater
+  * Allegro
+  * Amplify
+  * Animal Growth
+  * Animal Shapes
+  * Animal Trance
+  * Animate Dead
+  * Antilife Shell
+  * Appraising Touch
+  * Arcane Bolt
+  * Armor Of Darkness
+  * Armor Of Undeath
+  * Aspect of the Earth Hunter
+  * Aspect of the Icy Hunter
+  * Aspect of the Wolf
+  * Augment Familiar
+  * Aura Of Glory
+  * Aura against Flame
+  * Aura of Cold, Greater
+  * Aura of Cold, Lesser
+  * Aura of Hellfire
+  * Aura of Vitality
+  * Avasculate
+  * Awaken
+  * Babau Slime
+  * Balagarn's Iron Horn
+  * Baleful Transposition
+  * Ball Lightning
+  * Bane
+  * Banish Shadow
+  * Banishment
+  * Barkskin
+  * Battlecry
+  * Battletide
+  * Bear Endurance, Mass
+  * Bears Endurance
+  * Bears Endurance, Greater
+  * Beastland Ferocity
+  * Bebelith Web
+  * Beguiling Influence
+  * Benign Transposition
+  * Bestow Curse
+  * Bestow Curse, Greater
+  * Bigbys Clenched Fist
+  * Bigbys Crushing Hand
+  * Bigbys Forceful Hand
+  * Bigbys Grasping Hand
+  * Bigbys Interposing Hand
+  * Black Blade of Disaster
+  * Blackflame
+  * Blacklight
+  * Blackstaff
+  * Blade Barrier
+  * Blade Brothers
+  * Blade Thirst
+  * Blades of Fire
+  * Blasphemy
+  * Blast of Flame
+  * Bless
+  * Bless Weapon
+  * Bless Weapon, Swift
+  * Blessed Warmth
+  * Blindness, Mass
+  * Blindness/Deafness
+  * Blindness/Deafness, Mass
+  * Blindsight
+  * Blindsight, Greater
+  * Blood Frenzy
+  * Blood Storm
+  * Blur
+  * Boiling Blood
+  * Bombardment
+  * Boreal Wind
+  * Breath of the Jungle
+  * Breath of the Night
+  * Bull Strength, Mass
+  * Bulls Strength
+  * Bulls Strength, Greater
+  * Burning Hands
+  * Cacophonic Burst
+  * Call Lightning
+  * Call Lightning Storm
+  * Calm Animals
+  * Calm Emotions
+  * Camoflage
+  * Camoflage, Mass
+  * Cast In Stone
+  * Cat Grace, Mass
+  * Caterwaul
+  * Cats Grace
+  * Cats Grace, Greater
+  * Cause Fear
+  * Caustic Smoke
+  * Chain Lightning
+  * Chameleon Skin
+  * Chaos Hammer
+  * Charm (Invocation)
+  * Charm Animal
+  * Charm Monster
+  * Charm Monster, Mass
+  * Charm Person
+  * Charm Person, Mass
+  * Chill Touch
+  * Chilling Tentacles
+  * Choking Cobwebs
+  * Chromatic Orb
+  * Circle of Death
+  * Clairaudience and Clairvoyance
+  * Clarity of Mind
+  * Cloak Of Righteousness
+  * Cloak of Chaos
+  * Cloud of Bewilderment
+  * Cloudkill
+  * Color Spray
+  * Combust
+  * Command
+  * Command Undead
+  * Command, Greater
+  * Companion's Strife
+  * Comprehend Languages
+  * Condemned
+  * Cone of Cold
+  * Confusion
+  * Confusion, Lesser (Random Action)
+  * Consecrate
+  * Contagion
+  * Contagion, Mass
+  * Continual Flame
+  * Control Undead
+  * Conviction
+  * Conviction, Mass
+  * Corpse Visage
+  * Creaking Cacophony
+  * Create Greater Undead
+  * Create Undead
+  * Creeping Cold
+  * Creeping Cold, Greater
+  * Creeping Doom
+  * Crumble
+  * Crushing Despair
+  * Cure Critical Wounds
+  * Cure Critical Wounds, Mass
+  * Cure Light Wounds
+  * Cure Light Wounds, Mass
+  * Cure Minor Wounds
+  * Cure Moderate Wounds
+  * Cure Moderate Wounds, Mass
+  * Cure Serious Wounds
+  * Cure Serious Wounds, Mass
+  * Curse Of Blades, Mass
+  * Curse of Blades
+  * Curse of Despair
+  * Curse of Ill Fortune
+  * Curse of Ill Fortune, Mass
+  * Dar'Tan's Shadow Bolt
+  * Dark Foresight
+  * Darkbolt
+  * Darkfire
+  * Darkness
+  * Darkness (Invocation)
+  * Darkvision
+  * Darkvision, Mass
+  * Dawnburst
+  * Daylight
+  * Daze
+  * Daze Monster
+  * Deadly Lahar
+  * Deadly Sunstroke
+  * Deafening Blast
+  * Deafening Clang
+  * Deafness
+  * Deafness, Mass
+  * Death Armor
+  * Death Knell
+  * Death Ward
+  * Death Ward, Mass
+  * Death's Call
+  * Deep Slumber
+  * Deeper Darkness
+  * Deflecting Force
+  * Delay Poison
+  * Delayed Blast Fireball
+  * Desecrate
+  * Destruction
+  * Detect Chaos
+  * Detect Evil
+  * Detect Good
+  * Detect Law
+  * Detect Undead
+  * Devils Sight
+  * Dictum
+  * Dimension Door
+  * Dimensional Anchor
+  * Dirge
+  * Dirge of Discord
+  * Discordant Malediction
+  * Disintegrate
+  * Dismissal
+  * Dispel Magic
+  * Dispel Magic, Greater
+  * Dispel, Lesser
+  * Displacement
+  * Disrupt Undead
+  * Disrupt Undead, Greater
+  * Disrupting Weapon
+  * Distort Speech
+  * Distract
+  * Divine Favor
+  * Divine Interdiction
+  * Divine Power
+  * Divine Protection
+  * Dolomar's Force Wave
+  * Dolorous Motes
+  * Dominate Animal
+  * Dominate Monster
+  * Dominate Person
+  * Doom
+  * Dreaded Form of the Eye Tyrant
+  * Drown
+  * Drown, Mass
+  * Eagle Splendor, Mass
+  * Eagles Splendor
+  * Eagles Splendor, Greater
+  * Earthquake
+  * Elation
+  * Electric Jolt
+  * Elemental Swarm
+  * Endure Energy
+  * Energy Buffer
+  * Energy Drain
+  * Energy Immunity
+  * Enervation
+  * Enhance Familiar
+  * Enlarge Person
+  * Enlarge Person Greater
+  * Enlarge Person, Mass
+  * Entangle
+  * Entropic Shield
+  * Entropic Warding
+  * Epic Mage Armor
+  * Eternal Slumber
+  * Ethereal Barrier
+  * Ethereal Visage
+  * Etherealness
+  * Evards Black Tentacles
+  * Evil Blight
+  * Expeditious Retreat
+  * Expeditious Retreat Swift
+  * Exterminate
+  * Extract Water Elemental
+  * Faerie Fire
+  * Faith Healing
+  * False Life
+  * Familiar Refuge
+  * Fear
+  * Feeblemind
+  * Fever Dream
+  * Filter
+  * Find Traps
+  * Fine-Tuning
+  * Finger of Agony
+  * Finger of Death
+  * Fire Aura
+  * Fire Shield
+  * Fire Shield, Mass
+  * Fire Storm
+  * Fire and Brimstone
+  * Fireball
+  * Firebrand
+  * Fireburst
+  * Fireburst, Greater
+  * Flame Arrow
+  * Flame Blade (Flame Weapon)
+  * Flame Bolt
+  * Flame Lash
+  * Flame Strike
+  * Flare
+  * Flash
+  * Flee the Scene
+  * Flensing
+  * Flesh to Stone
+  * Focusing Chant
+  * Fog Cloud
+  * Forceward
+  * Foresight
+  * Fortify Familiar
+  * Foundation of Stone
+  * Fox Cunning, Mass
+  * Foxs Cunning
+  * Foxs Cunning, Greater
+  * Freedom
+  * Freedom of Movement
+  * Freezing Curse
+  * Frost Weapon
+  * Frostbite
+  * Frostburn
+  * Frostburn, Lesser
+  * Frostburn, Mass
+  * Fugue
+  * Ganest's Farstrike
+  * Gate
+  * Gedlees Electric Loop
+  * Ghostly Visage
+  * Ghoul Touch
+  * Glibness
+  * Glitterdust
+  * Globe of Invulnerability
+  * Globe of Invulnerability, Lesser
+  * Glyph of Warding
+  * Glyph of Warding Greater
+  * Good Hope
+  * Grease
+  * Great Thunderclap
+  * Gust of Wind
+  * Hand of Divinity
+  * Harm
+  * Harm, Greater
+  * Harm, Mass
+  * Harmonic Chorus
+  * Haste
+  * Haste, Swift
+  * Haunting Tune
+  * Heal
+  * Heal Animal Companion
+  * Heal, Mass
+  * Healing Sting
+  * Healing Touch
+  * Heartfire
+  * Hell Inferno
+  * Hemorrhage
+  * Herald's Call
+  * Heroism
+  * Heroism, Greater
+  * Hide from Animals
+  * Hide from Undead
+  * Hiss of Sleep
+  * Hold Animal
+  * Hold Monster
+  * Hold Monster, Mass
+  * Hold Person
+  * Hold Person, Mass
+  * Holy Aura
+  * Holy Smite
+  * Holy Sword
+  * Holy Word
+  * Horrid Wilting
+  * Hungry Darkness
+  * Hymn of Praise
+  * Hypnotic Pattern
+  * Hypothermia
+  * Ice Burst
+  * Ice Dagger
+  * Ice Darts
+  * Ice Knife
+  * Ice Storm
+  * Identify
+  * Igedrazaar's Miasma
+  * Implosion
+  * Incapacitate
+  * Incendiary Cloud
+  * Incendiary Slime
+  * Incendiary Surge
+  * Infernal Threnody
+  * Inferno
+  * Infestation of Maggots
+  * Inflict Critical Wounds
+  * Inflict Critical Wounds, Mass
+  * Inflict Light Wounds
+  * Inflict Light Wounds, Mass 
+  * Inflict Minor Wounds
+  * Inflict Moderate Wounds
+  * Inflict Moderate Wounds, Mass
+  * Inflict Serious Wounds
+  * Inflict Serious Wounds, Mass
+  * Insanity
+  * Insidious Insight
+  * Insidious Rhythm
+  * Inspirational Boost
+  * Interminable Echo
+  * Invisibility
+  * Invisibility Purge
+  * Invisibility Sphere
+  * Invisibility, Greater
+  * Invisibility, Greater
+  * Invisibility, Swift
+  * Iron Body
+  * Iron Bones
+  * Iron Mind
+  * Ironguts
+  * Isaacs Greater Missile Storm
+  * Isaacs Lesser Missile Storm
+  * Jagged Tooth
+  * Jaws of the Wolf
+  * Jet of Steam
+  * Joyful Noise
+  * Keen Edge
+  * Knock
+  * Larlochs Minor Drain
+  * Leaps and Bounds
+  * Leech Field
+  * Legend Lore
+  * Lesser Vigor
+  * Lesser Vigor, Mass
+  * Life Bolt
+  * Life Force Transfer
+  * Light
+  * Lightning Bolt
+  * Lightning Leap
+  * Lingering Flames
+  * Lionheart
+  * Lively Step
+  * Longstrider
+  * Longstrider, Mass
+  * Loves Lament
+  * Loviatar's Torments
+  * Low Light Vision
+  * Lower Spell Resistance
+  * Lullaby
+  * Luminous Swarm
+  * Mage Armor
+  * Mage Armor, Greater
+  * Mage Armor, Mass
+  * Magic Circle against Chaos
+  * Magic Circle against Evil
+  * Magic Circle against Good
+  * Magic Circle against Law
+  * Magic Fang
+  * Magic Fang, Greater
+  * Magic Fang, Superior
+  * Magic Missile
+  * Magic Savant
+  * Magic Stone
+  * Magic Vestment
+  * Magic Weapon
+  * Magic Weapon, Greater
+  * Malison, Greater
+  * Malison, Lesser
+  * Manticore Spikes
+  * Mask of the Ideal
+  * Melfs Acid Arrow
+  * Mestils Acid Breath
+  * Mestils Acid Sheath
+  * Meteor Swarm
+  * Mind Blank
+  * Mind Fog
+  * Misdirection
+  * Moon Bolt
+  * Mordenkainens Disjunction
+  * Mordenkainens Force Missiles
+  * Mordenkainens Magnificent Mansion
+  * Mordenkainens Sword
+  * Nature's Balance
+  * Natures Avatar
+  * Natures Wrath (Bioware's Natures Balance)
+  * Negative Energy Burst
+  * Negative Energy Ray
+  * Negative Energy Wave
+  * Neutralize Poison
+  * Nybors Wrathful Castigation
+  * Obscuring Mist
+  * One With The Land
+  * Open/Close
+  * Orb of Acid
+  * Orb of Acid, Lesser
+  * Orb of Cold
+  * Orb of Cold, Lesser
+  * Orb of Electricity
+  * Orb of Electricity, Lesser
+  * Orb of Fire
+  * Orb of Fire, Lesser
+  * Orb of Sound
+  * Orb of Sound, Lesser
+  * Order's Wrath
+  * Otilukes Freezing Sphere
+  * Owl Wisdom, Mass
+  * Owls Insight
+  * Owls Wisdom
+  * Owls Wisdom, Greater
+  * Pain Touch
+  * Painful Echoes
+  * Pall of Twilight
+  * Peaceful Serenity of Io
+  * Phantasmal Killer
+  * Planar Ally
+  * Planar Binding
+  * Planar Binding, Greater
+  * Planar Binding, Lesser
+  * Poison
+  * Polar Ray
+  * Polymorph Self
+  * Potion of Vision
+  * Power Word Blind
+  * Power Word Disable
+  * Power Word Kill
+  * Power Word Maladroit
+  * Power Word Petrify
+  * Power Word Stun
+  * Power Word Thunder
+  * Power Word Weaken
+  * Prayer
+  * Prickling Torment
+  * Prismatic Aura
+  * Prismatic Deluge
+  * Prismatic Spray
+  * Protection From Negative Energy
+  * Protection From Positive Energy
+  * Protection From Thirst and Hunger
+  * Protection from Cantrips
+  * Protection from Chaos
+  * Protection from Energy
+  * Protection from Evil
+  * Protection from Good
+  * Protection from Law
+  * Protection from Paralysis
+  * Protection from Spells
+  * Purifying Flames
+  * Quillfire
+  * Rabbit Feet
+  * Rage
+  * Raise Dead
+  * Ray Deflection
+  * Ray of Clumsiness
+  * Ray of Deanimation
+  * Ray of Enfeeblement
+  * Ray of Entropy
+  * Ray of Flame
+  * Ray of Frost
+  * Ray of Hope
+  * Ray of Ice
+  * Ray of Light
+  * Ray of Stupidity
+  * Ray of Weakness
+  * Reaving Aura
+  * Rebuke (Nybors Gentle Reminder)
+  * Rebuke, Final (Nybors Stern Reproof)
+  * Rebuke, Greater (Nybors Mild Admonishment)
+  * Recitation
+  * Reduce Person
+  * Reduce Person Greater
+  * Reduce Person Mass
+  * Regenerate
+  * Rejuvenation Cocoon
+  * Remove Blindness/Deafness
+  * Remove Curse
+  * Remove Disease
+  * Remove Fear
+  * Remove Paralysis
+  * Repair Critical Damage
+  * Repair Light Damage
+  * Repair Minor Damage
+  * Repair Moderate Damage
+  * Repair Serious Damage
+  * Repel Vermin
+  * Resist Energy
+  * Resist Energy, Mass
+  * Resistance
+  * Resistance, Greater
+  * Resistance, Superior
+  * Resonating Agony
+  * Resonating Bolt
+  * Restoration
+  * Restoration, Greater
+  * Restoration, Lesser
+  * Restoration, Mass
+  * Resurrection
+  * Retributive Enervation
+  * Revitalize Animal
+  * Righteous Fury
+  * Righteous Might
+  * Roar of the Waves
+  * Ruin Delvers Fortune
+  * Rusted Blade
+  * Sanctuary
+  * Sanctuary, Mass
+  * Scare
+  * Scintillating Sphere
+  * Scorching Ray
+  * Searing Light
+  * See Invisibility
+  * See the Unseen
+  * Seek Eternal Rest
+  * Serene Visage
+  * Shadow Conjuration, Greater
+  * Shadow Conjuration, Lesser
+  * Shadow Evocation I
+  * Shadow Evocation II
+  * Shadow Evocation, Greater I
+  * Shadow Evocation, Greater II
+  * Shadow Evocation, Lesser
+  * Shadow Evocation, Lesser II
+  * Shadow Shield
+  * Shadow Storm
+  * Shape of the Hellspawned Stalker
+  * Shapechange
+  * Shelgarns Persistent Blade
+  * Shield
+  * Shield of Faith
+  * Shield of Faith, Mass
+  * Shield of Law
+  * Shivering Touch
+  * Shivering Touch, Lesser
+  * Shocking Grasp
+  * Shout
+  * Shout, Greater
+  * Shroud of Flame
+  * Silence
+  * Silverbeard
+  * Simbuls Synostodweomer
+  * Sirines Grace
+  * Slay Living
+  * Sleep
+  * Sleet Storm
+  * Slow
+  * Snilloc's Snowball Swarm
+  * Snowsong
+  * Solid Fog
+  * Solipsism
+  * Song of Discord
+  * Sonic Blast (Horizikaul's Boom)
+  * Sonic Ray (Sonic Blast)
+  * Sonic Shield
+  * Sonic Snap (Horizikaul's Cough)
+  * Sonic Weapon
+  * Sorrow
+  * Sound Burst
+  * Speak with Animals
+  * Spell Breach, Greater
+  * Spell Breach, Lesser
+  * Spell Mantle
+  * Spell Mantle, Greater
+  * Spell Mantle, Least
+  * Spell Mantle, Lesser
+  * Spell Resistance
+  * Spell Resistance, Mass
+  * Spell Shield
+  * Spell Turning
+  * Spell Turning, Lesser
+  * Spider Poison
+  * Spiderskin
+  * Spike Growth
+  * Spirit Worm
+  * Stay the Hand
+  * Sticky Fingers
+  * Sting Ray
+  * Stinking Cloud
+  * Stone Body
+  * Stone Bones
+  * Stone to flesh
+  * Stonehold
+  * Stoneskin
+  * Stoneskin, Greater
+  * Storm of Fire and Ice
+  * Storm of Vengeance
+  * Strategic Charge
+  * Strength of Stone
+  * Styptic
+  * Summon Creature I
+  * Summon Creature II
+  * Summon Creature III
+  * Summon Creature IV
+  * Summon Creature IX
+  * Summon Creature V
+  * Summon Creature VI
+  * Summon Creature VII
+  * Summon Creature VIII
+  * Summon Giants
+  * Sunbeam
+  * Sunburst
+  * Sunscorch
+  * Suppress Breath Weapon
+  * Swamp Lung
+  * Talos' Wrath
+  * Tashas Hideous Laughter
+  * Tensers Transformation
+  * The Dead Walk
+  * Thunder Field
+  * Thunder Staff
+  * Tide of Battle
+  * Time Stop
+  * Tongues
+  * Torrent of Tears
+  * Tortoise Shell
+  * Touch Of Fatigue
+  * Touch of Idiocy
+  * Touch of Vecna
+  * Towering Oak
+  * True Casting
+  * True Resurrection
+  * True Seeing
+  * True Strike
+  * Undead Bane Weapon
+  * Undeath to Death
+  * Undeaths Eternal Foe
+  * Undetectable Alignment
+  * Unholy Aura
+  * Unholy Blight
+  * Vampiric Touch
+  * Vecnas Malevolent Whisper
+  * Vigor
+  * Vigor, Greater (Monstrous Regeneration)
+  * Vigorous Circle
+  * Vine Mine
+  * Virtue
+  * Visage Of The Deity Lesser
+  * Visage Of The Deity, Greater
+  * Visage of the Deity
+  * Vitriolic Sphere
+  * Voidsense
+  * Wail of the Banshee
+  * Walk Unseen
+  * Wall Of Dispel Magic
+  * Wall Of Dispel Magic, Greater
+  * Wall of Fire
+  * Wall of Ice
+  * Wall of Iron
+  * Wall of Perlious Flame
+  * Wall of Sound
+  * Wall of Stone
+  * War Cry
+  * Warcry
+  * Warp Wood
+  * Water Breathing
+  * Wave of Grief
+  * Web
+  * Weird
+  * Word of Chaos
+  * Wounding Whispers
+  * Zone of Glacial Cold
