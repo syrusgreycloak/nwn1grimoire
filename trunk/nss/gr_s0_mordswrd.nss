@@ -116,7 +116,7 @@ void main() {
 
     /*** NWN1 SINGLE ***/ int     iVisualType           = VFX_FNF_SUMMON_MONSTER_3;
     //*** NWN2 SINGLE ***/ int     iVisualType           = VFX_HIT_SPELL_ENLARGE_PERSON;
-    string  sSummon         = (spInfo.bNWN2 ? "c_msword" : "sg_s_mordswd");
+    string  sSummon         = (spInfo.bNWN2 ? "c_msword" : "gr_s_mordswd");
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible

@@ -68,7 +68,7 @@ void main() {
     //*:* float   fDelay          = 0.0f;
     //*:* float   fRange          = FeetToMeters(15.0);
 
-    object oStone = CreateItemOnObject("magicstone", oCaster, 3);
+    object oStone = CreateItemOnObject("gr_magicstone", oCaster, 3);
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible

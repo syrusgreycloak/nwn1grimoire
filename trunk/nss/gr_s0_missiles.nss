@@ -36,6 +36,7 @@
 
 #include "GR_IN_ENERGY"
 
+#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -91,6 +92,7 @@ void main() {
         case SPELL_GR_FLAME_BOLT:
             bTouchAttack = TRUE;
             /*** NWN1 SINGLE ***/ iMirvType = GRGetEnergyMirvType(iEnergyType);
+            AutoDebugString("Flame Bolt Mirv type = " + IntToString(iMirvType));
             iMissiles = 2 + spInfo.iCasterLevel/2;
             break;
         case SPELL_GR_LSE_MAGIC_MISSILE:
@@ -156,14 +158,7 @@ void main() {
 
     int     iAttackResult;
 
-    int     iSaveType;
-
-    if(iEnergyType!=DAMAGE_TYPE_MAGICAL) {
-        iSaveType = GRGetEnergySaveType(iEnergyType);
-    } else {
-        iSaveType = SAVING_THROW_TYPE_SPELL;
-    }
-
+    int     iSaveType           = GRGetEnergySaveType(iEnergyType);
 
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
