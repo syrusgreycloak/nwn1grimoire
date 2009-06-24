@@ -1,6 +1,6 @@
 #summary Listing of tested spells
 
-= Tested Spells =
+= Tested Spells as of 6/24/09 =
 === Level 0 ===
 ||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Acid Splash|| || || || || ||0||
