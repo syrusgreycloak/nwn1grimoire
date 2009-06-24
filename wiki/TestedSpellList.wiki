@@ -1,33 +1,48 @@
 #summary Listing of tested spells
 
 = Tested Spells =
-== Sorcerer/Wizard ==
 === Level 0 ===
-  * Acid Splash
-  * Electric Jolt
-  * Light
-  * Open/Close
-  * Ray of Frost
-  * Touch of Fatigue
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Acid Splash|| || || || || ||0||
+||Daze||0|| || || || ||0||
+||Electric Jolt|| || || || || ||0||
+||Light||0||0||0|| || ||0||
+||Open/Close||0|| || || || ||0||
+||Ray of Frost|| || || || || ||0||
+||Resistance||0||0||0||1|| ||0||
+||Touch of Fatigue|| || || || || ||0||
+
 === Level 1 ===
-  * Acid Spittle
-  * Alarm
-  * Appraising Touch
-  * Arcane Bolt
-  * Augment Familiar
-  * Babau Slime
-  * Benign Transposition
-  * Blades of Fire
-  * Burning Hands
-  * Cause Fear
-  * Chameleon Skin
-  * Chill Touch
-  * Chromatic Orb Lvls 1-5
-  * Jet of Steam
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Acid Spittle ||  ||  ||  ||  ||  ||1||
+||Alarm ||1 ||  ||  ||  ||1 ||1||
+||Appraising Touch ||1 ||  ||  ||  ||  ||1||
+||Arcane Bolt ||  ||  ||  ||  ||  ||1||
+||Babau Slime ||  ||  ||1 ||  ||  ||1||
+||Benign Transposition ||  ||  ||  ||  ||  ||1||
+||Blades of Fire ||  ||  ||  ||  ||1 ||1||
+||Burning Hands ||  ||  ||  ||  ||  ||1||
+||Cause Fear ||1 ||1 ||  ||  ||  ||1||
+||Chameleon Skin ||  ||  ||  ||  ||  ||1||
+||Charm Person ||1 ||  ||  ||  ||  ||1||
+||Chill Touch ||  ||  ||  ||  ||  ||1||
+||Color Spray ||  ||  ||  ||  ||  ||1||
+||Corpse Visage ||  ||  ||  ||  ||  ||1||
+||Death's Call ||  ||  ||  ||  ||  ||1||
+||Enlarge Person ||  ||  ||  ||  ||  ||1||
+||Jet of Steam ||  ||  ||  ||  ||  ||1||
+
 === Level 2 ===
-  * Aganazzar's Scorcher
-  * Balagarn's Iron Horn
-  * Blur
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Aganazzar's Scorcher ||  ||  ||  ||  ||  ||2||
+||Augment Familiar ||  ||  ||  ||  ||  ||2||
+||Balagarn's Iron Horn||1 ||  ||  ||  ||  ||2||
+||Baleful Transposition ||  ||  ||  ||  ||  ||2||
+||Battlecry ||2 ||  ||  ||  ||  ||2||
+||Bears Endurance ||  ||2 ||2 ||  ||2 ||2||
+||Blindness/Deafness ||2 ||3 ||  ||  ||  ||2 ||
+||Blur ||2 ||  ||  ||  ||  ||2||
+
 === Level 3 ===
   * Armor of Undeath
   * Ice Burst
