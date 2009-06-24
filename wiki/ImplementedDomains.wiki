@@ -1,0 +1,36 @@
+#summary Grimoire implemented domain listing
+
+= Introduction =
+
+The below list are the implemented domains, including the granted powers and spells. Currently there are 16 implemented domains (including the originals). _Italicized_ spells are _not_ implemented.  Spells in *bold* are domain only spells.
+
+
+= Details =
+=== Air Domain ===
+*Power: *  Turn or destroy earth creatures as a good cleric turns undead. Rebuke, command, or bolster air creatures as an evil cleric rebukes undead. Use these abilities a total a number of times per day equal to 3 + your Charisma modifier. This granted power is a
+supernatural ability.
+
+*Spells: *
+  # Obscuring Mist
+  # Gust of Wind
+  # Call Lightning
+  # _Air Walk_
+  # Talos' Wrath
+  # Chain Lightning
+  # _Control Weather_
+  # _Whirlwind_
+  # Elemental Swarm  _(Cast as an air spell only)_
+
+=== Animal Domain ===
+*Power: * Gain higher powered animal summons at each level.
+
+*Spells: *
+  # Calm Animals
+  # Hold Animal
+  # Dominate Animal
+  # Summon Creature IV _(Only summons animals)_
+  # Polymorph Self
+  # Antilife Shell
+  # Animal Shapes
+  # Summon Creature VIII _(Only summons animals)_
+  # Shapechange
