@@ -116,7 +116,7 @@ supernatural ability.
   # *Spiderform*
   # Dispel Magic, Greater
   # Word of Chaos
-  # Planar Binding, Greater
+  # *Planar Binding, Greater*
   # Gate
 
 === Dwarf Domain ===
@@ -159,4 +159,46 @@ supernatural ability.
   # Create Undead
   # Blasphemy
   # Unholy Aura
-  # Summon Monster IX _(Cast as an evil spell only.)_
+  # Summon Crature IX _(Cast as an evil spell only.)_
+
+=== Fire Domain ===
+*Power: * Turn or destroy water creatures as a good cleric turns undead. Rebuke, command, or bolster fire creatures as an evil cleric rebukes undead. Use these abilities a total number of times per day equal to 3 + your Charisma modifier. This granted power is a supernatural ability.
+
+*Spells: *
+  # *Burning Hands*
+  # *Flame Bolt*
+  # Resist Energy
+  # *Wall of Fire*
+  # *Fire Shield*
+  # _Fire Seeds_
+  # Fire Storm
+  # *Incendiary Cloud*
+  # Elemental Swarm _(Cast as a fire spell only.)_
+
+=== Good Domain ===
+*Power: * You cast good spells at +1 caster level.
+
+*Spells: *
+  # Protection from Evil
+  # Aid
+  # Magic Circle against Evil
+  # *Holy Smite*
+  # *Dispel Evil*
+  # Blade Barrier
+  # Holy Word
+  # Holy Aura
+  # Summon Creature IX _(Cast as a good spell only.)_
+
+=== Hatred Domain ===
+*Power: * Once per day as a free action, choose one opponent. Against that foe you gain a  +2 profane bonus on attack rolls, saving throws, and Armor Class for 1 minute.
+
+*Spells: *
+  # Doom
+  # *Scare*
+  # Bestow Curse
+  # *Rage*
+  # Righteous Might
+  # _Forbiddance_
+  # Blasphemy
+  # _Antipathy_
+  # *Wail of the Banshee*
