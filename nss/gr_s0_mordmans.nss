@@ -97,8 +97,8 @@ void main() {
 
         // Create the mansion doorway and save the caster on the door so we know who to let in.
         // Only people in the caster's party get to go into the mansion.
-        object oMansion = CreateObject(OBJECT_TYPE_PLACEABLE, "mordsmansent", spInfo.lTarget, TRUE,
-            "MordsMansEnt");
+        object oMansion = CreateObject(OBJECT_TYPE_PLACEABLE, "gr_mm_entrance", spInfo.lTarget, TRUE,
+            "GR_MM_ENTRANCE");
         if (GetIsObjectValid(oMansion)) {
             SetLocalObject(oMansion, "MMM_CASTER", oCaster);
             GRApplyEffectToObject(DURATION_TYPE_PERMANENT,
