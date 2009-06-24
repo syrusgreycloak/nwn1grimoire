@@ -90,3 +90,17 @@ supernatural ability.
   # Destruction
   # Create Greater Undead
   # Wail of the Banshee
+
+=== Drow Domain ===
+*Power: * You gain Lightning Reflexes as a bonus feat.
+
+*Spells: *
+  # _Cloak of Dark Power_
+  # Clairaudience/Clairvoyance
+  # _Suggestion_
+  # _Discern Lies_
+  # *Spiderform*
+  # Dispel Magic, Greater
+  # Word of Chaos
+  # Planar Binding, Greater
+  # Gate
