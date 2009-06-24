@@ -44,14 +44,28 @@
 ||Blur ||2 ||  ||  ||  ||  ||2||
 
 === Level 3 ===
-  * Armor of Undeath
-  * Ice Burst
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Armor of Undeath|| || || || || ||3||
+||Ice Burst|| || || || || ||3||
+
 === Level 4 ===
-  * Dimension Door
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Dimension Door|| || || || || ||4||
+
+=== Level 5 ===
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+
 === Level 6 ===
-  * Disintegrate
-  * Storm of Fire and Ice
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Disintegrate|| || || || || ||6||
+||Storm of Fire and Ice|| || ||6|| || ||6||
+
 === Level 7 ===
-  * Freezing Curse
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+||Freezing Curse|| || ||7|| || ||7||
+
 === Level 8 ===
-  * Shadow Storm
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
+
+=== Level 9 ===
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
