@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The following is a list of spells included in the Grimoire spell haks (including the original NWN spells that were not dropped & not including domain only spells).  Currently the list has approximately 689 spells.  As of 6/24/09, most of these spells still require testing.
+The following is a list of spells included in the Grimoire spell haks (including the original NWN spells that were not dropped & not including domain only spells).  Currently the list has approximately 689 spells.  As of 6/24/09, most of these spells still require testing. See the [TestedSpellList] for a listing of spells that have finished being tested.
 
 
 = Details =
