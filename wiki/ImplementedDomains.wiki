@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The below list are the implemented domains, including the granted powers and spells. Currently there are 15 new implemented domains, plus the 19 originals. _Italicized_ spells are _not_ implemented.  Spells in *bold* are domain only spells.
+The below list are the implemented domains, including the granted powers and spells. Currently there are 15 new implemented domains, plus the 19 originals. _Italicized_ spells are _not_ implemented.  Spells in *bold* are domain only or normally non-cleric spells.
 
 
 = Details =
@@ -132,3 +132,17 @@ supernatural ability.
   # Dictum
   # Protection from Spells
   # Elemental Swarm _(cast as Earth spell only.)_
+
+=== Earth Domain ===
+*Power: * Turn or destroy air creatures as a good cleric turns undead. Rebuke, command, or bolster earth creatures as an evil cleric rebukes undead. Use these abilities a total number of times per day equal to 3 + your Charisma modifier. This granted power is a supernatural ability.
+
+*Spells: *
+  # Magic Stone
+  # *Strength of Stone*
+  # _Stone Shape_
+  # _Spike Stones_
+  # Wall of Stone
+  # Stoneskin
+  # Earthquake
+  # Iron Body
+  # Elemental Swarm _(Cast as an earth spell only.)_
