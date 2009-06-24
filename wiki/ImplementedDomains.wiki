@@ -189,6 +189,20 @@ supernatural ability.
   # Holy Aura
   # Summon Creature IX _(Cast as a good spell only.)_
 
+=== Halfling Domain ===
+*Power: * Once per day for 10 minutes, you add your Charisma modifier to your Climb, Jump, Move Silently, and Hide checks. Activating this ability is a free action.
+
+*Spells: *
+  # Magic Stone
+  # Cat’s Grace
+  # Magic Vestment
+  # Freedom of Movement
+  # _Mordenkainen’s Faithful Hound_
+  # _Move Earth_
+  # _Shadow Walk_
+  # _Word of Recall_
+  # *Foresight*
+
 === Hatred Domain ===
 *Power: * Once per day as a free action, choose one opponent. Against that foe you gain a  +2 profane bonus on attack rolls, saving throws, and Armor Class for 1 minute.
 
@@ -202,3 +216,45 @@ supernatural ability.
   # Blasphemy
   # _Antipathy_
   # *Wail of the Banshee*
+
+=== Healing Domain ===
+*Power: * You cast healing spells at +1 caster level.
+
+*Spells: *
+  # Cure Light Wounds
+  # Cure Moderate Wounds
+  # Cure Serious Wounds
+  # Cure Critical Wounds
+  # Cure Light Wounds, Mass
+  # Heal
+  # Regenerate
+  # Cure Critical Wounds, Mass
+  # Heal, Mass
+
+=== Illusion Domain ===
+*Power: * You cast all illusion spells at +1 caster level.
+
+*Spells: *
+  # *Color Spray*
+  # *Invisibility*
+  # Displacement
+  # Phantasmal Killer
+  # *Shadow Conjuration, Greater*
+  # *Ethereal Visage*
+  # _Project Image_
+  # _Screen_
+  # *Weird*
+
+=== Knowledge Domain ===
+*Power: * You cast divination spells at +1 caster level.
+
+*Spells: *
+  # *Identify*
+  # *Knock*
+  # *Clairaudience/Clairvoyance*
+  # _Divination_
+  # True Seeing
+  # _Find the Path_
+  # Legend Lore
+  # _Discern Location_
+  # *Foresight*
