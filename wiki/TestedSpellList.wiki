@@ -29,6 +29,7 @@
 ||Color Spray ||  ||  ||  ||  ||  ||1||
 ||Corpse Visage ||  ||  ||  ||  ||  ||1||
 ||Death's Call ||  ||  ||  ||  ||  ||1||
+||Endure Energy|| ||1||1||1|| ||1||
 ||Enlarge Person ||  ||  ||  ||  ||  ||1||
 ||Jet of Steam ||  ||  ||  ||  ||  ||1||
 
@@ -42,11 +43,13 @@
 ||Bears Endurance ||  ||2 ||2 ||  ||2 ||2||
 ||Blindness/Deafness ||2 ||3 ||  ||  ||  ||2 ||
 ||Blur ||2 ||  ||  ||  ||  ||2||
+||Bulls Strength|| ||2||2||2|| ||2||
 
 === Level 3 ===
 ||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Armor of Undeath|| || || || || ||3||
 ||Blood Storm|| || || || || ||3||
+||Clairaudience and Clairvoyance||3|| || || || ||3||
 ||Ice Burst|| || || || || ||3||
 
 === Level 4 ===
