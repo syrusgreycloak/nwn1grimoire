@@ -28,9 +28,26 @@ supernatural ability.
   # Calm Animals
   # Hold Animal
   # Dominate Animal
-  # Summon Creature IV _(Only summons animals)_
+  # Summon Creature IV
   # Polymorph Self
   # Antilife Shell
   # Animal Shapes
-  # Summon Creature VIII _(Only summons animals)_
+  # Summon Creature VIII
   # Shapechange
+
+=== Chaos Domain ===
+*Power: * You cast chaos spells at +1 caster level.
+
+*Spells: *
+  # Protection from Law
+  # _Shatter_
+  # Magic Circle against Law
+  # *Chaos Hammer*
+  # *Dispel Law*
+  # _Animate Objects_
+  # Word of Chaos
+  # Cloak of Chaos
+  # Summon Creature IX _(summons only chaotic creatures)_
+
+=== Charm Domain ===
+*Power: *
