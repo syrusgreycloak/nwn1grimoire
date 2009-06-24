@@ -104,3 +104,17 @@ supernatural ability.
   # Word of Chaos
   # Planar Binding, Greater
   # Gate
+
+=== Dwarf Domain ===
+*Power: * You gain Great Fortitude as a bonus feat.
+
+*Spells: *
+  # Magic Weapon
+  # Bear’s Endurance
+  # Glyph of Warding
+  # Magic Weapon, Greater
+  # _Fabricate_
+  # _Stone Tell_
+  # Dictum
+  # Protection from Spells
+  # Elemental Swarm _(cast as Earth spell only.)_
