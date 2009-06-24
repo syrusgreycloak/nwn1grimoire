@@ -6,7 +6,7 @@ The following is a list of spells included in the Grimoire spell haks (including
 
 
 = Details =
-
+||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Acid Fog|| || || || || ||6||
 ||Acid Spittle|| || || || || ||1||
 ||Acid Splash|| || || || || ||0||
