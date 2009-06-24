@@ -146,3 +146,17 @@ supernatural ability.
   # Earthquake
   # Iron Body
   # Elemental Swarm _(Cast as an earth spell only.)_
+
+=== Evil Domain ===
+*Power: * You cast evil spells at +1 caster level.
+
+*Spells: *
+  # Protection from Good
+  # Desecrate
+  # Magic Circle against Good
+  # *Unholy Blight*
+  # *Dispel Good*
+  # Create Undead
+  # Blasphemy
+  # Unholy Aura
+  # Summon Monster IX _(Cast as an evil spell only.)_
