@@ -50,4 +50,18 @@ supernatural ability.
   # Summon Creature IX _(summons only chaotic creatures)_
 
 === Charm Domain ===
+*Power: Splendor of Eagles:* You can boost your Charisma by 4 points once per day. Activating this power is a free action. The Charisma increase lasts 1 minute.
+
+*Spells: *
+  # Charm Person
+  # Calm Emotions
+  # _Suggestion_
+  # Good Hope
+  # Charm Monster
+  # _Geas/Quest_
+  # Insanity
+  # _Demand_
+  # Dominate Monster
+
+=== Darkness Domain ===
 *Power: *
