@@ -91,6 +91,20 @@ supernatural ability.
   # Create Greater Undead
   # Wail of the Banshee
 
+=== Destruction Domain ===
+*Power: * You gain the smite power, the supernatural ability to make a single melee attack with a +4 bonus on attack rolls and a bonus on damage rolls equal to your cleric level (if you hit). This ability is usable once per day.
+
+*Spells: *
+  # Inflict Light Wounds
+  # _Shatter_
+  # Contagion
+  # Inflict Critical Wounds
+  # Inflict Light Wounds, Mass
+  # Harm
+  # Disintegrate
+  # Earthquake
+  # Implosion
+
 === Drow Domain ===
 *Power: * You gain Lightning Reflexes as a bonus feat.
 
