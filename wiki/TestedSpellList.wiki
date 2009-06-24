@@ -46,6 +46,7 @@
 === Level 3 ===
 ||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Armor of Undeath|| || || || || ||3||
+||Blood Storm|| || || || || ||3||
 ||Ice Burst|| || || || || ||3||
 
 === Level 4 ===
