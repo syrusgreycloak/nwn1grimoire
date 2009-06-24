@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The below list are the implemented domains, including the granted powers and spells. Currently there are 16 implemented domains (including the originals). _Italicized_ spells are _not_ implemented.  Spells in *bold* are domain only spells.
+The below list are the implemented domains, including the granted powers and spells. Currently there are 15 new implemented domains, plus the 19 originals. _Italicized_ spells are _not_ implemented.  Spells in *bold* are domain only spells.
 
 
 = Details =
