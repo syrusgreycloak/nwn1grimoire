@@ -21,6 +21,8 @@
 
 #include "GR_IN_ENERGY"
 
+#include "GR_IN_DEBUG"
+
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -190,21 +192,42 @@ void main() {
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SMOKE_PUFF), oCaster);
     } else {
         SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
+
+        AutoDebugString("Attack result is " + IntToString(iAttackResult));
+        AutoDebugString("iDieType = " + IntToString(iDieType));
+        AutoDebugString("iNumDice = " + IntToString(iNumDice));
+
         if(iAttackResult>0) {
             if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
-                GRSetSpellDmgSaveMade(spInfo.iSpellID, GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC), oCaster);
+
+                AutoDebugString("Spell not resisted.");
+                int iSaveResult = GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC);
+
+                AutoDebugString("iSaveResult = " + IntToString(iSaveResult));
+                GRSetSpellDmgSaveMade(spInfo.iSpellID, iSaveResult, oCaster);
+
                 if(!GRGetSpellDmgSaveMade(spInfo.iSpellID, oCaster)) {
+
+                    AutoDebugString("Save not made.");
                     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eEffectVis, spInfo.oTarget);
-                    iDamage = GRGetSpellDamageAmount(spInfo)*iAttackResult;
+                    iDamage = GRGetSpellDamageAmount(spInfo);
+                    AutoDebugString("GRGetSpellDamageAmount = " + IntToString(iDamage));
+                    AutoDebugString("iAttackResult = " + IntToString(iAttackResult));
+                    iDamage *= iAttackResult;
+
+                    AutoDebugString("iDamage = " + IntToString(iDamage));
                     if(GRGetSpellHasSecondaryDamage(spInfo)) {
                         iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo)*iAttackResult;
                         if(spInfo.iSecDmgAmountType==SECDMG_TYPE_HALF) {
                             iDamage = iSecDamage;
                         }
                     }
+
                     if(iDamage>0) {
+                        AutoDebugString("Damage > 0");
                         eDamage = EffectDamage(iDamage, iEnergyType, DAMAGE_POWER_PLUS_TWENTY);
                         if(iSecDamage>0) eDamage = EffectLinkEffects(eDamage, EffectDamage(iSecDamage, spInfo.iSecDmgType));
+                        AutoDebugString("Applying damage");
                         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, spInfo.oTarget);
                     }
 

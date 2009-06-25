@@ -98,6 +98,7 @@ void main() {
 
     effect eLink2       = EffectLinkEffects(eInvis, eAntiLight);
     eLink2 = EffectLinkEffects(eLink2, eSee);
+    eLink2 = EffectLinkEffects(eLink2, eLink);
 
     //*:**********************************************
     //*:* Apply effects
