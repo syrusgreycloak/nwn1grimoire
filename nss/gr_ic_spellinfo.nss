@@ -59,6 +59,7 @@ const int   POLYMORPH_TYPE_FEMALE_DROW_EPIC         = 106;
 //********************************************************
 const int   POLYMORPH_TYPE_BULETTE                  = 300;
 const int   POLYMORPH_TYPE_HELLHOUND                = 301;
+const int   POLYMORPH_TYPE_DF_EYETYRANT             = 302;  // Beholder for Dreaded Form of the Eye Tyrant
 //********************************************************
 
 

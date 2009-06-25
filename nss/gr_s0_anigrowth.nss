@@ -20,6 +20,8 @@
 
 //*:* #include "GR_IN_ENERGY"
 
+#include "GR_IN_DEBUG"
+
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -99,6 +101,7 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
+    AutoDebugString("Declaring Effects");
     effect eImpVis              = EffectVisualEffect(VFX_IMP_GOOD_HELP);  // Visible impact effect
     effect eHPIncrease;
     effect eStrIncrease;
@@ -117,14 +120,22 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    AutoDebugString("Applying Effects");
     spInfo.oTarget = GetNearestCreatureToLocation(CREATURE_TYPE_IS_ALIVE, TRUE, spInfo.lTarget, iCount);
+    AutoDebugString("Target is " + GetName(spInfo.oTarget));
+
+    AutoDebugString("Number of creatures to affect = " + IntToString(iNumCreatures));
     while(GetIsObjectValid(spInfo.oTarget) && iNumAffected<=iNumCreatures &&
         GetDistanceBetweenLocations(spInfo.lTarget,GetLocation(spInfo.oTarget))<=fRange) {
+
+            AutoDebugString("Is spell target = " + GRBooleanToString(!GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_SELECTIVEHOSTILE, oCaster)));
+            AutoDebugString("Racial type is Animal = " + GRBooleanToString(GRGetRacialType(spInfo.oTarget)==RACIAL_TYPE_ANIMAL));
 
             if(!GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_SELECTIVEHOSTILE, oCaster) &&
                 GRGetRacialType(spInfo.oTarget)==RACIAL_TYPE_ANIMAL) {
 
                 iCreatureSize = GetCreatureSize(spInfo.oTarget);
+                AutoDebugString("Checking creature size");
                 switch(iCreatureSize) {
                     case CREATURE_SIZE_TINY:
                         iAttackInc  = 1;
@@ -154,6 +165,8 @@ void main() {
                 iHitPoints  = GetMaxHitPoints(spInfo.oTarget);
                 iBABIncrease= iHitDice*3/4;
                 iAttackInc  += iBABIncrease;
+
+                AutoDebugString("Building linked effects");
                 eHPIncrease = EffectTemporaryHitpoints(iHitPoints);
                 eStrIncrease = EffectAbilityIncrease(ABILITY_STRENGTH, iStrIncrease);
                 eDexDecrease = EffectAbilityDecrease(ABILITY_DEXTERITY, iDexDecrease);
@@ -174,14 +187,19 @@ void main() {
                 //*:**********************************************
                 //*:* Remove size enlargement spells
                 //*:**********************************************
+                AutoDebugString("Calling GRRemoveMultipleSpellEffects");
                 GRRemoveMultipleSpellEffects(SPELL_GR_ANIMAL_GROWTH, SPELL_ENLARGE_PERSON, spInfo.oTarget, TRUE, SPELL_GR_MASS_ENLARGE, SPELL_GR_GREATER_ENLARGE);
 
+                AutoDebugString("Applying spell effects now....");
                 GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpVis, spInfo.oTarget);
                 GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
                 iNumAffected++;
+                AutoDebugString("Number of creatures affected = " + IntToString(iNumAffected));
             }
             iCount++;
+            AutoDebugString("Getting next creature");
             spInfo.oTarget = GetNearestCreatureToLocation(CREATURE_TYPE_IS_ALIVE, TRUE, spInfo.lTarget, iCount);
+            AutoDebugString("Target is " + GetName(spInfo.oTarget));
     }
 
     if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);

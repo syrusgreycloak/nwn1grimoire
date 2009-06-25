@@ -18,6 +18,8 @@
 
 //*:* #include "GR_IN_ENERGY"
 
+#include "GR_IN_DEBUG"
+
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -26,9 +28,14 @@ void main() {
     //*:* Declare major variables
     //*:**********************************************
     object  oCaster         = GetAreaOfEffectCreator();
+
+    AutoDebugString("Aura caster is " + GetName(oCaster));
+
     struct  SpellStruct spInfo = GRGetSpellInfoFromObject(GRGetAOESpellId());
 
     spInfo.oTarget = GetEnteringObject();
+    AutoDebugString("Entering object is " + GetName(spInfo.oTarget));
+
     spInfo.iDC = GRGetSpellSaveDC(oCaster, spInfo.oTarget);
 
     //*:* int     iDieType          = 0;
@@ -80,6 +87,7 @@ void main() {
     int     bNoSave             = FALSE;
     int     bMeetsRaceReqs      = TRUE;
 
+    AutoDebugString("Setting Variables for Aura type");
     switch(spInfo.iSpellID) {
         case 195: // Aura of Blinding
             eEffect = EffectBlindness();
@@ -183,6 +191,7 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
+    AutoDebugString("Defining effects");
     effect eDurVis  = EffectVisualEffect(iDurVisType);
     effect eVis;
     if(iVisualType!=-1) eVis = EffectVisualEffect(iVisualType);
@@ -198,7 +207,9 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    AutoDebugString("Applying effects");
     if(GRGetIsSpellTarget(spInfo.oTarget, iSpellTargetType, oCaster, bIncludeCaster) && bMeetsRaceReqs) {
+        AutoDebugString(GetName(spInfo.oTarget) + " is a spell target");
         SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
         if(bNoSave || (bNoSave && !GRGetSaveResult(iSavingThrow, spInfo.oTarget, spInfo.iDC, iSaveType, oCaster))) {
             if(iVisualType!=-1) GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);

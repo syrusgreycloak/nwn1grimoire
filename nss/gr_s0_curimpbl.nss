@@ -21,6 +21,8 @@
 
 //*:* #include "GR_IN_ENERGY"
 
+#include "GR_IN_DEBUG"
+
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -87,6 +89,7 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
+    AutoDebugString("Declaring effects");
     effect eImpact  = EffectVisualEffect(GRGetAlignmentImpactVisual(oCaster, fRange));
     effect eVis     = EffectVisualEffect(VFX_IMP_REDUCE_ABILITY_SCORE);
     effect eDur     = EffectVisualEffect(VFX_DUR_PROTECTION_EVIL_MINOR);
@@ -98,20 +101,24 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    AutoDebugString("Applying effects");
     if(bMultiTarget) {
         GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
         spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget, TRUE);
     }
 
     if(GetIsObjectValid(spInfo.oTarget)) {
+        AutoDebugString("Entering loop");
         do {
             if(!bMultiTarget || GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_SELECTIVEHOSTILE, oCaster, NO_CASTER)) {
+                AutoDebugString("Target is " + GetName(spInfo.oTarget));
                 SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
                 if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
                     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
                     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
                 }
             }
+
             if(bMultiTarget) {
                 spInfo.oTarget = GRGetNextObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget, TRUE);
             }

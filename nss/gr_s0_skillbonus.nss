@@ -104,10 +104,13 @@
 
 //*:* #include "GR_IN_ENERGY"
 
+#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Supporting functions
 //*:**************************************************************************
 void GRPreventSkillBonusStacking(int iSpellID, object oTarget) {
+
+    AutoDebugString("Preventing Stacking...");
 
     switch(iSpellID) {
         case SPELL_CAMOFLAGE:
@@ -140,6 +143,7 @@ void main() {
     int     iDurAmount        = spInfo.iCasterLevel;
     int     iDurType          = DUR_TYPE_ROUNDS;
 
+    AutoDebugString("Determining duration for " + GRSpellToString(spInfo.iSpellID));
     switch(spInfo.iSpellID) {
         //*:* 10 Min per level
         case SPELL_CAMOFLAGE:
@@ -254,6 +258,7 @@ void main() {
     int     iAOEType        = -1;
     string  sAOEType        = "";
 
+    AutoDebugString("Setting skill info for spell " + GRSpellToString(spInfo.iSpellID));
     switch(spInfo.iSpellID) {
         //*:**********************************************
         //*:* Skills - Animal Empathy, Move Silently, Search
@@ -507,6 +512,7 @@ void main() {
     /*** NWN1 SINGLE ***/ eLink = EffectLinkEffects(eSkill1, eDur);
     //*** NWN2 SINGLE ***/ if(iVisDurType!=DURATION_TYPE_INSTANT) eLink = EffectLinkEffects(eLink, eVis);
 
+    AutoDebugString("Building linked effect list");
     if(bHasAOE) eLink = EffectLinkEffects(eLink, eAOE);
     if(spInfo.iSpellID==SPELL_GR_TOWERING_OAK) eLink = EffectLinkEffects(eLink, eStr);
     if(spInfo.iSpellID==SPELL_I_LEAPS_AND_BOUNDS) eLink = EffectLinkEffects(eLink, eDex);
@@ -562,15 +568,27 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    AutoDebugString("Applying effects");
     if(bMultiTarget) {
         /*** NWN1 SINGLE ***/ GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
-        if(bHasAOE) GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAOE, oCaster);
-        spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget);
+        if(bHasAOE) {
+            GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAOE, oCaster);
+            /*** NWN1 SINGLE ***/ object oAOE = GRGetAOEOnObject(spInfo.oTarget, sAOEType, oCaster);
+            //*** NWN2 SINGLE ***/ object oAOE = GetObjectByTag(sAOEType);
+            GRSetAOESpellId(spInfo.iSpellID, oAOE);
+            GRSetSpellInfo(spInfo, oAOE);
+        }
+        //spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget);
     }
 
+
+    AutoDebugString("Entering loop");
     if(GetIsObjectValid(spInfo.oTarget)) {
         do {
+            spInfo.oTarget = (bMultiTarget ? GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget) : spInfo.oTarget);
             if(!bMultiTarget || GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_ALLALLIES, oCaster)) {
+                AutoDebugString("Target is " + GetName(spInfo.oTarget));
+                AutoDebugString("bMultiTarget is " + GRBooleanToString(bMultiTarget));
                 GRPreventSkillBonusStacking(spInfo.iSpellID, spInfo.oTarget);
 
                 SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
@@ -578,16 +596,8 @@ void main() {
                 //*** NWN2 SINGLE ***/ if(iVisDurType==DURATION_TYPE_INSTANT) GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
                 GRApplyEffectToObject(iDurationType, eLink, spInfo.oTarget, fDuration);
 
-                if(bHasAOE) {
-                    /*** NWN1 SINGLE ***/ object oAOE = GRGetAOEOnObject(spInfo.oTarget, sAOEType, oCaster);
-                    //*** NWN2 SINGLE ***/ object oAOE = GetObjectByTag(sAOEType);
-                    GRSetAOESpellId(spInfo.iSpellID, oAOE);
-                    GRSetSpellInfo(spInfo, oAOE);
-                }
             }
-            if(bMultiTarget) {
-                spInfo.oTarget = GRGetNextObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget);
-            }
+            spInfo.oTarget = GRGetNextObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget);
         } while(GetIsObjectValid(spInfo.oTarget) && bMultiTarget);
     }
 

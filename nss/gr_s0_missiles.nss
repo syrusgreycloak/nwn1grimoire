@@ -36,7 +36,7 @@
 
 #include "GR_IN_ENERGY"
 
-#include "GR_IN_DEBUG"
+//#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Main function
 //*:**************************************************************************
@@ -58,7 +58,34 @@ void main() {
     //*:* int     iDurAmount        = spInfo.iCasterLevel;
     //*:* int     iDurType          = DUR_TYPE_ROUNDS;
 
-    /*** NWN1 SINGLE ***/ int     iMirvType       = VFX_IMP_MIRV;
+    //*:* spInfo = GRSetSpellDamageInfo(spInfo, iDieType, iNumDice, iBonus);
+    //*:* spInfo = GRSetSpellDurationInfo(spInfo, iDurAmount, iDurType);
+
+    //*:**********************************************
+    //*:* Set the info about the spell on the caster
+    //*:**********************************************
+    GRSetSpellInfo(spInfo, oCaster);
+
+    //*:**********************************************
+    //*:* Energy Spell Info
+    //*:**********************************************
+    int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
+    int     iSpellType      = GRGetEnergySpellType(iEnergyType);
+
+    spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
+
+    //*:**********************************************
+    //*:* Spellcast Hook Code
+    //*:**********************************************
+    if(!GRSpellhookAbortSpell()) return;
+    spInfo = GRGetSpellInfoFromObject(spInfo.iSpellID, oCaster);
+
+    //*:**********************************************
+    //*:* Declare Spell Specific Variables & impose limiting
+    //*:**********************************************
+
+    /*** NWN1 SINGLE ***/
+    int     iMirvType       = VFX_IMP_MIRV;
     int     iMissiles       = (spInfo.iCasterLevel + 1)/2;
     float   fDist           = GetDistanceBetween(oCaster, spInfo.oTarget);
     float   fDelay          = fDist/(3.0 * log(fDist) + 2.0);
@@ -73,7 +100,6 @@ void main() {
     float   fInitTargetPct  = 1.0;
     int     iSpellSaveType  = SPELL_SAVE_NONE;
     int     bForceMissiles  = FALSE;
-    int     iEnergyType;
     int     iPathType       = PROJECTILE_PATH_TYPE_DEFAULT;
 
     object  oBurstTarget;
@@ -91,8 +117,9 @@ void main() {
             break;
         case SPELL_GR_FLAME_BOLT:
             bTouchAttack = TRUE;
+            //AutoDebugString("Energy type going into GRGetEnergyMirvType is " + IntToString(iEnergyType));
             /*** NWN1 SINGLE ***/ iMirvType = GRGetEnergyMirvType(iEnergyType);
-            AutoDebugString("Flame Bolt Mirv type = " + IntToString(iMirvType));
+            //AutoDebugString("Flame Bolt Mirv type = " + IntToString(iMirvType));
             iMissiles = 2 + spInfo.iCasterLevel/2;
             break;
         case SPELL_GR_LSE_MAGIC_MISSILE:
@@ -128,30 +155,6 @@ void main() {
     spInfo = GRSetSpellDamageInfo(spInfo, iDieType, iNumDice, iBonus);
     //*:* spInfo = GRSetSpellDurationInfo(spInfo, iDurAmount, iDurType);
 
-    //*:**********************************************
-    //*:* Set the info about the spell on the caster
-    //*:**********************************************
-    GRSetSpellInfo(spInfo, oCaster);
-
-    //*:**********************************************
-    //*:* Energy Spell Info
-    //*:**********************************************
-    iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
-    int     iSpellType      = GRGetEnergySpellType(iEnergyType);
-
-    if(iEnergyType!=DAMAGE_TYPE_MAGICAL) {
-        spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
-    }
-
-    //*:**********************************************
-    //*:* Spellcast Hook Code
-    //*:**********************************************
-    if(!GRSpellhookAbortSpell()) return;
-    spInfo = GRGetSpellInfoFromObject(spInfo.iSpellID, oCaster);
-
-    //*:**********************************************
-    //*:* Declare Spell Specific Variables & impose limiting
-    //*:**********************************************
 
     //*:* float   fDuration       = GRGetSpellDuration(spInfo);
     float   fRange          = FeetToMeters(5.0);

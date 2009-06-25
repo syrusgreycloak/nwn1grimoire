@@ -114,7 +114,7 @@ void main() {
         //*:* Dreaded Form of the Eye Tyrant
         //*:**********************************************
         case SPELL_GR_DREADED_FORM_OF_THE_EYE_TYRANT:
-            iPolyType = POLYMORPH_TYPE_BEHOLDER;
+            iPolyType = POLYMORPH_TYPE_DF_EYETYRANT;
             iDurType = DUR_TYPE_ROUNDS;
             break;
         //*:**********************************************

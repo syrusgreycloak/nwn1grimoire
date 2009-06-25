@@ -156,12 +156,11 @@ void main() {
             //*** NWN2 SINGLE ***/ iBeamType = GRGetSpellSchoolBeam(spInfo.iSpellSchool);
             iVisualType = VFX_COM_HIT_DIVINE;
         case SPELL_GR_GREATER_DISRUPT_UNDEAD:
-            iDieType = MinInt(iDieType, 8);
-            iNumDice = (iNumDice>0 ? iNumDice : MinInt(spInfo.iCasterLevel, 10));
         case SPELL_GR_DISRUPT_UNDEAD:
+            iDieType = (spInfo.iSpellID==SPELL_GR_DISRUPT_UNDEAD ? 6 : 8);
+            iNumDice = (spInfo.iSpellID==SPELL_GR_DISRUPT_UNDEAD ? 1: MinInt(spInfo.iCasterLevel, 10));
+
             bPassSpecialTarget = (GRGetRacialType(spInfo.oTarget)==RACIAL_TYPE_UNDEAD);
-            iDieType = MinInt(iDieType, 6);
-            iNumDice = MinInt(iNumDice, 1);
             iEnergyType = DAMAGE_TYPE_POSITIVE;
             /*** NWN1 SPECIFIC ***/
                 iBeamType = (spInfo.iSpellID==SPELL_GR_DISRUPT_UNDEAD && iBeamType==-1 ? VFX_BEAM_HOLY : VFX_BEAM_BLACK);
