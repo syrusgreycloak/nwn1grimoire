@@ -91,7 +91,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_SELECTIVEHOSTILE, oCaster, NO_CASTER)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, TRUE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, TRUE));
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eSaveDec, spInfo.oTarget);
     }
 

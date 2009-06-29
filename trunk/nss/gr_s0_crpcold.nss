@@ -42,7 +42,7 @@ void DoContinuingDamage(int iRoundNumber, int iEnergyType, int bSaveMade, struct
 
         if(iSecDamage>0) eLink = EffectLinkEffects(eLink, EffectDamage(iSecDamage, spInfo.iSecDmgType));
 
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(spInfo.oCaster, spInfo.iSpellID));
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
         if(GRGetHasSpellEffect(SPELL_GR_INCENDIARY_SLIME, spInfo.oTarget) && (iEnergyType==DAMAGE_TYPE_FIRE || spInfo.iSecDmgType==DAMAGE_TYPE_FIRE)) {
             GRDoIncendiarySlimeExplosion(spInfo.oTarget);

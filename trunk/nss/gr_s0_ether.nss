@@ -110,7 +110,7 @@ void main() {
         GRSetIsIncorporeal(spInfo.oTarget, FALSE);
     }
 
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, FALSE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
     GRSetIsIncorporeal(spInfo.oTarget, TRUE);
     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
     DelayCommand(fDuration, GRSetIsIncorporeal(spInfo.oTarget, FALSE));
@@ -129,7 +129,7 @@ void main() {
                 GRSetIsIncorporeal(spInfo.oTarget, FALSE);
             }
 
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_ETHEREALNESS, FALSE));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_ETHEREALNESS, FALSE));
             GRSetIsIncorporeal(spInfo.oTarget, TRUE);
             GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
             DelayCommand(fDuration, GRSetIsIncorporeal(spInfo.oTarget, FALSE));

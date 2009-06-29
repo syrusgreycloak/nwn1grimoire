@@ -111,7 +111,7 @@ void main() {
     //*:**********************************************
     DeleteLocalInt(spInfo.oTarget, "GR_"+IntToString(SPELL_GR_THUNDER_FIELD)+GetName(oCaster));
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_THUNDER_FIELD));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_THUNDER_FIELD));
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
             if(iDamage>0) {
                 GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);

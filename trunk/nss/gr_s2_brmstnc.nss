@@ -102,7 +102,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
 
     //if(spInfo.iXPCost>0) GRApplyXPCostToCaster(spInfo.iXPCost);

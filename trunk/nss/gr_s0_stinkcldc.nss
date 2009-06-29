@@ -102,7 +102,7 @@ void main() {
     spInfo.oTarget = GetFirstInPersistentObject();
 
     while(GetIsObjectValid(spInfo.oTarget)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, FALSE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
         if(!GetLocalInt(spInfo.oTarget, "GR_"+IntToString(GRGetAOESpellId())+"_WILLDISBELIEF")) {
             if(!GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC, SAVING_THROW_TYPE_POISON)) {
                if(!GetIsImmune(spInfo.oTarget, IMMUNITY_TYPE_POISON)) {

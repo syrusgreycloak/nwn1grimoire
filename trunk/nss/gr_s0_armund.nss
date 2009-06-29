@@ -112,7 +112,7 @@ void main() {
     //*:**********************************************
     GRRemoveSpellEffects(SPELL_GR_ARMOR_UNDEATH, spInfo.oTarget);
 
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_ARMOR_UNDEATH, FALSE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_ARMOR_UNDEATH, FALSE));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpact, spInfo.oTarget);
     DelayCommand(0.5f, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eImpLink, spInfo.oTarget));
     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);

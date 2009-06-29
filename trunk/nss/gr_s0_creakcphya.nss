@@ -106,7 +106,7 @@ void main() {
     //*:**********************************************
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_CREAKING_CACOPHONY));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_CREAKING_CACOPHONY));
             SetLocalInt(spInfo.oTarget, "GR_CREAK_DC", spInfo.iDC);
             GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
             GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eListen, spInfo.oTarget);

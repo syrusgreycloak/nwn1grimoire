@@ -97,7 +97,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_FIRE_AURA));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_FIRE_AURA));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
     if(GRGetHasSpellEffect(SPELL_GR_INCENDIARY_SLIME, spInfo.oTarget)) {
         GRDoIncendiarySlimeExplosion(spInfo.oTarget);

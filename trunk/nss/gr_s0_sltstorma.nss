@@ -103,7 +103,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
     if(!GetHasEffect(EFFECT_TYPE_BLINDNESS, spInfo.oTarget)) {
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eBlind, spInfo.oTarget);
     }

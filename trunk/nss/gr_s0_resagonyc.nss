@@ -99,7 +99,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     GRRemoveSpellEffects(SPELL_GR_RESONATING_AGONY, spInfo.oTarget);
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_RESONATING_AGONY));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_RESONATING_AGONY));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
     if(!GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC, SAVING_THROW_TYPE_SONIC)) {
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eNausea, spInfo.oTarget, fDuration);

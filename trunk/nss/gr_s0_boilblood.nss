@@ -38,7 +38,7 @@ void DoBoilingBlood(object oTarget, struct SpellStruct spInfo, int iRemainingRou
     effect eDamage  = EffectDamage(iDamage, iEnergyType);
     effect eLink    = EffectLinkEffects(eVis, eDamage);
 
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_BOILING_BLOOD));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(spInfo.oCaster, SPELL_GR_BOILING_BLOOD));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
     iRemainingRounds--;
     if(iRemainingRounds>0) {

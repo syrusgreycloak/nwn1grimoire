@@ -21,7 +21,7 @@
 
 #include "GR_IN_ENERGY"
 
-#include "GR_IN_DEBUG"
+//#include "GR_IN_DEBUG"
 
 //*:**************************************************************************
 //*:* Main function
@@ -131,7 +131,7 @@ void main() {
             break;
     }
 
-    //*:* spInfo = GRSetSpellDamageInfo(spInfo, iDieType, iNumDice, iBonus);
+    spInfo = GRSetSpellDamageInfo(spInfo, iDieType, iNumDice, iBonus);
     //*:* spInfo = GRSetSpellDurationInfo(spInfo, iDurAmount, iDurType);
 
     //*:**********************************************
@@ -193,29 +193,29 @@ void main() {
     } else {
         SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
 
-        AutoDebugString("Attack result is " + IntToString(iAttackResult));
-        AutoDebugString("iDieType = " + IntToString(iDieType));
-        AutoDebugString("iNumDice = " + IntToString(iNumDice));
+        //AutoDebugString("Attack result is " + IntToString(iAttackResult));
+        //AutoDebugString("iDieType = " + IntToString(iDieType));
+        //AutoDebugString("iNumDice = " + IntToString(iNumDice));
 
         if(iAttackResult>0) {
             if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
 
-                AutoDebugString("Spell not resisted.");
+                //AutoDebugString("Spell not resisted.");
                 int iSaveResult = GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC);
 
-                AutoDebugString("iSaveResult = " + IntToString(iSaveResult));
+                //AutoDebugString("iSaveResult = " + IntToString(iSaveResult));
                 GRSetSpellDmgSaveMade(spInfo.iSpellID, iSaveResult, oCaster);
 
                 if(!GRGetSpellDmgSaveMade(spInfo.iSpellID, oCaster)) {
 
-                    AutoDebugString("Save not made.");
+                    //AutoDebugString("Save not made.");
                     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eEffectVis, spInfo.oTarget);
                     iDamage = GRGetSpellDamageAmount(spInfo);
-                    AutoDebugString("GRGetSpellDamageAmount = " + IntToString(iDamage));
-                    AutoDebugString("iAttackResult = " + IntToString(iAttackResult));
+                    //AutoDebugString("GRGetSpellDamageAmount = " + IntToString(iDamage));
+                    //AutoDebugString("iAttackResult = " + IntToString(iAttackResult));
                     iDamage *= iAttackResult;
 
-                    AutoDebugString("iDamage = " + IntToString(iDamage));
+                    //AutoDebugString("iDamage = " + IntToString(iDamage));
                     if(GRGetSpellHasSecondaryDamage(spInfo)) {
                         iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo)*iAttackResult;
                         if(spInfo.iSecDmgAmountType==SECDMG_TYPE_HALF) {
@@ -224,10 +224,10 @@ void main() {
                     }
 
                     if(iDamage>0) {
-                        AutoDebugString("Damage > 0");
+                        //AutoDebugString("Damage > 0");
                         eDamage = EffectDamage(iDamage, iEnergyType, DAMAGE_POWER_PLUS_TWENTY);
                         if(iSecDamage>0) eDamage = EffectLinkEffects(eDamage, EffectDamage(iSecDamage, spInfo.iSecDmgType));
-                        AutoDebugString("Applying damage");
+                        //AutoDebugString("Applying damage");
                         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, spInfo.oTarget);
                     }
 

@@ -104,7 +104,7 @@ void main() {
             AssignCommand(spInfo.oTarget, ClearAllActions(TRUE));
             AssignCommand(spInfo.oTarget, ActionDoCommand(JumpToLocation(spInfo.lTarget)));
         } else if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
 
             GRRemoveLowerLvlLightEffectsInArea(spInfo.iSpellID, spInfo.lTarget);
             object oBat = GetNearestObjectByTag("GR_HUNDARK_BAT");

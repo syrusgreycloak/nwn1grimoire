@@ -151,7 +151,7 @@ void main() {
     //*:**********************************************
     if(!GetHasFeatEffect(FEAT_BARBARIAN_RAGE)) {
         GRRemoveSpellEffects(SPELL_BLOOD_FRENZY, OBJECT_SELF);
-        SignalEvent(OBJECT_SELF, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, FALSE));
+        SignalEvent(OBJECT_SELF, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
         PlayVoiceChat(VOICE_CHAT_BATTLECRY1);
 
         if(spInfo.iSpellID==SPELL_BLOOD_FRENZY || iCon>0) {

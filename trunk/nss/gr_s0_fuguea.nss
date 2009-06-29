@@ -116,7 +116,7 @@ void main() {
     DeleteLocalInt(spInfo.oTarget, "GR_"+IntToString(spInfo.iSpellID)+GetName(oCaster));
 
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_FUGUE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_FUGUE));
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
             if(GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC, iSaveType, oCaster, 0.0f, FALSE, FALSE)==0) {
                 SetLocalInt(spInfo.oTarget, "GR_"+IntToString(spInfo.iSpellID)+GetName(oCaster), TRUE);

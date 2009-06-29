@@ -56,7 +56,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     GRRemoveSpellEffects(SPELL_GR_CAUSTIC_SMOKE, spInfo.oTarget, oCaster);
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_CAUSTIC_SMOKE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_CAUSTIC_SMOKE));
     if(!GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC)) {
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eCausticLink, spInfo.oTarget, fDuration);
     }

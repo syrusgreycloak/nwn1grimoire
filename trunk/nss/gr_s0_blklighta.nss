@@ -109,13 +109,13 @@ void main() {
 
     if(GetIsObjectValid(spInfo.oTarget) && spInfo.oTarget!=oCaster) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_BLACKLIGHT));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_BLACKLIGHT));
         } else {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_BLACKLIGHT, FALSE));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_BLACKLIGHT, FALSE));
         }
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, spInfo.oTarget);
     } else if (spInfo.oTarget==oCaster) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_BLACKLIGHT, FALSE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_BLACKLIGHT, FALSE));
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink2, spInfo.oTarget);
     }
 

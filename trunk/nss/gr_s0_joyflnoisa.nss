@@ -101,7 +101,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     GRRemoveEffects(EFFECT_TYPE_SILENCE, spInfo.oTarget);
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_JOYFUL_NOISE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_JOYFUL_NOISE));
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_ALLIESEASY, oCaster)) {
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, spInfo.oTarget);
     }

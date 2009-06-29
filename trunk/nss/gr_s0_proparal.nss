@@ -96,7 +96,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_PROTECTION_PARALYSIS, FALSE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_PROTECTION_PARALYSIS, FALSE));
     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget));
     DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration));
 

@@ -101,7 +101,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
 
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
             if(GRGetRacialType(spInfo.oTarget)==RACIAL_TYPE_UNDEAD) {

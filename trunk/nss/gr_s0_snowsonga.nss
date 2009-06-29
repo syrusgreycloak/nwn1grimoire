@@ -99,7 +99,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_ALLALLIES, oCaster)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, FALSE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAllyImp, spInfo.oTarget, 1.7f);
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eAllyLink, spInfo.oTarget);
 
@@ -109,7 +109,7 @@ void main() {
         }
         SetLocalObject(spInfo.oTarget, "GR_"+IntToString(spInfo.iSpellID)+"_WEAPON", oMyWeapon);
     } else if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_SELECTIVEHOSTILE, oCaster, NO_CASTER)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, TRUE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, TRUE));
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
             if(!GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC, SAVING_THROW_TYPE_MIND_SPELLS)) {
                 GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEnemyImp, spInfo.oTarget, 1.7f);

@@ -89,7 +89,7 @@ void main() {
 
     while(GetIsObjectValid(spInfo.oTarget)) {
         if(GRGetHasSpellEffect(spInfo.iSpellID, spInfo.oTarget, oCaster)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
             GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eTorchLight, spInfo.oTarget);
 
             if(GetHasEffect(EFFECT_TYPE_INVISIBILITY, spInfo.oTarget)) {

@@ -125,7 +125,7 @@ void main() {
     spInfo.oTarget = GetFirstInPersistentObject();
     while(GetIsObjectValid(spInfo.oTarget)) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
             if(spInfo.iSpellID==SPELL_I_CHILLING_TENTACLES) {
                 iColdDamage = GRGetMetamagicAdjustedDamage(6, 2, spInfo.iMetamagic, 0);
                 eColdDam = EffectDamage(iDamage, DAMAGE_TYPE_COLD);
