@@ -205,7 +205,7 @@ void main() {
             if(GetRacialType(oSummon)==RACIAL_TYPE_UNDEAD) {
                 int iSummonHD = GetHitDice(oSummon);
                 effect eTempHP = EffectTemporaryHitpoints(iSummonHD);
-                SignalEvent(oSummon, EventSpellCastAt(OBJECT_SELF, GetSpellId(), FALSE));
+                SignalEvent(oSummon, EventSpellCastAt(oCaster, GetSpellId(), FALSE));
                 GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eTempHP, oSummon, GRGetDuration(24, DUR_TYPE_HOURS));
             }
         }

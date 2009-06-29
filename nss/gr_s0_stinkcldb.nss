@@ -72,7 +72,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     GRRemoveSpellEffects(GRGetAOESpellId(), oTarget, oCaster);
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, FALSE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
     if(!GetIsImmune(spInfo.oTarget, IMMUNITY_TYPE_POISON) && !GetLocalInt(spInfo.oTarget, "GR_"+IntToString(GRGetAOESpellId())+"_WILLDISBELIEF")) {
        GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eNauseated, spInfo.oTarget, fDuration);
     }

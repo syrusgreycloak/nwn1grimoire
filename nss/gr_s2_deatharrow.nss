@@ -110,7 +110,7 @@ void main() {
                 GRApplyEffectToObject(DURATION_TYPE_INSTANT, ePhysical, spInfo.oTarget);
                 GRApplyEffectToObject(DURATION_TYPE_INSTANT, eMagic, spInfo.oTarget);
 
-                SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+                SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
                 // * if target fails a save DC20 they die
                 if(GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, 20)==0) {
                     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eDeath, spInfo.oTarget);

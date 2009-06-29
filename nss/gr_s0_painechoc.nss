@@ -92,7 +92,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
     if(!GRGetSpellDmgSaveMade(spInfo.iSpellID, oCaster)) {
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
         if(!GetIsImmune(spInfo.oTarget, IMMUNITY_TYPE_CRITICAL_HIT, oCaster)) {

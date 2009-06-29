@@ -30,7 +30,7 @@ void CheckCasterConcentration(object oTarget, object oCaster, int iNumRounds) {
 
     if(!GRGetCasterConcentrating(SPELL_GR_LULLABY, oCaster) || oCaster==OBJECT_INVALID) {
         GRRemoveSpellEffects(SPELL_GR_LULLABY, oTarget, oCaster);
-        SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_LULLABY));
+        SignalEvent(oTarget, EventSpellCastAt(oCaster, SPELL_GR_LULLABY));
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     } else {
         DelayCommand(GRGetDuration(1), CheckCasterConcentration(oTarget, oCaster, iNumRounds));

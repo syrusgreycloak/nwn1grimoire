@@ -104,7 +104,7 @@ void main() {
 
     while(GetIsObjectValid(spInfo.oTarget)) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_WALL_OF_ICE));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_WALL_OF_ICE));
             if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
                 iDamage = GRGetSpellDamageAmount(spInfo, REFLEX_NEGATES, oCaster, iSaveType, fDelay);
                 if(GRGetSpellHasSecondaryDamage(spInfo)) {

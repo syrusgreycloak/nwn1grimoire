@@ -33,7 +33,7 @@ void main() {
 
     GRRemoveSpellEffects(GRGetAOESpellId(), oTarget, oCaster);
     if(!GRGetSaveResult(SAVING_THROW_FORT, oTarget, iDC)) {
-        SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_CHOKING_COBWEBS));
+        SignalEvent(oTarget, EventSpellCastAt(oCaster, SPELL_GR_CHOKING_COBWEBS));
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GRGetDuration(1));
     }
 }

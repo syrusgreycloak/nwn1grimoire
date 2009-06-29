@@ -103,7 +103,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_DOLOROUS_MOTES));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_DOLOROUS_MOTES));
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
             if(!GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC, SAVING_THROW_TYPE_MIND_SPELLS, oCaster)) {
                 GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, RoundsToSeconds(1)*1.5);

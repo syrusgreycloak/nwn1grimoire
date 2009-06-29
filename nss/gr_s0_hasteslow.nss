@@ -106,11 +106,11 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(d100()>33) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_HASTE, FALSE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_HASTE, FALSE));
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, fDuration);
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
     } else {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_SLOW, FALSE));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_SLOW, FALSE));
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink1, spInfo.oTarget, fDuration);
         GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis1, spInfo.oTarget);
     }

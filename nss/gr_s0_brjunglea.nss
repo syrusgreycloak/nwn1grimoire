@@ -95,7 +95,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_BREATH_OF_THE_JUNGLE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_BREATH_OF_THE_JUNGLE));
     GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
     GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eSave, spInfo.oTarget);
 

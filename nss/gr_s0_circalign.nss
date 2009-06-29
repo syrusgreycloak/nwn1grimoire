@@ -183,7 +183,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, iAlign, FALSE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, iAlign, FALSE));
     /*** NWN1 SINGLE ***/ GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAOE, spInfo.oTarget, fDuration);
 

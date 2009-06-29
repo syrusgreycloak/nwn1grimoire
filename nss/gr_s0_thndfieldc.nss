@@ -115,7 +115,7 @@ void main() {
 
     while(GetIsObjectValid(spInfo.oTarget)) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_THUNDER_FIELD));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_THUNDER_FIELD));
             int bResisted = GetLocalInt(spInfo.oTarget, "GR_"+IntToString(SPELL_GR_THUNDER_FIELD)+GetName(oCaster));
             spInfo.iDC = GRGetSpellSaveDC(oCaster, spInfo.oTarget);
             fDelay = GetRandomDelay();

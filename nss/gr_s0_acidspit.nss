@@ -123,7 +123,7 @@ void main() {
         spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, lSpCenter, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
         while (GetIsObjectValid(spInfo.oTarget)) {
             if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster, TRUE) && spInfo.oTarget!=oOrigTarget) {
-                SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_ACID_SPITTLE));
+                SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_ACID_SPITTLE));
                 fDelay = GetDistanceBetweenLocations(lSpCenter, GetLocation(spInfo.oTarget))/5;
                 if(!GRGetSpellResisted(oCaster, spInfo.oTarget, fDelay)) {
                     spInfo.iDC = GRGetSpellSaveDC(oCaster, spInfo.oTarget);

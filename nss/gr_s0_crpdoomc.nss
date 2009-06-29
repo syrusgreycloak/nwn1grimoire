@@ -104,7 +104,7 @@ void main() {
     while(GetIsObjectValid(spInfo.oTarget) && iDamCount < 1000) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster, NO_CASTER)) {
             fDelay = GetRandomDelay(1.0, 2.2);
-            SignalEvent(spInfo.oTarget,EventSpellCastAt(OBJECT_SELF, SPELL_CREEPING_DOOM));
+            SignalEvent(spInfo.oTarget,EventSpellCastAt(oCaster, SPELL_CREEPING_DOOM));
             iDamage = GRGetSpellDamageAmount(spInfo);
             eDam = EffectDamage(iDamage, DAMAGE_TYPE_PIERCING);
             DelayCommand(fDelay, GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget));

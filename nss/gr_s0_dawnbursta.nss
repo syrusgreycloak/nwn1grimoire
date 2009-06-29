@@ -95,7 +95,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
     if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eTorchLight, spInfo.oTarget);
 

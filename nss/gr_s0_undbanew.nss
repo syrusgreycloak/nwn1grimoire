@@ -103,7 +103,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(GetIsObjectValid(oMyWeapon)) {
-        SignalEvent(GetItemPossessor(oMyWeapon), EventSpellCastAt(OBJECT_SELF, GetSpellId(), FALSE));
+        SignalEvent(GetItemPossessor(oMyWeapon), EventSpellCastAt(oCaster, GetSpellId(), FALSE));
         if(fDuration>0.0) {
             GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetItemPossessor(oMyWeapon));
             GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, GetItemPossessor(oMyWeapon), fDuration);

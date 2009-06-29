@@ -106,7 +106,7 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, FALSE));
+    SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
     if(GetHasEffect(EFFECT_TYPE_DARKNESS, spInfo.oTarget) && !GetHasEffect(EFFECT_TYPE_CONCEALMENT, spInfo.oTarget)) {
         GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eHide, spInfo.oTarget);
     } else if(!GetHasEffect(EFFECT_TYPE_DARKNESS, spInfo.oTarget)) {

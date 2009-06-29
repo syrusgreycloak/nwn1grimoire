@@ -114,7 +114,7 @@ void main() {
     spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPELLCONE, fRange, spInfo.lTarget, TRUE, iObjectFilter);
     while(GetIsObjectValid(spInfo.oTarget)) {
         if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster, NO_CASTER)) {
-            SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GR_THUNDER_STAFF));
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_THUNDER_STAFF));
             fDelay = GetDistanceBetween(OBJECT_SELF, spInfo.oTarget)/20.0;
             if(!GRGetSpellResisted(oCaster, spInfo.oTarget, fDelay)) {
                 fStunDuration = GRGetDuration(GRGetMetamagicAdjustedDamage(3, 1, spInfo.iMetamagic, 0));

@@ -128,7 +128,7 @@ void main() {
     //*:* Apply effects
     //*:**********************************************
     if(iAlign!=ALIGNMENT_NEUTRAL && bTarget) {
-        SignalEvent(spInfo.oTarget, EventSpellCastAt(OBJECT_SELF, spInfo.iSpellID, bHostile));
+        SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, bHostile));
         if(!bHostile) {
             GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eDur, spInfo.oTarget);
         } else {
