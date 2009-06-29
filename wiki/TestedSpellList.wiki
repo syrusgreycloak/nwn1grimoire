@@ -64,6 +64,8 @@
 ||Clairaudience and Clairvoyance||3|| || || || ||3||
 ||Ice Burst|| || || || || ||3||
 
+Daylight
+
 === Level 4 ===
 ||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Dimension Door|| || || || || ||4||
