@@ -5,11 +5,14 @@
 ||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Acid Splash|| || || || || ||0||
 ||Daze||0|| || || || ||0||
+||Disrupt Undead|| || || || || ||0||
 ||Electric Jolt|| || || || || ||0||
+||Flare||0|| ||0|| || ||0||
 ||Light||0||0||0|| || ||0||
 ||Open/Close||0|| || || || ||0||
 ||Ray of Frost|| || || || || ||0||
 ||Resistance||0||0||0||1|| ||0||
+||Sonic Snap (Horizikaul's Cough)|| || || || || ||0||
 ||Touch of Fatigue|| || || || || ||0||
 
 === Level 1 ===
@@ -26,11 +29,17 @@
 ||Chameleon Skin ||  ||  ||  ||  ||  ||1||
 ||Charm Person ||1 ||  ||  ||  ||  ||1||
 ||Chill Touch ||  ||  ||  ||  ||  ||1||
+||Chromatic Orb ||2|| || || || ||1||
 ||Color Spray ||  ||  ||  ||  ||  ||1||
 ||Corpse Visage ||  ||  ||  ||  ||  ||1||
 ||Death's Call ||  ||  ||  ||  ||  ||1||
+||Distract||1|| || || || ||1||
 ||Endure Energy|| ||1||1||1|| ||1||
 ||Enlarge Person ||  ||  ||  ||  ||  ||1||
+||Flame Bolt|| || || || || ||1||
+||Flash||1|| || || || ||1||
+||Grease||1|| || || || ||1||
+||Horizikaul's Boom|| || || || || ||1||
 ||Jet of Steam ||  ||  ||  ||  ||  ||1||
 
 === Level 2 ===
@@ -49,6 +58,7 @@
 ||*Spell Name*||*Brd*||*Clr*||*Drd*||*Pal*||*Rgr*||*Sor/Wiz*||
 ||Armor of Undeath|| || || || || ||3||
 ||Blood Storm|| || || || || ||3||
+||Caustic Smoke|| || || || || ||3||
 ||Clairaudience and Clairvoyance||3|| || || || ||3||
 ||Ice Burst|| || || || || ||3||
 
