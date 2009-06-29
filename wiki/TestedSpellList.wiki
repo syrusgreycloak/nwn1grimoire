@@ -41,6 +41,7 @@
 ||Flash||1|| || || || ||1||
 ||Grease||1|| || || || ||1||
 ||Horizikaul's Boom|| || || || || ||1||
+||Ironguts||1||1|| || || ||1||
 ||Jet of Steam ||  ||  ||  ||  ||  ||1||
 
 === Level 2 ===
