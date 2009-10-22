@@ -10,7 +10,7 @@
 //*:* also Mass versions
 //*:*
 //*:* Owl's Insight
-//*:* Splendor Of Eagle's (Charm Domain Granted Power)
+//*:* Splendor Of Eagles (Charm Domain Granted Power)
 //*:**************************************************************************
 //*:* Created By: Karl Nickels (Syrus Greycloak)
 //*:* Created On: April 12, 2005
