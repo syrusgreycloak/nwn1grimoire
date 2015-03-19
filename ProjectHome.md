@@ -1,0 +1,1 @@
+This project is the source code plus supporting files for the Grimoire spell hak by Syrus Greycloak.  Source code can be checked out anonymously from the repository on the source tab.  Hak files can be found at NWVault and in the repository.  Haks in the repository will be updated more frequently than the ones on the Vault.
