@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GrimoireTest" default="build" basedir=".">
+    <description>Builds the project GrimoireTest.</description>
+
+    <!-- Load some build.properties files so that users can customize
+        certain properties to their environment.  ANT only uses the first
+        value encountered so any properties defined in these files will
+        override later settings.
+        See "build.properties.sample" in the top level directory for all
+        property values you must customize for successful building!!!        -->
+    <property file="build.properties"/>
+    <property file="${user.home}/build.properties"/>
+
+    <!-- set global property defaults for this build -->
+    <property name="src"           value="."/>
+    <property name="build"         value="build"/>
+    <property name="dist"          value="dist"/>
+
+
+    <target name="init">
+        <!-- define some custom tasks used later-->
+        <taskdef name="nwnc" classname="org.progeeks.nwn.ant.CompileTask" />
+
+        <taskdef name="xmltogff" classname="org.progeeks.nwn.ant.XmlToGffTask" />
+
+        <taskdef name="erfpacker" classname="org.progeeks.nwn.ant.ErfPackerTask" />
+
+        <!-- Create the time stamp... and an additional formatted build time property -->
+        <tstamp>
+            <!-- Because I like to include the build time in my generated ERF file descriptions. -->
+            <format property="build.time" pattern="MM/dd/yyyy hh:mm aa" />
+        </tstamp>
+
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}"/>
+        <mkdir dir="${build}/ncs"/>
+        <mkdir dir="${build}/nss"/>
+        <mkdir dir="${build}/haks"/>
+        <mkdir dir="${build}/tlk"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="compile-scripts" description="Compiles the Grimoire nss files" depends="init" >
+
+        <!-- Compile the NWN sources. -->
+        <nwnc srcdir="nss" destdir="${build}/ncs" >
+            <include name="*.nss" />
+        </nwnc>
+
+    </target>
+
+    <target name="build-haks"
+               description="Builds the HAK files for the Grimoire." depends="init">
+
+        <!-- Put together the compiled script hak -->
+        <erfpacker basedir="${build}/ncs" erffile="${build}/haks/Grim3ncs.hak"
+            minGameVersion="1.69" expansionPacks="3" >
+            <description line="Grimoire Spell System" />
+            <description line="http://nwn1grimoire.googlecode.com/" />
+            <description line="This HAK contains all the compiled scripts for the" />
+            <description line="Grimoire spell system." />
+            <description line="Packaged: ${build.time}" />
+        </erfpacker>
+
+        <!-- Put together the TGA hak -->
+        <erfpacker basedir="${src}/tgas" erffile="${build}/haks/Grim3tgas.hak" >
+            <description line="Grimoire Spell System" />
+            <description line="http://nwn1grimoire.googlecode.com" />
+            <description line="This HAK contains all the TGA spell and scroll" />
+            <description line="icons for the Grimoire spell system." />
+            <description line="Packaged: ${build.time}" />
+        </erfpacker>
+
+        <!-- Put together the 2da hak -->
+        <erfpacker basedir="${src}/2da" erffile="${build}/haks/Grim32das.hak" >
+            <description line="Grimoire Spell System" />
+            <description line="http://nwn1grimoire.googlecode.com" />
+            <description line="This HAK contains all the 2da files" />
+            <description line="for the Grimoire spell system." />
+            <description line="Packaged: ${build.time}" />
+        </erfpacker>
+
+        <!-- Put together the blueprints hak -->
+        <erfpacker basedir="${src}/blueprints" erffile="${build}/haks/Grim3blueprints.hak" >
+            <description line="Grimoire Spell System" />
+            <description line="http://nwn1grimoire.googlecode.com" />
+            <description line="This HAK contains all the creature blueprint files" />
+            <description line="for the Grimoire spell system." />
+            <description line="Packaged: ${build.time}" />
+        </erfpacker>
+
+        <!-- Put together the items hak -->
+        <erfpacker basedir="${src}/items" erffile="${build}/haks/Grim3items.hak" >
+            <description line="Grimoire Spell System" />
+            <description line="http://nwn1grimoire.googlecode.com" />
+            <description line="This HAK contains all the item blueprint files" />
+            <description line="for the Grimoire spell system." />
+            <description line="Packaged: ${build.time}" />
+        </erfpacker>
+
+    </target>
+    
+    <target name="archive-source" description="Package source files" depends="init">
+        <!-- We want the module to have the source script files. -->
+        <copy todir="${build}/nss" >
+            <fileset dir="nss" includes="*.nss" />
+        </copy>
+
+
+        <zip destfile="${build}/nss/Grim3source.zip"
+             basedir="${build}/nss"
+             level="9"
+             includes="*.nss"/>        
+    </target>
+    
+    <target name="build-dist" description="Packages everything into archive for distribution."
+        depends="build-haks, archive-source">
+        
+        <zip destfile="${dist}/grimoire.zip"
+             level="9">
+        
+             <fileset dir="${build}/haks" />
+             <fileset dir="${build}/tlk" />
+             <fileset dir="${build}/nss">
+                 <exclude name="**/*.nss"/>
+             </fileset>
+        </zip>
+             
+    </target>
+
+    <target name="build" description="Builds everything."
+                depends="compile-scripts, build-dist" >
+    </target>
+
+    <target name="clean">
+        <!-- Delete the ${build} directory tree. -->
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+    <target name="clean-compiled-scripts">
+        <!-- Delete the compiled ncs scripts -->
+        <delete>
+            <fileset dir="${build}/ncs">
+                <include name="*.ncs" />
+            </fileset>
+        </delete>
+    </target>
+
+</project>
+
