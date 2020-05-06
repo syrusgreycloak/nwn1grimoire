@@ -12,6 +12,7 @@
 //*:**************************************************************************
 //*:* Include following files
 //*:**************************************************************************
+//#include "GR_IC_NAMES" -- included through GR_IN_EFFECTS -> GR_IN_LIB
 #include "GR_IN_EFFECTS"
 
 //*:**************************************************************************
@@ -40,7 +41,7 @@ void GRSetTargetFatigued(object oTarget, int iSpellID=-1) {
     if(iSpellID==0) iSpellID=9999;  // Acid Fog doesn't fatigue, but just in case
                                     // we don't want it to read as false
 
-    SetLocalInt(oTarget, "GR_HAS_FATIGUE_EFFECT", iSpellID);
+    SetLocalInt(oTarget, IS_FATIGUED, iSpellID);
 
 }
 
@@ -48,27 +49,27 @@ void GRSetTargetExhausted(object oTarget, int iSpellID=-1) {
 
     if(iSpellID==0) iSpellID=9999;
 
-    SetLocalInt(oTarget, "GR_HAS_EXHAUSTED_EFFECT", iSpellID);
+    SetLocalInt(oTarget, IS_EXHAUSTED, iSpellID);
 
 }
 
 int GRGetTargetFatigued(object oTarget) {
 
-    if(GetLocalInt(oTarget, "GR_HAS_FATIGUE_EFFECT")>0) return TRUE;
+    if(GetLocalInt(oTarget, IS_FATIGUED)>0) return TRUE;
 
     return FALSE;
 }
 
 int GRGetTargetExhausted(object oTarget) {
 
-    if(GetLocalInt(oTarget, "GR_HAS_EXHAUSTED_EFFECT")>0) return TRUE;
+    if(GetLocalInt(oTarget, IS_EXHAUSTED)>0) return TRUE;
 
     return FALSE;
 }
 
 int GRGetFatigueEffectSpellId(object oTarget) {
 
-    int iSpellID = GetLocalInt(oTarget, "GR_HAS_FATIGUE_EFFECT");
+    int iSpellID = GetLocalInt(oTarget, IS_FATIGUED);
     if(iSpellID==0) iSpellID = -1;
     else if(iSpellID==9999) iSpellID = 0;
 
@@ -77,7 +78,7 @@ int GRGetFatigueEffectSpellId(object oTarget) {
 
 int GRGetExhaustionEffectSpellId(object oTarget) {
 
-    int iSpellID = GetLocalInt(oTarget, "GR_HAS_EXHAUSTED_EFFECT");
+    int iSpellID = GetLocalInt(oTarget, IS_EXHAUSTED);
     if(iSpellID==0) iSpellID = -1;
     else if(iSpellID==9999) iSpellID = 0;
 
@@ -86,7 +87,7 @@ int GRGetExhaustionEffectSpellId(object oTarget) {
 
 void GRRemoveFatigueEffects(object oTarget, int iSpellID=-1) {
 
-    int iFatigueSpellID = GetLocalInt(oTarget, "GR_HAS_FATIGUE_EFFECT");
+    int iFatigueSpellID = GetLocalInt(oTarget, IS_FATIGUED);
 
     if(iSpellID==-1) {
         iSpellID = iFatigueSpellID;
@@ -97,18 +98,18 @@ void GRRemoveFatigueEffects(object oTarget, int iSpellID=-1) {
     if(iSpellID>0) {
         if(iSpellID==9999) iSpellID=0;
         GRRemoveEffectTypeBySpellId(EFFECT_TYPE_MOVEMENT_SPEED_DECREASE, iSpellID, oTarget);
-        DeleteLocalInt(oTarget, "GR_HAS_FATIGUE_EFFECT");
+        DeleteLocalInt(oTarget, IS_FATIGUED);
     }
 }
 
 void GRRemoveExhaustionEffects(object oTarget) {
 
-    int iSpellID = GetLocalInt(oTarget, "GR_HAS_EXHAUSTED_EFFECT");
+    int iSpellID = GetLocalInt(oTarget, IS_EXHAUSTED);
 
     if(iSpellID>0) {
         if(iSpellID==9999) iSpellID=0;
         GRRemoveEffectTypeBySpellId(EFFECT_TYPE_MOVEMENT_SPEED_DECREASE, iSpellID, oTarget);
-        DeleteLocalInt(oTarget, "GR_HAS_EXHAUSTED_EFFECT");
+        DeleteLocalInt(oTarget, IS_EXHAUSTED);
     }
 }
 

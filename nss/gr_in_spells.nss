@@ -21,6 +21,7 @@
 
 //*:**********************************************
 //*:* Constant Libraries
+//#include "GR_IC_NAMES" - included in GR_IN_LIB
 //#include "GR_IC_SPELLS"   - INCLUDED IN GR_IN_RACIAL
 #include "GR_IC_SPELLINFO"      // other spell related constants
 #include "GR_IC_DOMAINS"
@@ -31,48 +32,11 @@
 #include "GR_IN_EFFECTS"
 //#include "GR_IN_LIB" - INCLUDED IN GR_IN_RACIAL & GR_IN_EFFECTS
 #include "GR_IN_RACIAL"
+#include "GR_IN_STRUCTS"
 
 //*:**************************************************************************
 //*:* Constants
 //*:**************************************************************************
-
-//*:**************************************************************************
-struct SpellStruct {
-    object  oCaster;            // caster of the spell
-    int     iSpellID;           // spell id from spells.2da
-    int     iSpellSchool;       // spell school - read from spells.2da
-    int     iSpellSubschool;    // spell subschool - read from spells.2da
-    int     iSpellType1;        // 1st spell descriptor - read from spells.2da
-    int     iSpellType2;        // 2nd spell descriptor - read from spells.2da
-    int     iSpellType3;        // 3rd spell descriptor - read from spells.2da
-    int     iUnderwater;        // allowed to be cast underwater - read from spells.2da
-    int     iTurnable;          // spell can be turned - read from spells.2da
-    int     iPlayerSpell;       // spell is player spell (type 1) - read from spells.2da
-    int     iReqConcentration;  // spell requires concentration - read from spells.2da
-    int     iSpellLevel;        // level of the spell - read from spells.2da
-    int     iSpellCastClass;    // class used to cast spell
-    int     iCasterLevel;       // caster level used to cast spell
-    int     iMetamagic;         // metamagic used to cast spell
-    int     iDC;                // spell DC for saves
-    object  oTarget;            // current target
-    location lTarget;           // current target location
-    int     iDurAmount;         // amount of iDurType for duration
-    int     iDurType;           // type (rounds/turns/etc) for duration
-    float   fDurOverride;       // set duration amount - overrides iDurAmount of iDurType (for spellhook)
-    float   fDmgChangePct;      // change spell damage by percentage (for spellhook)
-    int     iDmgDieType;        // damage die type
-    int     iDmgNumDice;        // number of damage dice
-    int     iDmgBonus;          // additional bonus damage after dietype*numdice
-    int     iDmgOverride;       // fixed amount of damage if no dice to roll
-    int     iSecDmgType;        // DAMAGE_TYPE_* for secondary damage
-    int     iSecDmgAmountType;  // SECDMG_TYPE_*
-    int     iSecDmgOverride;    // set amount of damage if others do not apply
-    int     iXPCost;            // xp cost for casting spell - read from spells.2da
-    int     bEpicSpell;         // boolean denoting epic spell
-    int     iEpicSpellcraftDC;  // DC for Spellcraft check
-    int     bDmgSaveMade;       // DamageSave made
-    int     bNWN2;              // Game version
-};
 
 //*:**************************************************************************
 //*:* Function Prototypes
@@ -361,7 +325,7 @@ int GRGetSpellHasSecondaryDamage(struct SpellStruct spSpellInfo) {
 
 
 int GRGetSpellSubschoolFromSpellId(int iSpellID) {
-    return StringToInt(Get2DAString("spells", "Subschool", iSpellID));
+    return StringToInt(Get2DAString(SPELLS, SPELLS_SUBSCHOOL, iSpellID));
 }
 //*:**********************************************
 //*:* GRGetSpellStruct
@@ -407,22 +371,22 @@ struct SpellStruct GRGetSpellStruct(int iSpellID, object oCaster = OBJECT_SELF) 
     spSpellInfo.bEpicSpell = FALSE;
     spSpellInfo.iEpicSpellcraftDC = 0;
     spSpellInfo.bDmgSaveMade = FALSE;
-    spSpellInfo.bNWN2 = GetLocalInt(GetModule(), "GR_GAME_VERSION_NWN2");
+    spSpellInfo.bNWN2 = GetLocalInt(GetModule(), GAME_VERSION_IS_NWN2);
 
     spSpellInfo.iSpellID = iSpellID;
-    spSpellInfo.iSpellSchool = StringToInt(Get2DAString("spells", "SchoolInt", spSpellInfo.iSpellID));
+    spSpellInfo.iSpellSchool = StringToInt(Get2DAString(SPELLS, SPELLS_SCHOOL_INT, spSpellInfo.iSpellID));
     spSpellInfo.iSpellCastClass = GRGetLastSpellCastClass();
     /*** NWN1 SINGLE ***/ spSpellInfo.iSpellLevel = GRGetSpellLevelBy2da(oCaster, spSpellInfo.iSpellCastClass, spSpellInfo.iSpellID);
     //*** NWN2 SINGLE ***/ spSpellInfo.iSpellLevel = GetSpellLevel(spSpellInfo.iSpellID);
-    spSpellInfo.iSpellSubschool = StringToInt(Get2DAString("spells", "Subschool", spSpellInfo.iSpellID));
-    spSpellInfo.iSpellType1 = StringToInt(Get2DAString("spells", "Desc1", spSpellInfo.iSpellID));
-    spSpellInfo.iSpellType2 = StringToInt(Get2DAString("spells", "Desc2", spSpellInfo.iSpellID));
-    spSpellInfo.iSpellType3 = StringToInt(Get2DAString("spells", "Desc3", spSpellInfo.iSpellID));
+    spSpellInfo.iSpellSubschool = StringToInt(Get2DAString(SPELLS, SPELLS_SUBSCHOOL, spSpellInfo.iSpellID));
+    spSpellInfo.iSpellType1 = StringToInt(Get2DAString(SPELLS, "Desc1", spSpellInfo.iSpellID));
+    spSpellInfo.iSpellType2 = StringToInt(Get2DAString(SPELLS, "Desc2", spSpellInfo.iSpellID));
+    spSpellInfo.iSpellType3 = StringToInt(Get2DAString(SPELLS, "Desc3", spSpellInfo.iSpellID));
     spSpellInfo.iTurnable = GRGetIsSpellTurnable(spSpellInfo.iSpellID);
-    spSpellInfo.iUnderwater = StringToInt(Get2DAString("spells", "UndWater", spSpellInfo.iSpellID));
-    spSpellInfo.iPlayerSpell = (StringToInt(Get2DAString("spells","UserType", spSpellInfo.iSpellID))==1);
-    spSpellInfo.iReqConcentration = StringToInt(Get2DAString("spells", "ReqConcen", spSpellInfo.iSpellID));
-    spSpellInfo.iXPCost = StringToInt(Get2DAString("spells", "XPCost", spSpellInfo.iSpellID));
+    spSpellInfo.iUnderwater = StringToInt(Get2DAString(SPELLS, "UndWater", spSpellInfo.iSpellID));
+    spSpellInfo.iPlayerSpell = (StringToInt(Get2DAString(SPELLS,"UserType", spSpellInfo.iSpellID))==1);
+    spSpellInfo.iReqConcentration = StringToInt(Get2DAString(SPELLS, "ReqConcen", spSpellInfo.iSpellID));
+    spSpellInfo.iXPCost = StringToInt(Get2DAString(SPELLS, "XPCost", spSpellInfo.iSpellID));
     GRSetSpellInfo(spSpellInfo, oCaster);
 
     spSpellInfo.iCasterLevel = GRGetCasterLevel(oCaster);
@@ -434,12 +398,12 @@ struct SpellStruct GRGetSpellStruct(int iSpellID, object oCaster = OBJECT_SELF) 
     }
     spSpellInfo.lTarget = GetSpellTargetLocation();
 
-    if(GetLocalInt(oCaster, "GR_SPELL_REFLECTION")) {
-        spSpellInfo.oCaster = GetLocalObject(oCaster, "GR_SPELL_REFLECTION_CASTER");
-        spSpellInfo.iCasterLevel = GetLocalInt(oCaster, "GR_SPELL_REFLECTION_CLVL");
-        spSpellInfo.iMetamagic = GetLocalInt(oCaster, "GR_SPELL_REFLECTION_MM");
-        spSpellInfo.iDC = GetLocalInt(oCaster, "GR_SPELL_REFLECTION_DC");
-        spSpellInfo.fDmgChangePct = GetLocalFloat(oCaster, "GR_SPELL_REFLECTION_DMGPCT");
+    if(GetLocalInt(oCaster, HAS_SPELL_REFLECTION)) {
+        spSpellInfo.oCaster = GetLocalObject(oCaster, SPELL_REFLECTION + "_CASTER");
+        spSpellInfo.iCasterLevel = GetLocalInt(oCaster, SPELL_REFLECTION + "_CLVL");
+        spSpellInfo.iMetamagic = GetLocalInt(oCaster, SPELL_REFLECTION + "_MM");
+        spSpellInfo.iDC = GetLocalInt(oCaster, SPELL_REFLECTION + "_DC");
+        spSpellInfo.fDmgChangePct = GetLocalFloat(oCaster, SPELL_REFLECTION + "_DMGPCT");
     }
 
     return spSpellInfo;
@@ -800,8 +764,8 @@ int GRGetCasterLevel(object oCaster=OBJECT_SELF, int iCastingClass=CLASS_TYPE_IN
         //*:**********************************************
         if(GetObjectType(oCaster)==OBJECT_TYPE_CREATURE) {
             iCasterLevel = (iCastingClass==CLASS_TYPE_BLACKGUARD ? GRGetLevelByClass(iCastingClass, oCaster) : GetCasterLevel(oCaster));
-            if(GetLocalInt(oCaster, "GR_L_SPELLTURN_CASTER_LEVEL")>0) {
-                iCasterLevel = GetLocalInt(oCaster, "GR_L_SPELLTURN_CASTER_LEVEL");
+            if(GetLocalInt(oCaster, SPELLTURN_CASTER_LEVEL)>0) {
+                iCasterLevel = GetLocalInt(oCaster, SPELLTURN_CASTER_LEVEL);
             }
             //*:**********************************************
             //*:* Blackguard
@@ -1276,7 +1240,7 @@ int GRGetIsSpellTurnable(int iSpellID, object oCaster=OBJECT_INVALID) {
     int iReturnValue;
 
     if(!GetIsObjectValid(oCaster)) {
-        iReturnValue = StringToInt(Get2DAString("spells","Turnable",iSpellID));
+        iReturnValue = StringToInt(Get2DAString(SPELLS, SPELLS_TURNABLE,iSpellID));
     } else {
         iReturnValue = GetLocalInt(oCaster, "GR_"+IntToString(iSpellID)+"_TURNABLE");
     }
@@ -1373,7 +1337,6 @@ int GRGetMetamagicAdjustedDamage(int iDieType, int iNumDice = 1, int iMetamagic 
 
 //*:**********************************************
 //*:* GRGetMetamagicFeat
-//*:*   (formerly SGGetMetaMagicFeat)
 //*:**********************************************
 //*:*
 //*:* Gets the Metamagic feat used in casting a spell
@@ -1484,7 +1447,9 @@ int GRGetReflexAdjustedDamage(int iDamage, object oTarget, int iDC, int iSaveTyp
                 if(bPassArmorCheck && bPassWeightCheck) {
                     if(bHasImpEvasion && iResult!=1) {
                         iAdjDamage /= 2;
-                        if(bHasFireShield && iAdjDamage>0) iAdjDamage = 0;
+                        if(bHasFireShield && iAdjDamage>0) {
+                            iAdjDamage = 0;
+                        }
                     } else if(iResult==1) {
                         iAdjDamage = 0;
                     }
@@ -1497,7 +1462,6 @@ int GRGetReflexAdjustedDamage(int iDamage, object oTarget, int iDC, int iSaveTyp
 
 //*:**********************************************
 //*:* GRGetSaveResult
-//*:*   (formerly SGMySavingThrow)
 //*:**********************************************
 //*:*
 //*:*    Gets saving throw results

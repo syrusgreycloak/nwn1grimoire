@@ -16,6 +16,8 @@
 //*:**************************************************************************
 //*:* Updated On: April 23, 2007
 //*:**************************************************************************
+//*:* Updated On: 2019-08-19
+//*:**************************************************************************
 
 //*:**************************************************************************
 //*:* Include the following files
@@ -28,6 +30,7 @@
 
 //*:**********************************************
 //*:* Function Libraries
+#include "GR_IC_NAMES"
 #include "GR_IN_ITEMPROP"
 
 //#include "GR_IN_DEBUG"
@@ -51,7 +54,7 @@ int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJ
 //*:* Only active on spell scroll
 //*:**********************************************
 int GRUseMagicDeviceCheck() {
-    int nRet = ExecuteScriptAndReturnInt(GetLocalString(GetModule(),"GR_UMDCHECK_STRING"), OBJECT_SELF);
+    int nRet = ExecuteScriptAndReturnInt(GetLocalString(GetModule(),UMDCHECK_STRING), OBJECT_SELF);
     //AutoDebugString("Inside GRUseMagicDeviceCheck.  Executing script " + GetLocalString(GetModule(), "GR_UMDCHECK_STRING"));
 
     return nRet;
@@ -69,7 +72,7 @@ int GRUseMagicDeviceCheck() {
 //*:**********************************************
 int GRCastOnItemWasAllowed(object oItem) {
 
-    int bAllow = (Get2DAString("des_crft_spells", "CastOnItems", GetSpellId())=="1");
+    int bAllow = (Get2DAString(DES_CRFT_SPELLS, DES_CRFT_SPELLS_CAST_ON_ITEMS, GetSpellId())=="1");
 
     if(!bAllow) {
         FloatingTextStrRefOnCreature(83453, OBJECT_SELF); // not cast spell on item
@@ -97,15 +100,15 @@ int GRCastOnItemWasAllowed(object oItem) {
 string GRGetModuleOverrideSpellscript() {
 
     //AutoDebugString("Inside GRGetModuleOverrideSpellscript()");
-    string  sScript = GetLocalString(OBJECT_SELF, "GR_BYPASS_SPELLHOOK");
+    string  sScript = GetLocalString(OBJECT_SELF, BYPASS_SPELLHOOK);
     //AutoDebugString("Checking if caster has a generic bypass spellhook script assigned.  Script value: " + sScript);
 
     if(sScript=="") {
-        sScript = GetLocalString(OBJECT_SELF, "GR_"+IntToString(GetSpellId())+"_SCRIPT");
+        sScript = GetLocalString(OBJECT_SELF, BYPASS_SPELLHOOK+IntToString(GetSpellId()));
         //AutoDebugString("Checking if caster has a bypass spellhook script assigned for spell " + GRSpellToString(GetSpellId()) + ".  Script value: " + sScript);
     }
     if(sScript=="") {
-        sScript = GetLocalString(GetModule(), "X2_S_UD_SPELLSCRIPT");
+        sScript = GetLocalString(GetModule(), USERDEFINED_SPELLHOOK);
         //AutoDebugString("Assigning global spellhook script.  Script value: " + sScript);
     }
 
@@ -163,13 +166,13 @@ int GRGetSpellCastOnSequencerItem(object oItem) {
     }
 
     // Check if the spell is marked as hostile in spells.2da
-    int nHostile = StringToInt(Get2DAString("spells", "HostileSetting", GetSpellId()));
+    int nHostile = StringToInt(Get2DAString(SPELLS, SPELLS_HOSTILE_SETTING, GetSpellId()));
     if(nHostile==1) {
         FloatingTextStrRefOnCreature(83885,OBJECT_SELF);
         return TRUE; // no hostile spells on sequencers, sorry ya munchkins :)
     }
 
-    int nNumberOfTriggers = GetLocalInt(oItem, "X2_L_NUMTRIGGERS");
+    int nNumberOfTriggers = GetLocalInt(oItem, TRIGGER_NUMTRIGGERS);
     // is there still space left on the sequencer?
     if(nNumberOfTriggers < nMaxSeqSpells) {
         // success visual and store spell-id on item.
@@ -177,8 +180,8 @@ int GRGetSpellCastOnSequencerItem(object oItem) {
         nNumberOfTriggers++;
         //NOTE: I add +1 to the SpellId to spell 0 can be used to trap failure
         int nSID = GetSpellId()+1;
-        SetLocalInt(oItem, "X2_L_SPELLTRIGGER" + IntToString(nNumberOfTriggers), nSID);
-        SetLocalInt(oItem, "X2_L_NUMTRIGGERS", nNumberOfTriggers);
+        SetLocalInt(oItem, TRIGGER_SPELLTRIGGER + IntToString(nNumberOfTriggers), nSID);
+        SetLocalInt(oItem, TRIGGER_NUMTRIGGERS, nNumberOfTriggers);
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual, OBJECT_SELF);
         FloatingTextStrRefOnCreature(83884, OBJECT_SELF);
     } else {
@@ -216,9 +219,9 @@ int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJ
         //AutoDebugString("Casting Object is not a PC");
         if(!GetIsDMPossessed(OBJECT_SELF)) {
             //AutoDebugString("Casting object is not possessed by a DM");
-            if(!GetLocalInt(GetModule(), "GR_L_ALWAYS_ALLOW_NPCS")) {
+            if(!GetLocalInt(GetModule(), ALWAYS_ALLOW_NPCS)) {
                 //AutoDebugString("No global npc allow set.");
-                if(!GetLocalInt(GetArea(OBJECT_SELF), "X2_L_WILD_MAGIC") || !GetLocalInt(GetModule(), "GR_L_ALWAYS_ALLOW_NPCS")) {
+                if(!GetLocalInt(GetArea(OBJECT_SELF), WILD_MAGIC_AREA) || !GetLocalInt(GetModule(), ALWAYS_ALLOW_NPCS)) {
                     //AutoDebugString("No area npc allow set.");
                     //AutoDebugString("Returning early from spellhook function.");
                     return TRUE;
@@ -257,7 +260,7 @@ int GRSpellhookAbortSpell(object oTarget = OBJECT_INVALID, object oDebugPC = OBJ
         //*:* Check if spell was used to trigger item creation feat
         //*:**********************************************
         if(nContinue) {
-            nContinue = !ExecuteScriptAndReturnInt("x2_pc_craft", OBJECT_SELF);
+            nContinue = !ExecuteScriptAndReturnInt(SCRIPT_X2_PC_CRAFT, OBJECT_SELF);
         }
 
         //*:**********************************************

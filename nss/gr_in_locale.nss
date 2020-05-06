@@ -9,6 +9,8 @@
 //*:* Created By: Karl Nickels (Syrus Greycloak)
 //*:* Created On: January 8, 2009
 //*:**************************************************************************
+//*:* Updated On: August 19, 2019
+//*:**************************************************************************
 
 //*:**************************************************************************
 //*:* Include following files
@@ -18,6 +20,7 @@
 
 //*:**********************************************
 //*:* Constant Libraries
+#include "GR_IC_NAMES"
 
 //*:**********************************************
 //*:* Function Libraries
@@ -36,17 +39,17 @@ void GRSetFrostfellLocale(object oTarget, int bYesNo = TRUE);
 //*:* Function Implementations
 //*:**************************************************************************
 int GRGetExtremeHeatLocale(object oTarget) {
-    return GetLocalInt(oTarget, "GR_EXTREME_HEAT");
+    return GetLocalInt(oTarget, LOCALE_EXTREME_HEAT);
 }
 
 int GRGetFrostfellLocale(object oTarget) {
-    return GetLocalInt(oTarget, "GR_FROSTFELL");
+    return GetLocalInt(oTarget, LOCALE_FROSTFELL);
 }
 
 void GRSetExtremeHeatLocale(object oTarget, int bYesNo = TRUE) {
-    SetLocalInt(oTarget, "GR_EXTREME_HEAT", bYesNo);
+    SetLocalInt(oTarget, LOCALE_EXTREME_HEAT, bYesNo);
 }
 
 void GRSetFrostfellLocale(object oTarget, int bYesNo = TRUE) {
-    SetLocalInt(oTarget, "GR_FROSTFELL", bYesNo);
+    SetLocalInt(oTarget, LOCALE_FROSTFELL, bYesNo);
 }

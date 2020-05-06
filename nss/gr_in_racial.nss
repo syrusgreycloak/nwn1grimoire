@@ -106,7 +106,6 @@ int GRGetIsHumanoid(object oCreature) {
 
 //*:**********************************************
 //*:* GRGetIsLightSensitive
-//*:*   (formerly IsLightSensitiveCreature)
 //*:**********************************************
 //*:*
 //*:* Checks subrace and name field to see if target

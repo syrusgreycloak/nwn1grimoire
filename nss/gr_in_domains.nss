@@ -70,8 +70,8 @@ void GRCheckDomainSpellsMemorized(object oCaster=OBJECT_SELF) {
 
     int iClassLevel = GRGetSpellcastingLevelByClass(CLASS_TYPE_CLERIC, oCaster);
     int iMaxSpellLevel = (iClassLevel+1)/2;
-    int iDomain1 = GetLocalInt(oCaster, "GR_L_DOMAIN_1");
-    int iDomain2 = GetLocalInt(oCaster, "GR_L_DOMAIN_2");
+    int iDomain1 = GetLocalInt(oCaster, DOMAIN_1);
+    int iDomain2 = GetLocalInt(oCaster, DOMAIN_2);
 
     //*:**********************************************
     //*:* If 0, set to -1 to be sure locals weren't missed being set.
@@ -86,15 +86,15 @@ void GRCheckDomainSpellsMemorized(object oCaster=OBJECT_SELF) {
 
     if(iDomain1 == DOMAIN_2DA_INVALID) {
         iDomain1 = GRGetDomain(1, iDomain1, oCaster);
-        SetLocalInt(oCaster, "GR_L_DOMAIN_1", iDomain1);
+        SetLocalInt(oCaster, DOMAIN_1, iDomain1);
     }
     if(iDomain2 == DOMAIN_2DA_INVALID) {
         iDomain2 = GRGetDomain(2, iDomain1, oCaster);
-        SetLocalInt(oCaster, "GR_L_DOMAIN_2", iDomain2);
+        SetLocalInt(oCaster, DOMAIN_2, iDomain2);
     }
 
-    SetLocalInt(oCaster, "GR_DOMAIN_BLOCK", FALSE);
-    SetLocalInt(oCaster, "GR_DOMAIN_CHECK_DONE", FALSE);
+    SetLocalInt(oCaster, DOMAINS_BLOCK_USAGE, FALSE);
+    SetLocalInt(oCaster, DOMAINS_CHECK_DONE, FALSE);
 
     if(iDomain1 == DOMAIN_2DA_INVALID) {
         FloatingTextStrRefOnCreature(16939272, oCaster);
@@ -117,8 +117,8 @@ void GRCheckDomainSpellsMemorized(object oCaster=OBJECT_SELF) {
         iHasDomain1 = FALSE;
         iHasDomain2 = FALSE;
         iHasSpellForLevel = FALSE;
-        sDomainSpell1 = Get2DAString("sg_domains", "Level_"+IntToString(i), iDomain1);
-        sDomainSpell2 = Get2DAString("sg_domains", "Level_"+IntToString(i), iDomain2);
+        sDomainSpell1 = Get2DAString(SG_DOMAINS, "Level_"+IntToString(i), iDomain1);
+        sDomainSpell2 = Get2DAString(SG_DOMAINS, "Level_"+IntToString(i), iDomain2);
 
         if(sDomainSpell1 != "****" && sDomainSpell1 != "") {
             if(GetHasSpell(StringToInt(sDomainSpell1), oCaster)) iHasDomain1 = TRUE;
@@ -135,7 +135,7 @@ void GRCheckDomainSpellsMemorized(object oCaster=OBJECT_SELF) {
                 if(GetIsPC(oCaster)) {
                     SendMessageToPC(oCaster, GetStringByStrRef(16939237)+IntToString(i));
                     SendMessageToPC(oCaster, GetStringByStrRef(16939238));
-                    SetLocalInt(oCaster,"GR_DOMAIN_BLOCK", TRUE);
+                    SetLocalInt(oCaster, DOMAINS_BLOCK_USAGE, TRUE);
                 }
             } //else {
                 //*:**********************************************
@@ -145,7 +145,7 @@ void GRCheckDomainSpellsMemorized(object oCaster=OBJECT_SELF) {
             //}
         }
     }
-    SetLocalInt(oCaster,"GR_DOMAIN_CHECK_DONE",TRUE);
+    SetLocalInt(oCaster, DOMAINS_CHECK_DONE, TRUE);
 }
 
 //*:**********************************************
@@ -168,7 +168,7 @@ void GRCheckSpecialDomainFeats(object oCaster) {
     itemproperty ipDomainFeat;
 
     if(!GetIsObjectValid(oPCHide)) {
-        oPCHide = CreateItemOnObject("x2_it_emptyskin", oCaster);
+        oPCHide = CreateItemOnObject(EMPTY_SKIN_TAG, oCaster);
     }
     if(GRGetHasDomain(DOMAIN_DARKNESS, oCaster) && !GetHasFeat(FEAT_BLIND_FIGHT, oCaster)) {
         ipDomainFeat = ItemPropertyBonusFeat(IP_CONST_FEAT_BLIND_FIGHT);
@@ -192,7 +192,7 @@ void GRCheckSpecialDomainFeats(object oCaster) {
     }
     AssignCommand(oCaster, ActionEquipItem(oPCHide, INVENTORY_SLOT_CARMOUR));
 
-    SetLocalInt(oCaster, "GR_L_DOMAIN_FEATS", TRUE);
+    SetLocalInt(oCaster, DOMAINS_FEATS_SET, TRUE);
 }
 
 //*:**********************************************

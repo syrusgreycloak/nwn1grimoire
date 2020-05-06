@@ -3,7 +3,6 @@
 //*************************************************************************
 const int     SPELL_GR_CALM_EMOTIONS                                    = 12                                        ;
 const int     SPELL_GR_CHARM_ANIMAL                                     = SPELL_CHARM_PERSON_OR_ANIMAL              ;
-/*** NWN1 SPECIFIC ***/
 const int     SPELL_CAUSE_FEAR                                          = 155                                       ;
 const int     SPELL_MASS_INFLICT_LIGHT_WOUNDS                           = SPELL_CIRCLE_OF_DOOM                      ;
 const int     SPELL_BEARS_ENDURANCE                                     = SPELL_ENDURANCE                           ;
@@ -16,7 +15,6 @@ const int     SPELLABILITY_AS_GREATER_INVISIBILITY                      = SPELLA
 const int     SPELL_PROTECTION_FROM_CHAOS                               = SPELL_PROTECTION__FROM_CHAOS              ;
 const int     SPELL_PROTECTION_FROM_ENERGY                              = SPELL_PROTECTION_FROM_ELEMENTS            ;
 const int     SPELL_RESIST_ENERGY                                       = SPELL_RESIST_ELEMENTS                     ;
-/*** END NWN1 SPECIFIC ***/
 const int     SPELL_GR_MASS_CHARM_MONSTER                               = SPELL_MASS_CHARM                          ;
 //*************************************************************************
 const int     SPELL_GR_SHADES_INCENDIARY_CLOUD                          = 324                                       ;
@@ -51,7 +49,6 @@ const int     SPELL_GR_GSC_EVARDS_TENTACLES                             = 352   
 const int     SPELL_GR_GSC_MESTILS_ACID_BREATH                          = 353                                       ;
 const int     SPELLABILITY_GR_DEATH_TOUCH                               = 383                                       ;
 //*************************************************************************
-/*** NWN1 SPECIFIC ***/
 const int     SPELL_DETECT_UNDEAD                                       = 845                                       ;
 const int     SPELL_ENLARGE_PERSON                                      = 846                                       ;
 const int     SPELL_SHOCKING_GRASP                                      = 847                                       ;
@@ -59,9 +56,11 @@ const int     SPELL_LOW_LIGHT_VISION                                    = 848   
 const int     SPELL_BLINDSIGHT                                          = 849                                       ;
 const int     SPELL_FALSE_LIFE                                          = 850                                       ;
 const int     SPELL_FIREBURST                                           = 851                                       ;
+const int     SPELL_GR_SCARE                                            = 854                                       ;
 const int     SPELL_DEEP_SLUMBER                                        = 855                                       ;
 const int     SPELL_ENHANCE_FAMILIAR                                    = 856                                       ;
 const int     SPELL_HEROISM                                             = 857                                       ;
+const int     SPELL_GR_GREATER_MAGE_ARMOR                               = 858                                       ;
 const int     SPELL_RAGE                                                = 859                                       ;
 const int     SPELL_SPIDERSKIN                                          = 860                                       ;
 const int     SPELL_CRUSHING_DESPAIR                                    = 863                                       ;
@@ -139,9 +138,6 @@ const int     SPELL_CREEPING_COLD                                       = 1042  
 const int     SPELL_GREATER_CREEPING_COLD                               = 1043                                      ;
 const int     SPELL_TOUCH_OF_FATIGUE                                    = 1044                                      ;
 const int     SPELL_POWER_WORD_DISABLE                                  = 1046                                      ;
-/*** END NWN1 SPECIFIC ***/
-const int     SPELL_GR_SCARE                                            = 854                                       ;
-const int     SPELL_GR_GREATER_MAGE_ARMOR                               = 858                                       ;
 const int     SPELL_GR_VIGOROUS_CIRCLE                                  = 1023                                      ;
 const int     SPELL_GR_LESSER_VISAGE_OF_THE_DEITY                       = 1040                                      ;
 const int     SPELL_GR_TOUCH_OF_IDIOCY                                  = 1051                                      ;
@@ -663,7 +659,7 @@ const int     SPELL_GR_DREADED_FORM_OF_THE_EYE_TYRANT                   = 2084  
 const int     SPELL_GR_RETRIBUTIVE_ENERVATION                           = 2085                                      ;
 //const int   SPELL_GR_RETRIBUTIVE_ENERVATION_HIT                       = 2086                                      ;
 const int     SPELL_GR_PRISMATIC_DELUGE                                 = 2087                                      ;
-/*** NWN1 SPECIFIC ***/
+
 const int     SPELLABILITY_I_ELDRITCH_BLAST                             = 2088                                      ;
 const int     SPELL_I_BEGUILING_INFLUENCE                               = 2089                                      ;
 const int     SPELL_I_BESHADOWED_BLAST                                  = 2090                                      ;
@@ -802,9 +798,7 @@ const int     NO_CASTER                                                 = 2     
 
 //*************************************************************************
 //METAMAGIC - bit mapped field
-/*** NWN1 SPECIFIC ***/
 const int     METAMAGIC_WIDEN                                           = 64                                        ;
-/*** END NWN1 SPECIFIC ***/
 
 //*************************************************************************
 //CLASSES - MAPS TO CLASSES.2DA

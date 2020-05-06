@@ -16,6 +16,7 @@
 //*:**************************************************************************
 //*:* Include following files
 //*:**************************************************************************
+//#include "GR_IC_NAMES" -- included through GR_IN_SPELLS -> GR_IN_EFFECTS -> GR_IN_LIB
 #include "GR_IN_SPELLS"
 #include "GR_IN_ARRLIST"
 
@@ -56,8 +57,10 @@ int     GRRemoveProtections(int iSpellID, object oTarget);
 //*:**********************************************
 void GRBuildSpellList(object oTarget) {
 
+    string TMP_ARRAY = "BREACH_TEMP";
+
     GRCreateArrayList(ARR_BREACH, SPELL, VALUE_TYPE_INT, oTarget);
-    GRCreateArrayList("BREACH_TEMP", SPELL, VALUE_TYPE_INT, oTarget);
+    GRCreateArrayList(TMP_ARRAY, SPELL, VALUE_TYPE_INT, oTarget);
 
     effect eEff = GetFirstEffect(oTarget);
 
@@ -65,25 +68,25 @@ void GRBuildSpellList(object oTarget) {
         if(GetEffectSubType(eEff)==SUBTYPE_MAGICAL) {
             int iSpellID = GetEffectSpellId(eEff);
             if(iSpellID>-1) {
-                GRIntAdd("BREACH_TEMP", SPELL, iSpellID, oTarget);
+                GRIntAdd(TMP_ARRAY, SPELL, iSpellID, oTarget);
             }
         }
         eEff = GetNextEffect(oTarget);
     }
-    GRQuickSort("BREACH_TEMP", SPELL, 1, GRGetDimSize("BREACH_TEMP", SPELL, oTarget), oTarget);
+    GRQuickSort(TMP_ARRAY, SPELL, 1, GRGetDimSize(TMP_ARRAY, SPELL, oTarget), oTarget);
 
     // add unique values out of sorted temp array to Breach effect array
     int i = 1;
     int iTemp;
-    GRIntAdd(ARR_BREACH, SPELL, GRIntGetValueAt("BREACH_TEMP", SPELL, i, oTarget), oTarget);
-    for(i=2; i<=GRGetDimSize("BREACH_TEMP", SPELL, oTarget); i++) {
-        iTemp = GRIntGetValueAt("BREACH_TEMP", SPELL, i, oTarget);
-        if(iTemp!=GRIntGetValueAt("BREACH_TEMP", SPELL, i-1, oTarget)) {
+    GRIntAdd(ARR_BREACH, SPELL, GRIntGetValueAt(TMP_ARRAY, SPELL, i, oTarget), oTarget);
+    for(i=2; i<=GRGetDimSize(TMP_ARRAY, SPELL, oTarget); i++) {
+        iTemp = GRIntGetValueAt(TMP_ARRAY, SPELL, i, oTarget);
+        if(iTemp!=GRIntGetValueAt(TMP_ARRAY, SPELL, i-1, oTarget)) {
             GRIntAdd(ARR_BREACH, SPELL, iTemp, oTarget);
         }
     }
 
-    GRDeleteArrayList("BREACH_TEMP", oTarget);
+    GRDeleteArrayList(TMP_ARRAY, oTarget);
 }
 
 //*:**********************************************
@@ -111,7 +114,7 @@ int GRDevourMagic(object oTarget, int iCasterLevel, effect eVis, effect eImpact)
         if(GetEffectSubType(eEff)==SUBTYPE_MAGICAL && GetEffectCreator(eEff)!=OBJECT_SELF) {
             int iSpellID = GetEffectSpellId(eEff);
             if(iSpellID>-1) {
-                if(StringToInt(Get2DAString("spells", "UserType", iSpellID))==1) {
+                if(StringToInt(Get2DAString(SPELLS, SPELLS_USER_TYPE, iSpellID))==1) {
                     GRIntAdd(ARR_DEVOUR, SPELL_EFFECT, iSpellID, oTarget);
                 }
             }
@@ -126,7 +129,7 @@ int GRDevourMagic(object oTarget, int iCasterLevel, effect eVis, effect eImpact)
     for(i=1; i<=iArraySize; i++) {
         int iSpellID = GRIntGetValueAt(ARR_DEVOUR, SPELL_EFFECT, i, oTarget);
         if(!GetHasSpellEffect(iSpellID, oTarget)) {
-            iSpellLevels += StringToInt(Get2DAString("spells", "Innate", iSpellID));
+            iSpellLevels += StringToInt(Get2DAString(SPELLS, SPELLS_INNATE, iSpellID));
         }
     }
 
@@ -155,7 +158,7 @@ void GRDispelMagic(object oTarget, int iCasterLevel, effect eVis, effect eImpact
     //*:* happening with 'statue' creatures. Also creature
     //*:* can be scripted to be immune to dispel magic as well.
     //*:**********************************************
-    if(GetHasEffect(EFFECT_TYPE_PETRIFY, oTarget) || GetLocalInt(oTarget, "X1_L_IMMUNE_TO_DISPEL") == 10) {
+    if(GetHasEffect(EFFECT_TYPE_PETRIFY, oTarget) || GetLocalInt(oTarget, IMMUNE_TO_DISPEL) == 10) {
         return;
     }
 
@@ -227,11 +230,8 @@ void GRDoSpellBreach(object oTarget, int iTotal, int iSR, int iSpellID) {
     if(iSpellID == -1) iSpellID =  SPELL_GREATER_SPELL_BREACH;
 
     effect eSR  = EffectSpellResistanceDecrease(iSR);
-    /*** NWN1 SPECIFIC ***/
-        effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE);
-        effect eVis = EffectVisualEffect(VFX_IMP_BREACH);
-    /*** END NWN1 SPECIFIC ***/
-    //*** NWN2 SINGLE ***/ effect eDur = EffectVisualEffect((iSpellID==SPELL_GREATER_SPELL_BREACH ? VFX_DUR_SPELL_GREATER_SPELL_BREACH : VFX_DUR_SPELL_LESSER_SPELL_BREACH));
+    effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE);
+    effect eVis = EffectVisualEffect(VFX_IMP_BREACH);
 
 
     int iCnt = 0;
@@ -270,7 +270,7 @@ void GRDoSpellBreach(object oTarget, int iTotal, int iSR, int iSpellID) {
         eLink = ExtraordinaryEffect(eLink);
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(10));
     }
-    /*** NWN1 SINGLE ***/ GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+    GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
 
     GRDeleteArrayList(ARR_BREACH, oTarget);
 }

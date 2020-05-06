@@ -15,16 +15,12 @@
 //*:**************************************************************************
 //*:*  AOE Effects - maps into vfx_persistent.2da
 //*:**************************************************************************
-//*:********************************
-/*** NWN 1 SPECIFIC ***/
 const int                          AOE_PER_AURA_OF_COURAGE               =       53                                     ;
 const int                          AOE_PER_AURA_OF_DESPAIR               =       54                                     ;
+const int                          AOE_PER_WALLGRDISPEL                  =       116                                    ;
 const int                          AOE_MOB_GR_HORRAPPEARANCE             =       129                                    ;
 const int                          AOE_MOB_GR_TROGLODYTE_STENCH          =       130                                    ;
 const int                          AOE_MOB_NIGHTMARE_SMOKE               =       131                                    ;
-/*** END NWN 1 SPECIFIC ***/
-//*:********************************
-const int                          AOE_PER_WALLGRDISPEL                  =       116                                    ;
 const int                          AOE_PER_FOGCLOUD                      =       132                                    ;
 const int                          AOE_MOB_ARMOR_UNDEATH                 =       133                                    ;
 const int                          AOE_MOB_BLACKFLAME                    =       134                                    ;
@@ -100,7 +96,6 @@ const int                          AOE_MOB_MASS_HOLD_PERSON              =      
 const int                          AOE_MOB_MASS_HOLD_MONSTER             =       204                                    ;
 const int                          AOE_PER_GREATER_MALISON               =       205                                    ;
 const int                          AOE_PER_GREATER_ALARM                 =       206                                    ;
-/*** NWN 1 SPECIFIC ***/
 const int                          AOE_PER_FOGACID_WIDE                  =       207                                    ;
 const int                          AOE_PER_FOGFIRE_WIDE                  =       208                                    ;
 const int                          AOE_PER_FOGSTINK_WIDE                 =       209                                    ;
@@ -160,30 +155,29 @@ const int                          AOE_MOB_DIRGE_WIDE                    =      
 const int                          AOE_PER_DIVINE_INTERDICTION_WIDE      =       263                                    ;
 const int                          AOE_PER_GREATER_MALISON_WIDE          =       264                                    ;
 const int                          AOE_PER_GREATER_ALARM_WIDE            =       265                                    ;
-/*** END NWN 1 SPECIFIC ***/
 const int                          AOE_MOB_RAY_OF_FLAME                  =       266                                    ;
 const int                          AOE_MOB_RAY_OF_ICE                    =       267                                    ;
 const int                          AOE_MOB_BEASTLAND_FEROCITY            =       268                                    ;
 const int                          AOE_PER_OBSCURING_MIST                =       269                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_OBSCURING_MIST_WIDE           =       270                                    ;
+const int    AOE_PER_OBSCURING_MIST_WIDE           =       270                                    ;
 //const int                        AOE_MOB_AURADESPAIR                   =       271                                    ;
 //const int                        AOE_PER_AURA_OF_COURAGE               =       272                                    ;
 const int                          AOE_PER_HYPNOTIC_PATTERN              =       273                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_HYPNOTIC_PATTERN_WIDE         =       274                                    ;
+const int    AOE_PER_HYPNOTIC_PATTERN_WIDE         =       274                                    ;
 const int                          AOE_PER_SLEET_STORM                   =       275                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_SLEET_STORM_WIDE              =       276                                    ;
+const int    AOE_PER_SLEET_STORM_WIDE              =       276                                    ;
 const int                          AOE_MOB_PAINFUL_ECHOES                =       277                                    ;
 const int                          AOE_MOB_RESONATING_AGONY              =       278                                    ;
 const int                          AOE_PER_CAUSTIC_SMOKE                 =       279                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_CAUSTIC_SMOKE_WIDE            =       280                                    ;
+const int    AOE_PER_CAUSTIC_SMOKE_WIDE            =       280                                    ;
 const int                          AOE_PER_DAWNBURST                     =       281                                    ;
 const int                          AOE_PER_DAWNBURST_WIDE                =       282                                    ;
 const int                          AOE_PER_PALL_OF_TWILIGHT              =       283                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_PALL_OF_TWILIGHT_WIDE         =       284                                    ;
+const int    AOE_PER_PALL_OF_TWILIGHT_WIDE         =       284                                    ;
 const int                          AOE_PER_INCENDIARY_SLIME              =       285                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_INCENDIARY_SLIME_WIDE         =       286                                    ;
+const int    AOE_PER_INCENDIARY_SLIME_WIDE         =       286                                    ;
 const int                          AOE_PER_CHOKING_COBWEBS               =       287                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_CHOKING_COBWEBS_WIDE          =       288                                    ;
+const int    AOE_PER_CHOKING_COBWEBS_WIDE          =       288                                    ;
 const int                          AOE_MOB_BRIMSTONE_BLAST               =       289                                    ;
 const int                          AOE_MOB_ENERVATING_SHADOW             =       290                                    ;
 const int                          AOE_PER_HUNGRY_DARKNESS               =       291                                    ;
@@ -192,11 +186,11 @@ const int                          AOE_MOB_BOREAL_WIND                   =      
 const int                          AOE_PER_SNOWSONG                      =       294                                    ;
 const int                          AOE_PER_SNOWSONG_WIDE                 =       295                                    ;
 const int                          AOE_MOB_LSR_AURA_OF_COLD              =       296                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_MOB_LSR_AURA_OF_COLD_WIDE         =       297                                    ;
+const int    AOE_MOB_LSR_AURA_OF_COLD_WIDE         =       297                                    ;
 const int                          AOE_MOB_GR_AURA_OF_COLD               =       298                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_MOB_GR_AURA_OF_COLD_WIDE          =       299                                    ;
+const int    AOE_MOB_GR_AURA_OF_COLD_WIDE          =       299                                    ;
 const int                          AOE_PER_ZONE_GLACIAL_COLD             =       300                                    ;
-/*** NWN1 SINGLE ***/ const int    AOE_PER_ZONE_GLACIAL_COLD_WIDE        =       301                                    ;
+const int    AOE_PER_ZONE_GLACIAL_COLD_WIDE        =       301                                    ;
 const int                          AOE_MOB_BLADE_BROTHERS                =       302                                    ;
 const int                          AOE_MOB_HARMONIC_CHORUS               =       303                                    ;
 const int                          AOE_MOB_HEARTFIRE                     =       304                                    ;
@@ -216,7 +210,6 @@ const int                          AOE_PER_FUGUE                         =      
 //*:**************************************************************************
 //*:* These are only needed for NWN1 as we can assign tags to AOEs in NWN2
 //*:**************************************************************************
-/*** NWN1 SPECIFIC ***/
 const string                       AOE_TYPE_AURA_OF_DESPAIR              =       "VFX_PER_AURA_OF_DESPAIR"              ;
 const string                       AOE_TYPE_AURA_OF_COURAGE              =       "VFX_PER_AURA_OF_COURAGE"              ;
 const string                       AOE_TYPE_FOGACID                      =       "VFX_PER_FOGACID"                      ;
@@ -442,5 +435,4 @@ const string                       AOE_TYPE_HYMN_OF_PRAISE               =      
 const string                       AOE_TYPE_DOLOROUS_MOTES               =       "VFX_PER_DOLOROUS_MOTES"               ;
 const string                       AOE_TYPE_THUNDER_FIELD                =       "VFX_PER_THUNDER_FIELD"                ;
 const string                       AOE_TYPE_FUGUE                        =       "VFX_PER_FUGUE"                        ;
-/*** END NWN1 SPECIFIC ***/
 //*:**************************************************************************

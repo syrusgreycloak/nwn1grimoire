@@ -24,64 +24,16 @@
 #include "GR_IC_LIB"
 #include "GR_IC_SPELLS"
 #include "GR_IC_FEATS"
+#include "GR_IC_NAMES"
 
 //*:**********************************************
 //*:* Function Libraries
+#include "GR_IN_STRUCTS"
 
 //*:**************************************************************************
-//*:* Constants/Structures
+//*:* Constants
 //*:**************************************************************************
 const float UNDERWATER_SONIC_MULTIPLIER = 1.5;
-
-struct class_info {
-    //*:* Base classes
-    int bBarbarian;
-    int bBard;
-    int bCleric;
-    int bDruid;
-    int bFighter;
-    int bMonk;
-    int bPaladin;
-    int bRanger;
-    int bRogue;
-    int bSorcerer;
-    int bWizard;
-    //*:* Monster/NPC Classes
-    int bAberration;
-    int bAnimal;
-    int bConstruct;
-    int bHumanoid;
-    int bMonstrous;
-    int bElemental;
-    int bFey;
-    int bDragon;
-    int bUndead;
-    int bCommoner;
-    int bBeast;
-    int bGiant;
-    int bMagicBeast;
-    int bOutsider;
-    int bShapechanger;
-    int bVermin;
-    int bOoze;
-    //*:* Prestige Classes
-    int bShadowdancer;
-    int bHarper;
-    int bArcaneArcher;
-    int bAssassin;
-    int bBlackguard;
-    int bDivChamp;
-    int bWeaponmaster;
-    int bPaleMaster;
-    int bShifter;
-    int bDwarvenDefender;
-    int bDragonDisciple;
-    int bPurpleDragKnt;
-    //*:* Other info
-    int iCastingLevels;
-    int iFightingLevels;
-    int iBestSaveType;
-};
 
 //*:**************************************************************************
 //*:* Function Declarations
@@ -147,7 +99,7 @@ int         GRGetSkillModifier(int iSkill, object oCreature);
 //*:**********************************************
 int GRGetAdjustedUnderwaterSonicDamage(int iDamage, int iEnergyType) {
 
-    float fCustomMultiplier = GetLocalFloat(GetModule(), "GR_UNDW_SONIC_MULT");
+    float fCustomMultiplier = GetLocalFloat(GetModule(), UNDERWATER_SONIC_MULTIPLIER_CUSTOM);
 
     if(FloatToInt(fCustomMultiplier)!=0) {
         iDamage = FloatToInt(iDamage*fCustomMultiplier);
@@ -172,7 +124,7 @@ int GRGetAdjustedUnderwaterSonicDamage(int iDamage, int iEnergyType) {
 //*:**********************************************
 int GRGetIsUnderwater(object oCaster=OBJECT_SELF) {
 
-    if(GetLocalInt(oCaster, "UNDERWATER") || GetLocalInt(GetArea(oCaster),"UNDERWATER"))
+    if(GetLocalInt(oCaster, UNDERWATER) || GetLocalInt(GetArea(oCaster), UNDERWATER))
         return TRUE;
 
     return FALSE;
@@ -205,7 +157,6 @@ int GRXor(int bValue1, int bValue2) {
 
 //*:**********************************************
 //*:* GRGetArmorType
-//*:*   (formerly SGGetArmorType)
 //*:**********************************************
 // Returns the base armor type as a number, of oItem
 // -1 if invalid, or not armor, or just plain not found.
@@ -251,7 +202,6 @@ int GRGetArmorType(object oItem) {
 
 //*:**********************************************
 //*:* GRGetHasMediumOrGreaterLoad
-//*:*   (formerly SGHasMediumOrGreaterLoad)
 //*:**********************************************
 //*:*
 //*:* Checks a character's weight being carried.  For use
@@ -458,7 +408,6 @@ int GRGetHasMediumOrGreaterLoad(object oTarget=OBJECT_SELF) {
 
 //*:**********************************************
 //*:* GRGetCasterAbilityModifierByClass
-//*:*   (formerly SGGetCasterAbilityModifierByClass)
 //*:**********************************************
 //*:*
 //*:*    Returns the modifier from the ability
@@ -547,7 +496,6 @@ object GRGetFirstObjectInShape(int iShape, float fSize, location lTarget, int bL
 
 //*:**********************************************
 //*:* GRGetHasClass
-//*:*   (formerly SGGetHasClass)
 //*:**********************************************
 //*:*
 //*:* Determines if an object has a particular class.
@@ -564,7 +512,7 @@ int GRGetHasClass(int iClassType, object oCreature=OBJECT_SELF) {
     int iHasClass = FALSE;
     int i;
 
-    for(i=1; i<=3; i++) {
+    for(i=1; i<=3 && !iHasClass; i++) {
         if(GRGetClassByPosition(i, oCreature)==iClassType) {
             iHasClass = TRUE;
         }
@@ -575,7 +523,6 @@ int GRGetHasClass(int iClassType, object oCreature=OBJECT_SELF) {
 
 //*:**********************************************
 //*:* GRGetIsArcaneCaster
-//*:*   (formerly SGGetIsArcaneCaster)
 //*:**********************************************
 //*:*
 //*:* Checks if spellcaster is an arcane caster
@@ -589,20 +536,20 @@ int GRGetHasClass(int iClassType, object oCreature=OBJECT_SELF) {
 int GRGetIsArcaneCaster(object oCreature) {
 
     int bIsArcane   = FALSE;
-    int iFirstClass = GRGetClassByPosition(1, oCreature);
-    int iSecondClass = GRGetClassByPosition(2, oCreature);
-    int iThirdClass = GRGetClassByPosition(3, oCreature);
-
-    if(GRGetIsArcaneClass(iFirstClass)) bIsArcane = TRUE;
-    if(GRGetIsArcaneClass(iSecondClass)) bIsArcane = TRUE;
-    if(GRGetIsArcaneClass(iThirdClass)) bIsArcane = TRUE;
+    int i;
+    
+    for(i=1; i<=3 && !bIsArcane; i++) {
+    	int class = GRGetClassByPosition(i, oCreature);
+    	if(GRGetIsArcaneClass(class)) {
+    	    bIsArcane = TRUE;
+    	}
+    }
 
     return bIsArcane;
 }
 
 //*:**********************************************
 //*:* GRGetIsArcaneClass
-//*:*   (formerly SGGetIsArcaneClass)
 //*:**********************************************
 //*:*
 //*:* Checks if class is an arcane casting class
@@ -624,7 +571,6 @@ int GRGetIsArcaneClass(int iClass) {
 
 //*:**********************************************
 //*:* GRGetIsImmuneToMagicalHealing
-//*:*   (formerly GetIsImmuneToMagicalHealing)
 //*:**********************************************
 //*:*
 //*:* Returns whether target is immune to magical
@@ -656,7 +602,7 @@ int GRGetIsImmuneToMagicalHealing(object oTarget) {
 //*:**********************************************
 void GRSetIsImmuneToMagicalHealing(object oTarget, int bImmune = TRUE) {
 
-    SetLocalInt(oTarget, "IMMUNE_TO_HEAL", bImmune);
+    SetLocalInt(oTarget, IMMUNE_TO_MAGICAL_HEALING, bImmune);
 }
 
 //*:**********************************************
@@ -1299,16 +1245,16 @@ int GRGetIsDying(object oTarget) {
 }
 
 int GRGetMagicBlocked(object oObject = OBJECT_SELF) {
-    return GetLocalInt(oObject, "GR_L_MAGIC_DEAD");
+    return GetLocalInt(oObject, IS_MAGIC_BLOCKED);
 }
 
 void GRSetMagicBlocked(int bTrueFalse, object oObject = OBJECT_SELF) {
-    SetLocalInt(oObject, "GR_L_MAGIC_DEAD", bTrueFalse);
+    SetLocalInt(oObject, IS_MAGIC_BLOCKED, bTrueFalse);
 }
 
 object GRGetLastKiller(object oCreature) {
-    ExecuteScript("gr_getkiller", oCreature);
-    return GetLocalObject(oCreature, "MY_KILLER");
+    ExecuteScript(MY_KILLER_SCRIPT, oCreature);
+    return GetLocalObject(oCreature, MY_KILLER);
 }
 
 int GRGetSkillModifier(int iSkill, object oCreature) {

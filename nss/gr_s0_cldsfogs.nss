@@ -105,15 +105,14 @@ void main() {
             iNumDice = 2;
             iAOEType = AOE_PER_FOGACID;
             sAOEType = AOE_TYPE_FOGACID;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_ACID;  //*:* need to include so illusions get right one
-            //*** NWN2 SINGLE ***/ iExplodeType = VFX_HIT_AOE_ACID;
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_ACID;  //*:* need to include so illusions get right one
             break;
         case SPELL_CLOUD_OF_BEWILDERMENT:
             bDamageSpell = FALSE;
             bEnergySpell = FALSE;
             iAOEType = AOE_PER_FOG_OF_BEWILDERMENT;
             sAOEType = AOE_TYPE_FOGBEWILDERMENT;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_IMP_DUST_EXPLOSION;
+            iExplodeType = VFX_IMP_DUST_EXPLOSION;
             break;
         case SPELL_CLOUDKILL:
         case SPELL_GR_SHADES_CLOUDKILL:
@@ -124,7 +123,7 @@ void main() {
             iDurType = DUR_TYPE_TURNS;
             iAOEType = AOE_PER_FOGKILL;
             sAOEType = AOE_TYPE_FOGKILL;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_EVIL;
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_EVIL;
             break;
         case SPELL_GR_FOG_CLOUD:
         case SPELL_I_BREATH_OF_NIGHT:
@@ -134,7 +133,7 @@ void main() {
             iDurType = DUR_TYPE_TURNS;
             iAOEType = AOE_PER_FOGCLOUD;
             sAOEType = AOE_TYPE_FOGCLOUD;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_EVIL;
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_EVIL;
             break;
         case SPELL_GR_IGEDRAZAARS_MIASMA:
             bEnergySpell = FALSE;
@@ -143,14 +142,14 @@ void main() {
             iDurAmount = 2;
             iAOEType = AOE_PER_IGEDRAZAARS_MIASMA;
             sAOEType = AOE_TYPE_IGEDRAZAARS_MIASMA;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_IMP_DUST_EXPLOSION;
+            iExplodeType = VFX_IMP_DUST_EXPLOSION;
             break;
         case SPELL_INCENDIARY_CLOUD:
         case SPELL_GR_SHADES_INCENDIARY_CLOUD:
             iNumDice = 4;
             iAOEType = AOE_PER_FOGFIRE;
             sAOEType = AOE_TYPE_FOGFIRE;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_FIRE; //*:* need to include so illusions get right one
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_FIRE; //*:* need to include so illusions get right one
             break;
         case SPELL_MIND_FOG:
             bDamageSpell = FALSE;
@@ -159,7 +158,7 @@ void main() {
             iDurType = DUR_TYPE_TURNS;
             iAOEType = AOE_PER_FOGMIND;
             sAOEType = AOE_TYPE_FOGMIND;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_MIND;
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_MIND;
             break;
         case SPELL_GR_SOLIDFOG:
             bDamageSpell = FALSE;
@@ -167,7 +166,7 @@ void main() {
             iDurType = DUR_TYPE_TURNS;
             iAOEType = AOE_PER_SOLIDFOG;
             sAOEType = AOE_TYPE_SOLIDFOG;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_EVIL;
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_EVIL;
             break;
         case SPELL_STINKING_CLOUD:
         case SPELL_GR_SHADOW_CON_STINKING_CLOUD:
@@ -175,7 +174,7 @@ void main() {
             bEnergySpell = FALSE;
             iAOEType = AOE_PER_FOGSTINK;
             sAOEType = AOE_TYPE_FOGSTINK;
-            /*** NWN1 SINGLE ***/ iExplodeType = VFX_FNF_GAS_EXPLOSION_NATURE;
+            iExplodeType = VFX_FNF_GAS_EXPLOSION_NATURE;
             break;
         case 306: // Tyrant Fog Zombie Mist
             bDamageSpell = FALSE;
@@ -207,8 +206,6 @@ void main() {
             sAOEType = AOE_TYPE_ZONE_GLACIAL_COLD;
             break;
     }
-
-    //*** NWN2 SINGLE ***/ sAOEType = GRGetUniqueSpellIdentifier(spInfo.iSpellID);
 
     if(bDamageSpell) spInfo = GRSetSpellDamageInfo(spInfo, iDieType, iNumDice, iBonus);
     spInfo = GRSetSpellDurationInfo(spInfo, iDurAmount, iDurType);
@@ -276,7 +273,7 @@ void main() {
     //*:* Resolve Metamagic, if possible
     //*:**********************************************
     if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_EXTEND)) fDuration *= 2;
-    /*** NWN1 SPECIFIC ***/
+
     if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_WIDEN)) {
         switch(spInfo.iSpellID) {
             case SPELL_ACID_FOG:
@@ -326,7 +323,7 @@ void main() {
                 break;
         }
     }
-    /*** END NWN1 SPECIFIC ***/
+
     //*:* iDamage = GRGetSpellDamageAmount(spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
     /* if(GRGetSpellHasSecondaryDamage(spInfo)) {
         iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
@@ -338,19 +335,18 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
-    /*** NWN1 SINGLE ***/ effect eImpact  = EffectVisualEffect(iExplodeType);
+    effect eImpact  = EffectVisualEffect(iExplodeType);
     effect eAOE     = GREffectAreaOfEffect(iAOEType, "", "", "", sAOEType);
 
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
-    /*** NWN1 SINGLE ***/ if(iExplodeType!=-1) GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
+    if(iExplodeType!=-1) GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
 
     if(spInfo.iSpellID!=306) { // not tyrant fog zombie mist
         GRApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, spInfo.lTarget, fDuration);
 
-        /*** NWN1 SINGLE ***/ oAOE = GRGetAOEAtLocation(spInfo.lTarget, sAOEType, oCaster);
-        //*** NWN2 SINGLE ***/ oAOE = GetObjectByTag(sAOEType);
+        oAOE = GRGetAOEAtLocation(spInfo.lTarget, sAOEType, oCaster);
         GRSetAOESpellId(spInfo.iSpellID, oAOE);
         GRSetSpellInfo(spInfo, oAOE);
         GRSetAOEDamagePercentage(fDamagePercentage, oAOE);

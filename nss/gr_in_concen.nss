@@ -64,7 +64,7 @@ int GRGetBreakConcentrationCondition(object oPlayer) {
 void GRDoBreakConcentrationCheck() {
     object oMaster = GetMaster();
 
-    if(GetLocalInt(OBJECT_SELF, "GR_L_CREATURE_NEEDS_CONCENTRATION")) {
+    if(GetLocalInt(OBJECT_SELF, CREATURE_NEEDS_CONCENTRATION)) {
         if(GetIsObjectValid(oMaster)) {
 
             int nAction = GetCurrentAction(oMaster);
@@ -98,7 +98,7 @@ int GRCheckCasterConcentration(object oCaster = OBJECT_SELF) {
 
     int bIsConcentrating = FALSE;
 
-    if(GetLocalInt(oCaster,"GR_L_CASTER_NEEDS_CONCENTRATION")) {
+    if(GetLocalInt(oCaster, CASTER_NEEDS_CONCENTRATION)) {
         if(GetIsObjectValid(oCaster)) {
             bIsConcentrating = TRUE;
             int iAction = GetCurrentAction(oCaster);
@@ -112,10 +112,10 @@ int GRCheckCasterConcentration(object oCaster = OBJECT_SELF) {
                 iAction == ACTION_COUNTERSPELL || iAction == ACTION_FLAGTRAP ||
                 iAction == ACTION_CASTSPELL || iAction == ACTION_ITEMCASTSPELL)
             {
-                SetLocalInt(oCaster,"GR_L_CASTER_NEEDS_CONCENTRATION", FALSE);
+                SetLocalInt(oCaster, CASTER_NEEDS_CONCENTRATION, FALSE);
                 bIsConcentrating = FALSE;
             } else if(GRGetBreakConcentrationCondition(oCaster)) {
-                SetLocalInt(oCaster,"GR_L_CASTER_NEEDS_CONCENTRATION", FALSE);
+                SetLocalInt(oCaster, CASTER_NEEDS_CONCENTRATION, FALSE);
                 bIsConcentrating = FALSE;
             }
         }
@@ -141,7 +141,7 @@ int GRGetCasterConcentrating(int iSpellID, object oCaster = OBJECT_SELF) {
 
     int bIsConcentrating = FALSE;
 
-    if(GetLocalInt(oCaster, "GR_"+IntToString(iSpellID)+"_REQCONCENTRATION")) {
+    if(GetLocalInt(oCaster, CONCENTRATION_REQUIRED + IntToString(iSpellID))) {
         if(GetIsObjectValid(oCaster)) {
             bIsConcentrating = TRUE;
             int iAction = GetCurrentAction(oCaster);
@@ -177,8 +177,8 @@ void GRBreakConcentrationSpells() {
 
     object oAssoc = GetAssociate(ASSOCIATE_TYPE_SUMMONED);
     if(GetIsObjectValid(oAssoc) && GetIsPC(OBJECT_SELF)) { // only applies to PCS
-        if(GetTag(oAssoc) == "x2_s_bblade") { // black blade of disaster
-            if(GetLocalInt(OBJECT_SELF, "GR_L_CREATURE_NEEDS_CONCENTRATION")) {
+        if(GetTag(oAssoc) == BLACK_BLADE_OF_DISASTER_TAG) { // black blade of disaster
+            if(GetLocalInt(OBJECT_SELF, CREATURE_NEEDS_CONCENTRATION)) {
                 SignalEvent(oAssoc, EventUserDefined(GR_EVENT_CONCENTRATION_BROKEN));
             }
         }

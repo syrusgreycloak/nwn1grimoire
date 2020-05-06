@@ -16,6 +16,7 @@
 //*:* Include the following files
 //*:**************************************************************************
 #include "GR_IC_AOE"
+#include "GR_IC_NAMES";
 
 
 //*:**************************************************************************
@@ -61,7 +62,7 @@ void    GRSetAOEVisualType(int iVisualType, object oAOE=OBJECT_SELF);
 //*:**********************************************
 int GRAOEAffectedByGoW(object oAOE) {
 
-    int bAffected = GetLocalInt(oAOE, "GR_DESTROYED_BY_GUSTWIND");
+    int bAffected = GetLocalInt(oAOE, AFFECTED_BY_GUSTOFWIND);
 
     if(!bAffected) {
         string sAOETag = GetTag(oAOE);
@@ -153,7 +154,7 @@ float GRGetAOEDamagePercentage(object oAOE = OBJECT_SELF) {
 //*:**********************************************
 int GRGetAOEIsUnderwater(object oAOE = OBJECT_SELF) {
 
-    return GetLocalInt(oAOE, "GR_AOE_UNDERWATER");
+    return GetLocalInt(oAOE, AOE_UNDERWATER);
 
 }
 
@@ -214,7 +215,7 @@ object GRGetAOEOnObject(object oTarget, string sTag, object oCaster=OBJECT_INVAL
 //*:**********************************************
 int GRGetAOEVisualType(object oAOE = OBJECT_SELF) {
 
-    return GetLocalInt(oAOE, "GR_RDI_VISUAL");
+    return GetLocalInt(oAOE, ENERGY_VISUAL_TYPE);
 }
 
 //*:**********************************************
@@ -235,7 +236,7 @@ int GRGetAOESpellId(object oAOE = OBJECT_SELF) {
     int iSpellID = -1;
 
     if(GetIsObjectValid(oAOE))
-        iSpellID = GetLocalInt(oAOE, "GR_L_AOE_SPELLID");
+        iSpellID = GetLocalInt(oAOE, AOE_SPELLID);
 
     return iSpellID;
 }
@@ -254,7 +255,7 @@ int GRGetAOESpellId(object oAOE = OBJECT_SELF) {
 //*:**********************************************
 void GRSetAOEDamagePercentage(float fPercent, object oAOE = OBJECT_SELF) {
 
-    SetLocalFloat(oAOE, "GR_RDI_PERCENT", fPercent);
+    SetLocalFloat(oAOE, AOE_DMG_PERCENTAGE, fPercent);
 }
 
 //*:**********************************************
@@ -273,7 +274,7 @@ void GRSetAOEDamagePercentage(float fPercent, object oAOE = OBJECT_SELF) {
 //*:**********************************************
 void GRSetAOEIsUnderwater(int iTrueFalse, object oAOE = OBJECT_SELF) {
 
-    SetLocalInt(oAOE, "GR_AOE_UNDERWATER", iTrueFalse);
+    SetLocalInt(oAOE, AOE_UNDERWATER, iTrueFalse);
 
 }
 
@@ -290,7 +291,7 @@ void GRSetAOEIsUnderwater(int iTrueFalse, object oAOE = OBJECT_SELF) {
 //*:**********************************************
 void GRSetAOEVisualType(int iVisualType, object oAOE = OBJECT_SELF) {
 
-    SetLocalInt(oAOE, "GR_RDI_VISUAL", iVisualType);
+    SetLocalInt(oAOE, ENERGY_VISUAL_TYPE, iVisualType);
 }
 
 //*:**************************************************************************

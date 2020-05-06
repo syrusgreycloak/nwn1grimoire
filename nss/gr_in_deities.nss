@@ -15,6 +15,7 @@
 //*:* Include following files
 //*:**************************************************************************
 #include "GR_IC_DEITIES"
+#include "GR_IC_NAMES"
 
 //*:**************************************************************************
 //*:* Function Declarations
@@ -268,7 +269,7 @@ int GRGetDeityAlignLawChaos(int iDeityConst) {
 //*:**********************************************
 int GRGetDeity(object oCaster = OBJECT_SELF) {
 
-    return GetLocalInt(oCaster, "MY_DEITY");
+    return GetLocalInt(oCaster, DEITY_AS_INT);
 }
 
 //*:**********************************************
@@ -285,7 +286,7 @@ int GRGetDeity(object oCaster = OBJECT_SELF) {
 //*:* Updated On: February 12, 2007
 //*:**********************************************
 void GRSetDeityValue(object oTarget, int iDeityConst) {
-    SetLocalInt(oTarget,"MY_DEITY", iDeityConst);
+    SetLocalInt(oTarget, DEITY_AS_INT, iDeityConst);
 }
 
 //*:**********************************************
@@ -304,7 +305,7 @@ void GRSetDeityValue(object oTarget, int iDeityConst) {
 void GRSetPCDeity(object oPC) {
 
     string sDeity=GetStringUpperCase(GetDeity(oPC));
-    int iDeity=GetLocalInt(oPC,"MY_DEITY");
+    int iDeity=GetLocalInt(oPC, DEITY_AS_INT);
 
     if(!iDeity) {
         if(sDeity=="") {
@@ -567,7 +568,7 @@ void GRSetPCDeity(object oPC) {
             iDeity=DEITY_YURTRUS;
         }
 
-        SetLocalInt(oPC,"MY_DEITY", iDeity);
+        SetLocalInt(oPC, DEITY_AS_INT, iDeity);
     }
 }
 

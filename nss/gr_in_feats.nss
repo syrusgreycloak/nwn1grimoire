@@ -89,7 +89,7 @@ void GRCheckAndApplyThunderingRage(int iRounds) {
 void GRCheckAndApplyTerrifyingRage(int iRounds) {
 
     if(GetHasFeat(989, OBJECT_SELF)) {
-        effect eAOE = EffectAreaOfEffect(AOE_MOB_FEAR, "gr_s2_terrage_A", "", "");
+        effect eAOE = EffectAreaOfEffect(AOE_MOB_FEAR, TERRIFYING_RAGE_ON_ENTER, "", "");
         eAOE = ExtraordinaryEffect(eAOE);
         GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAOE, OBJECT_SELF, GRGetDuration(iRounds));
     }

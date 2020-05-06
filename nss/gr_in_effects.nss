@@ -14,6 +14,7 @@
 //*:**************************************************************************
 //*:* Include following files
 //*:**************************************************************************
+//#include "GR_IC_NAMES" -- included in GR_IN_LIB
 #include "GR_IN_LIB"
 
 //*:**************************************************************************
@@ -72,7 +73,6 @@ int GRGetHasSpecialEffect(int iEffectType, object oTarget);
 
 //*:**********************************************
 //*:* GRApplyEffectToObject
-//*:*   (formerly SGApplyEffectToObject)
 //*:**********************************************
 //*:*
 //*:* Applies spell effects to object
@@ -97,8 +97,8 @@ void GRApplyEffectToObject(int iDurationType, effect eEffect, object oTarget, fl
             ApplyEffectToObject(iDurationType, eEffect, oTarget);
         }
         if(GetHasSpellEffect(SPELL_GR_BLADE_BROTHERS, oTarget)) {
-            if(GetLocalInt(oTarget, "GR_BLADEBROTHERS_APPLYDOUBLE")) {
-                oTarget = GetLocalObject(oTarget, "GR_BLADEBROTHERS_OBJ");
+            if(GetLocalInt(oTarget, BLADEBROTHERS_APPLYDOUBLE)) {
+                oTarget = GetLocalObject(oTarget, BLADEBROTHERS_OBJECT);
                 if(!bMagicBlocked) {
                     if(iDurationType==DURATION_TYPE_TEMPORARY) {
                         ApplyEffectToObject(iDurationType, eEffect, oTarget, fDuration);
@@ -117,7 +117,6 @@ void GRApplyEffectToObject(int iDurationType, effect eEffect, object oTarget, fl
 
 //*:**********************************************
 //*:* GRApplyEffectAtLocation
-//*:*   (formerly SGApplyEffectAtLocation)
 //*:**********************************************
 //*:*
 //*:*  Applies spell effects at a location
@@ -221,7 +220,7 @@ int GRGetHasEffectTypeFromCaster(int iEffectType, object oTarget, object oCaster
 //*:**********************************************
 int GRGetHasSpellEffect(int iSpellID, object oTarget, object oCaster = OBJECT_INVALID) {
 
-    if(iSpellID==SPELL_GR_INCENDIARY_SLIME && GetLocalInt(oTarget, "GR_INCENDIARY_SLIME") && oCaster==OBJECT_INVALID) {
+    if(iSpellID==SPELL_GR_INCENDIARY_SLIME && GetLocalInt(oTarget, INCENDIARY_SLIME) && oCaster==OBJECT_INVALID) {
         return TRUE;
     }
     int iHasEffect = GetHasSpellEffect(iSpellID, oTarget);
@@ -449,7 +448,6 @@ effect GREffectAlignmentSpellImmunity() {
 //*:**********************************************
 effect GREffectAreaOfEffect(int iAreaEffectId, string sOnEnterScript = "", string sHeartbeatScript = "", string sOnExitScript = "", string sNewTag="") {
 
-    /*** NWN1 SPECIFIC ***/
     effect eAOE;
 
     if(sOnEnterScript=="" && sHeartbeatScript=="" && sOnExitScript=="") {
@@ -459,9 +457,6 @@ effect GREffectAreaOfEffect(int iAreaEffectId, string sOnEnterScript = "", strin
     }
 
     return eAOE;
-    /*** END NWN1 SPECIFIC ***/
-
-    //*** NWN2 SINGLE ***/ return EffectAreaOfEffect(iAreaEffectId, sOnEnterScript, sHeartbeatScript, sOnExitScript, sNewTag);
 }
 
 //*:**********************************************
@@ -502,7 +497,6 @@ effect GREffectArmorCheckPenalty(int iPenalty=1) {
 
 //*:**********************************************
 //*:* GREffectProtectionFromAlignment
-//*:*   (formerly SGCreateProtectionFromAlignmentLink)
 //*:**********************************************
 //*:*
 //*:*    Protection from Alignment Effect Constructor -
@@ -533,18 +527,16 @@ effect GREffectProtectionFromAlignment(int iAlignment, int iPower = 1) {
 
     effect eDur;
     if(iAlignment == ALIGNMENT_EVIL || iAlignment == ALIGNMENT_CHAOTIC) {
-        /*** NWN1 SINGLE ***/ eDur = EffectVisualEffect(VFX_DUR_PROTECTION_GOOD_MINOR);
-        //*** NWN2 SINGLE ***/ eDur = EffectVisualEffect( VFX_DUR_SPELL_GOOD_CIRCLE );
+        eDur = EffectVisualEffect(VFX_DUR_PROTECTION_GOOD_MINOR);
     } else if(iAlignment == ALIGNMENT_GOOD) {
-        /*** NWN1 SINGLE ***/ eDur = EffectVisualEffect(VFX_DUR_PROTECTION_EVIL_MINOR);
-        //*** NWN2 SINGLE ***/ eDur = EffectVisualEffect( VFX_DUR_SPELL_EVIL_CIRCLE );
+        eDur = EffectVisualEffect(VFX_DUR_PROTECTION_EVIL_MINOR);
     }
 
-    /*** NWN1 SINGLE ***/ effect eDur2 = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+    effect eDur2 = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eLink = EffectLinkEffects(eImmune, eSave);
     eLink = EffectLinkEffects(eLink, eAC);
     eLink = EffectLinkEffects(eLink, eDur);
-    /*** NWN1 SINGLE ***/ eLink = EffectLinkEffects(eLink, eDur2);
+    eLink = EffectLinkEffects(eLink, eDur2);
 
     return eLink;
 }
@@ -786,11 +778,9 @@ effect  GREffectSickened() {
     effect  eShaken     = GREffectShaken();
     effect  eDamage     = EffectDamageDecrease(iPenalty);
     effect  eAbilities  = GREffectAbilityCheckDecrease(iPenalty);
-    //*** NWN2 SINGLE ***/  effect eVis = EffectVisualEffect(VFX_DUR_SICKENED);
 
     effect  eLink       = EffectLinkEffects(eShaken, eDamage);
     eLink = EffectLinkEffects(eLink, eAbilities);
-    //*** NWN2 SINGLE ***/ eLink = EffectLinkEffects(eLink, eVis);
     eLink = ExtraordinaryEffect(eLink);
 
 
@@ -823,12 +813,10 @@ void GRRemoveEffectTypeFromSpell(int iEffectType, object oTarget, int iSpellID,
                 if(GetEffectCreator(eEffect)==oCaster) {
                     GRRemoveEffect(eEffect, oTarget, oCaster);
                     if(bSingleEffect) bDone = TRUE;
-                    //*** NWN2 SINGLE ***/ bRemove = TRUE;
                 }
             } else {
                 GRRemoveEffect(eEffect, oTarget);
                 if(bSingleEffect) bDone = TRUE;
-                //*** NWN2 SINGLE ***/ bRemove = TRUE;
             }
         }
         eEffect = (bRemove ? GetFirstEffect(oTarget) : GetNextEffect(oTarget));
@@ -837,7 +825,6 @@ void GRRemoveEffectTypeFromSpell(int iEffectType, object oTarget, int iSpellID,
 
 //*:**********************************************
 //*:* GRRemoveSpellEffects
-//*:*   (formerly SGRemoveSpellEffects)
 //*:**********************************************
 //*:*
 //*:* Wraps both RemoveSpellEffects and GZRemoveSpellEffects
@@ -858,15 +845,14 @@ void GRRemoveSpellEffects(int iSpellId, object oTarget, object oCaster = OBJECT_
     } else {
         GRRemoveAllSpellEffects(iSpellId, oTarget, bMagicalEffectsOnly);
     }
-    if(iSpellId==SPELL_GR_INCENDIARY_SLIME) DeleteLocalInt(oTarget, "GR_INCENDIARY_SLIME");
-    if(GetLocalInt(oTarget, "GR_"+IntToString(iSpellId)+"_WILLDISBELIEF")) {
-        DeleteLocalInt(oTarget, "GR_"+IntToString(iSpellId)+"_WILLDISBELIEF");
+    if(iSpellId==SPELL_GR_INCENDIARY_SLIME) DeleteLocalInt(oTarget, INCENDIARY_SLIME);
+    if(GetLocalInt(oTarget, WILL_DISBELIEF + IntToString(iSpellId))) {
+        DeleteLocalInt(oTarget, WILL_DISBELIEF + IntToString(iSpellId));
     }
 }
 
 //*:**********************************************
 //*:* GRRemoveAllSpellEffects
-//*:*   (formerly SGRemoveAllSpellEffects)
 //*:**********************************************
 //*:*
 //*:* For some reason I suddenly was getting an
@@ -928,7 +914,6 @@ void GRRemoveMultipleSpellEffects(int iSpellID1, int iSpellID2, object oTarget, 
 
 //*:**********************************************
 //*:* GRRemoveEffect
-//*:*   (formerly SGRemoveEffect)
 //*:**********************************************
 //*:*
 //*:* Wraps RemoveEffect
@@ -957,7 +942,6 @@ void GRRemoveEffect(effect eEff, object oTarget, object oCaster = OBJECT_INVALID
 
 //*:**********************************************
 //*:* GRRemoveEffects
-//*:*   (formerly SGRemoveEffects)
 //*:**********************************************
 //*:*
 //*:*    Wraps RemoveEffect
@@ -986,7 +970,6 @@ void GRRemoveEffects(int iEffectType, object oTarget, object oCaster = OBJECT_IN
             } else {
                 GRRemoveEffect(eEff, oTarget, oCaster);
             }
-            //*** NWN2 SINGLE ***/ bRemove = TRUE;
         }
         eEff = (bRemove ? GetFirstEffect(oTarget) : GetNextEffect(oTarget));
     }
@@ -994,7 +977,7 @@ void GRRemoveEffects(int iEffectType, object oTarget, object oCaster = OBJECT_IN
 
 void GRRemoveMagicalSpellEffects(object oTarget, int bRemoveBeneficial = FALSE, object oCaster = OBJECT_SELF) {
 
-    //int bAffectItems = GetLocalInt(GetModule(), "GR_DISPEL_ITEMS");
+    //int bAffectItems = GetLocalInt(GetModule(), DISPEL_ITEMS);
     int bRemove;
 
     effect eEff = GetFirstEffect(oTarget);
@@ -1003,10 +986,8 @@ void GRRemoveMagicalSpellEffects(object oTarget, int bRemoveBeneficial = FALSE, 
         if(GetEffectSubType(eEff)==SUBTYPE_MAGICAL && GetEffectSpellId(eEff)>=0) {
             if(!bRemoveBeneficial && GetEffectType(eEff)==EFFECT_TYPE_ABILITY_DECREASE) {
                 GRSafeRemoveAbilityDecrease(eEff, oTarget, oCaster);
-                //*** NWN2 SINGLE ***/ bRemove = TRUE;
             } else {
                 GRRemoveEffect(eEff, oTarget);
-                //*** NWN2 SINGLE ***/ bRemove = TRUE;
             }
         }
         eEff = (bRemove ? GetFirstEffect(oTarget) : GetNextEffect(oTarget));
@@ -1015,14 +996,13 @@ void GRRemoveMagicalSpellEffects(object oTarget, int bRemoveBeneficial = FALSE, 
     /*if(bAffectItems) {
         object oItem = GetFirstItemInInventory(spInfo.oTarget);
         while(GetIsObjectValid(oItem)) {
-
+            TODO: implement/hook item dispelling code here
         }
     }*/
 }
 
 //*:**********************************************
 //*:* GRRemoveMultipleEffects
-//*:*   (formerly SGRemoveMultipleEffects)
 //*:**********************************************
 //*:*
 //*:* Wraps RemoveEffect (for multiple effects - like invis/imp invis)
@@ -1062,7 +1042,6 @@ void GRRemoveMultipleEffects(int iEffectType1, int iEffectType2, object oTarget,
 
 //*:**********************************************
 //*:* GRRemoveEffectTypeBySpellId
-//*:*   (formerly SGRemoveEffectTypeBySpellId)
 //*:**********************************************
 //*:*
 //*:* Wraps RemoveEffect
@@ -1280,20 +1259,20 @@ void GRApplySpecialEffectToObject(int iDurationType, int iEffectType, object oTa
                 if(!GRGetHasSpecialEffect(SPECIALEFFECT_TYPE_FATIGUE, oTarget) ||
                     (iDurationType==DURATION_TYPE_PERMANENT && GRGetSpecialEffectDurationType(SPECIALEFFECT_TYPE_FATIGUE, oTarget)==DURATION_TYPE_TEMPORARY)) {
 
-                    sEffectType = "GR_SE_FATIGUE";
+                    sEffectType = SPECIALEFFECT_FATIGUE;
                 } else {
-                    sEffectType = "GR_SE_EXHAUSTION";
+                    sEffectType = SPECIALEFFECT_EXHAUSTION;
                     iEffectType = SPECIALEFFECT_TYPE_EXHAUSTION;
                 }
                 break;
             case SPECIALEFFECT_TYPE_EXHAUSTION:
-                sEffectType = "GR_SE_EXHAUSTION";
+                sEffectType = SPECIALEFFECT_EXHAUSTION;
                 break;
             case SPECIALEFFECT_TYPE_WATER_BREATHING:
-                sEffectType = "GR_SE_WATER_BREATHING";
+                sEffectType = SPECIALEFFECT_WATER_BREATHING;
                 break;
             case SPECIALEFFECT_TYPE_UNDERWATER_FREE_MOVEMENT:
-                sEffectType = "GR_SE_UNDWATER_FREEMOVE";
+                sEffectType = SPECIALEFFECT_UNDERWATER_FREE_MOVEMENT;
                 break;
         }
         if(iDurationType==DURATION_TYPE_PERMANENT ||
