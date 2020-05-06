@@ -86,7 +86,7 @@ void main() {
     //*:**********************************************
     effect eDamage;
     effect eVis     = EffectVisualEffect(VFX_COM_HIT_FIRE);
-    effect eBeam    = EffectBeam(VFX_BEAM_CHAIN, oCaster, BODY_NODE_HAND);
+    effect eBeam    = EffectBeam(VFX_BEAM_BLACK, oCaster, BODY_NODE_HAND);
     effect eLink;
 
     //*:**********************************************
@@ -120,7 +120,7 @@ void main() {
                     }
                     GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eBeam, spInfo.oTarget, 1.0);
                     oNextTarget = spInfo.oTarget;
-                    eBeam = EffectBeam(VFX_BEAM_CHAIN, oNextTarget, BODY_NODE_CHEST);
+                    eBeam = EffectBeam(VFX_BEAM_BLACK, oNextTarget, BODY_NODE_CHEST);
                 }
            }
            spInfo.oTarget = GRGetNextObjectInShape(SHAPE_SPELLCYLINDER, fRange, spInfo.lTarget, TRUE, OBJECT_TYPE_CREATURE |
