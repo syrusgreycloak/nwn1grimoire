@@ -270,8 +270,7 @@ void main() {
             //*:**********************************************
             iBonus = 2;
             iBonus2 = iBonus;
-            /*** NWN1 SINGLE ***/ iSkill2 = SKILL_ANIMAL_EMPATHY;
-            //*** NWN2 SINGLE ***/ iSkill = SKILL_SURVIVAL;
+            iSkill2 = SKILL_ANIMAL_EMPATHY;
             iBonus3 = iBonus;
             iSkill3 = SKILL_MOVE_SILENTLY;
             iBonus4 = iBonus;
@@ -292,20 +291,15 @@ void main() {
             }
             if(spInfo.iSpellID==SPELL_GR_CHAMELEON_SKIN) {
                 iBonus = MinInt(10, spInfo.iCasterLevel);
-                /*** NWN1 SINGLE ***/ iVisual = VFX_IMP_FORTITUDE_SAVING_THROW_USE;
+                iVisual = VFX_IMP_FORTITUDE_SAVING_THROW_USE;
             }
-            /*** NWN2 SPECIFIC ***
-                iVisual = 631;  // NWN2 VFX: VFX_DUR_SPELL_CAMOFLAGE
-                iVisDurType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
             iSkill = SKILL_HIDE;
             break;
         //*:**********************************************
         //*:* Skills - Spot/Listen
         //*:**********************************************
         case SPELL_CLAIRAUDIENCE_AND_CLAIRVOYANCE:
-            /*** NWN1 SINGLE ***/ iVisual = VFX_DUR_MAGICAL_SIGHT;
-            //*** NWN2 SINGLE ***/ iVisual = VFX_DUR_SPELL_CLAIRAUD;
+            iVisual = VFX_DUR_MAGICAL_SIGHT;
             iVisDurType = DURATION_TYPE_TEMPORARY;
             iSkill2  = SKILL_SPOT;
             iBonus2 = iBonus;
@@ -315,10 +309,6 @@ void main() {
         //*:* Skill - Listen
         //*:**********************************************
         case SPELL_AMPLIFY:
-            /*** NWN2 SPECIFIC ***
-                iVisual = VFX_DUR_SPELL_AMPLIFY;
-                iVisDurType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
             iBonus = 20;
             iSkill = SKILL_LISTEN;
             break;
@@ -326,19 +316,14 @@ void main() {
         //*:* Skill - Appraise
         //*:**********************************************
         case SPELL_GR_APPRAISING_TOUCH:
-            /*** NWN1 SINGLE ***/ iVisual = VFX_IMP_WILL_SAVING_THROW_USE;
-            //*** NWN2 SINGLE ***/ iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
+            iVisual = VFX_IMP_WILL_SAVING_THROW_USE;
             iSkill = SKILL_APPRAISE;
             break;
         //*:**********************************************
         //*:* Skill - Lore
         //*:**********************************************
         case SPELL_LEGEND_LORE:
-            /*** NWN1 SINGLE ***/ iVisual = VFX_IMP_MAGICAL_VISION;
-            /*** NWN2 SPECIFIC ***
-                iVisual = VFX_DUR_SPELL_LEGEND_LORE;
-                iVisDurType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
+            iVisual = VFX_IMP_MAGICAL_VISION;
             iSkill = SKILL_LORE;
             iBonus = 10 + spInfo.iCasterLevel/2;
             break;
@@ -349,11 +334,7 @@ void main() {
         case SPELL_FIND_TRAPS:
             iBonus = (spInfo.iSpellID==1828 ? 30 : MinInt(10, spInfo.iCasterLevel/2));
             iSkill = SKILL_SEARCH;
-            /*** NWN1 SINGLE ***/ iVisual = VFX_IMP_KNOCK;
-            /*** NWN2 SPECIFIC ***
-                iVisual = VFX_DUR_SPELL_FIND_TRAPS;
-                iVisDurType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
+            iVisual = VFX_IMP_KNOCK;
             if(spInfo.iSpellID==SPELL_FIND_TRAPS) {
                 iAOEType = AOE_MOB_FINDTRAPS;
                 sAOEType = AOE_TYPE_FIND_TRAPS;
@@ -365,16 +346,11 @@ void main() {
         case SPELL_I_LEAPS_AND_BOUNDS:
             iSkill = SKILL_TUMBLE;
             iBonus = 4;
-            /*** NWN2 SPECIFIC ***
-                iVisual = VFX_DUR_INVOCATION_LEAPS_BOUNDS;
-                iVisualType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
             break;
         //*:**********************************************
         //*:* Skill - Use Magic Device
         //*:**********************************************
         case SPELL_GR_MAGIC_SAVANT:
-            //*** NWN2 SINGLE ***/ iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
             iSkill = SKILL_USE_MAGIC_DEVICE;
             iBonus = 4;
             break;
@@ -382,8 +358,7 @@ void main() {
         //*:* Skill - Intimidate
         //*:**********************************************
         case SPELL_GR_TOWERING_OAK:
-            /*** NWN1 SINGLE ***/ iVisual = VFX_IMP_MAGBLUE;
-            //*** NWN2 SINGLE ***/ iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
+            iVisual = VFX_IMP_MAGBLUE;
             iSkill  = SKILL_INTIMIDATE;
             break;
         //*:**********************************************
@@ -398,12 +373,7 @@ void main() {
         //*:**********************************************
         case SPELL_GR_MASK_OF_THE_IDEAL:
             iBonus2 = (spInfo.iSpellID==SPELL_GR_MASK_OF_THE_IDEAL ? 4 : iBonus3);
-            /*** NWN1 SINGLE ***/ iSkill2 = SKILL_PERSUADE;
-            /*** NWN2 SPECIFIC ***
-                iSkill2 = SKILL_DIPLOMACY;
-                iVisual = VFX_DUR_INVOCATION_BEGUILE_INFLUENCE;
-                iVisDurType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
+            iSkill2 = SKILL_PERSUADE;
         //*:**********************************************
         //*:* Skill - Bluff
         //*:**********************************************
@@ -413,7 +383,6 @@ void main() {
             if(iBonus3>-1) iBonus = iBonus3;
             else if(iBonus2>-1) iBonus = iBonus2;
             if(iBonus==10 && spInfo.iSpellID!=SPELL_GR_INSIDIOUS_INSIGHT) {
-                //*** NWN2 SINGLE ***/ iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
                 iBonus = (spInfo.iSpellID==SPELL_GR_GLIBNESS ? 30 : MinInt(20, MaxInt(0, spInfo.iCasterLevel/2)));
             }
             break;
@@ -421,8 +390,7 @@ void main() {
         //*:* Skill - Pick Pocket (Sleight of Hand)
         //*:**********************************************
         case SPELL_GR_STICKY_FINGERS:
-            /*** NWN1 SINGLE ***/ iSkill = SKILL_PICK_POCKET;
-            //*** NWN2 SINGLE ***/ iSkill = SKILL_SLEIGHT_OF_HAND;
+            iSkill = SKILL_PICK_POCKET;
             break;
         //*:**********************************************
         //*:* Skills - Search, Disable Trap, Hide, Move Silently
@@ -432,19 +400,13 @@ void main() {
             bSupernatural = TRUE;
             iBonus = (spInfo.iSpellID==SPELLABILITY_DIVINE_TRICKERY ? spInfo.iCasterLevel/2 + 1 : MaxInt(1, GetAbilityModifier(ABILITY_CHARISMA)));
         case SPELLABILITY_ROGUES_CUNNING:
-            /*** NWN1 SINGLE ***/ iVisual = (spInfo.iSpellID==SPELLABILITY_GR_HALFLING_DOMAIN_POWER ? VFX_IMP_DEATH : VFX_IMP_MAGICAL_VISION);
-            /*** NWN2 SPECIFIC ***
-                iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
-                iVisDurType = DURATION_TYPE_TEMPORARY;
-            /*** END NWN2 SPECIFIC ***/
+            iVisual = (spInfo.iSpellID==SPELLABILITY_GR_HALFLING_DOMAIN_POWER ? VFX_IMP_DEATH : VFX_IMP_MAGICAL_VISION);
             iBonus7 = iBonus;
-            /*** NWN1 SINGLE ***/ iSkill7 = (spInfo.iSpellID!=SPELLABILITY_ROGUES_CUNNING ? SKILL_PERSUADE : SKILL_SET_TRAP);
-            //*** NWN2 SINGLE ***/ iSkill7 = (spInfo.iSpellID!=SPELLABILITY_ROGUES_CUNNING ? SKILL_DIPLOMACY : SKILL_SET_TRAP);
+            iSkill7 = (spInfo.iSpellID!=SPELLABILITY_ROGUES_CUNNING ? SKILL_PERSUADE : SKILL_SET_TRAP);
             iBonus6 = iBonus;
             iSkill6 = SKILL_HIDE;
             iBonus5 = iBonus;
-            /*** NWN1 SINGLE ***/ iSkill5 = SKILL_PICK_POCKET;
-            //*** NWN2 SINGLE ***/ iSkill5 = SKILL_SLEIGHT_OF_HAND;
+            iSkill5 = SKILL_PICK_POCKET;
             iBonus4 = (spInfo.iSpellID==SPELLABILITY_ROGUES_CUNNING ? 5 : iBonus);
             iSkill4 = SKILL_OPEN_LOCK;
             iBonus3 = iBonus;
@@ -457,18 +419,14 @@ void main() {
         case SPELL_GR_RABBIT_FEET:
             iSkill = SKILL_MOVE_SILENTLY;
             if(spInfo.iSpellID==SPELL_GR_RABBIT_FEET) {
-                //*** NWN2 SINGLE ***/ iVisual = GRGetSpellSchoolVisual(spInfo.iSpellSchool);
                 iBonus = MinInt(18, spInfo.iCasterLevel*2);
             }
             break;
     }
 
-    //*** NWN2 SINGLE ***/ sAOEType = GRGetUniqueSpellIdentifier(spInfo.iSpellID, oCaster);
-
     //*:**********************************************
     //*:* Resolve Metamagic, if possible
     //*:**********************************************
-    /*** NWN1 SPECIFIC ***/
         if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_EXTEND)) fDuration *= 2;
         if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_WIDEN)) {
             fRange *= 2;
@@ -479,11 +437,6 @@ void main() {
                     break;
             }
         }
-    /*** END NWN1 SPECIFIC ***/
-    /*** NWN2 SPECIFIC ***
-        fDuration     = ApplyMetamagicDurationMods(fDuration);
-        iDurationType = ApplyMetamagicDurationTypeMods(iDurationType);
-    /*** END NWN2 SPECIFIC ***/
     //*:* iDamage = GRGetSpellDamageAmount(spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
     /* if(GRGetSpellHasSecondaryDamage(spInfo)) {
         iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
@@ -495,22 +448,21 @@ void main() {
     //*:**********************************************
     //*:* Effects
     //*:**********************************************
-    /*** NWN1 SINGLE ***/ effect eImpact  = EffectVisualEffect(GRGetAlignmentImpactVisual(oCaster, fRange));
+    effect eImpact  = EffectVisualEffect(GRGetAlignmentImpactVisual(oCaster, fRange));
     effect eAOE;
     if(bHasAOE) {
         eAOE = GREffectAreaOfEffect(iAOEType, "", "", "", sAOEType);
     }
 
     effect eVis     = EffectVisualEffect(iVisual);
-    /*** NWN1 SINGLE ***/ effect eDur     = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+    effect eDur     = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eSkill1  = EffectSkillIncrease(iSkill, iBonus);
     effect eSkill2, eSkill3, eSkill4, eSkill5, eSkill6, eSkill7;
     effect eStr     = EffectAbilityIncrease(ABILITY_STRENGTH, 2);
     effect eDex     = EffectAbilityIncrease(ABILITY_DEXTERITY, iBonus);
 
     effect eLink    = eSkill1;
-    /*** NWN1 SINGLE ***/ eLink = EffectLinkEffects(eSkill1, eDur);
-    //*** NWN2 SINGLE ***/ if(iVisDurType!=DURATION_TYPE_INSTANT) eLink = EffectLinkEffects(eLink, eVis);
+    eLink = EffectLinkEffects(eSkill1, eDur);
 
     AutoDebugString("Building linked effect list");
     if(bHasAOE) eLink = EffectLinkEffects(eLink, eAOE);
@@ -570,30 +522,26 @@ void main() {
     //*:**********************************************
     AutoDebugString("Applying effects");
     if(bMultiTarget) {
-        /*** NWN1 SINGLE ***/ GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
+        GRApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, spInfo.lTarget);
         if(bHasAOE) {
             GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAOE, oCaster);
-            /*** NWN1 SINGLE ***/ object oAOE = GRGetAOEOnObject(spInfo.oTarget, sAOEType, oCaster);
-            //*** NWN2 SINGLE ***/ object oAOE = GetObjectByTag(sAOEType);
+            object oAOE = GRGetAOEOnObject(spInfo.oTarget, sAOEType, oCaster);
             GRSetAOESpellId(spInfo.iSpellID, oAOE);
             GRSetSpellInfo(spInfo, oAOE);
         }
-        //spInfo.oTarget = GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget);
     }
-
 
     AutoDebugString("Entering loop");
     if(GetIsObjectValid(spInfo.oTarget)) {
+        spInfo.oTarget = (bMultiTarget ? GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget) : spInfo.oTarget);
         do {
-            spInfo.oTarget = (bMultiTarget ? GRGetFirstObjectInShape(SHAPE_SPHERE, fRange, spInfo.lTarget) : spInfo.oTarget);
             if(!bMultiTarget || GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_ALLALLIES, oCaster)) {
                 AutoDebugString("Target is " + GetName(spInfo.oTarget));
                 AutoDebugString("bMultiTarget is " + GRBooleanToString(bMultiTarget));
                 GRPreventSkillBonusStacking(spInfo.iSpellID, spInfo.oTarget);
 
                 SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID, FALSE));
-                /*** NWN1 SINGLE ***/ GRApplyEffectToObject(iVisDurType, eVis, spInfo.oTarget, fDuration);
-                //*** NWN2 SINGLE ***/ if(iVisDurType==DURATION_TYPE_INSTANT) GRApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spInfo.oTarget);
+                GRApplyEffectToObject(iVisDurType, eVis, spInfo.oTarget, fDuration);
                 GRApplyEffectToObject(iDurationType, eLink, spInfo.oTarget, fDuration);
 
             }
