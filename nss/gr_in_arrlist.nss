@@ -48,6 +48,7 @@ void GRDeletePosition(string sName, int iPosition, object oStorage=OBJECT_SELF);
 void GRDeleteArrayDimension(string sName, string sDimName, object oStorage=OBJECT_SELF);
 void GRDeleteArrayList(string sName, object oStorage=OBJECT_SELF);
 
+// add functions: adds to end of list - ArrayList, stack, queue
 void GRIntAdd(string sName, string sDimName, int iValue, object oStorage=OBJECT_SELF);
 void GRBooleanAdd(string sName, string sDimName, int bValue, object oStorage=OBJECT_SELF);
 void GRFloatAdd(string sName, string sDimName, float fValue, object oStorage=OBJECT_SELF);
@@ -55,12 +56,21 @@ void GRObjectAdd(string sName, string sDimName, object oObject, object oStorage=
 void GRLocationAdd(string sName, string sDimName, location lLoc, object oStorage=OBJECT_SELF);
 void GRStringAdd(string sName, string sDimName, string sValue, object oStorage=OBJECT_SELF);
 
+// Stack functions: pops item from end of list
 int GRIntPop(string sName, string sDimName, object oStorage=OBJECT_SELF);
 int GRBooleanPop(string sName, string sDimName, object oStorage=OBJECT_SELF);
 object GRObjectPop(string sName, string sDimName, object oStorage=OBJECT_SELF);
 location GRLocationPop(string sName, string sDimName, object oStorage=OBJECT_SELF);
 string GRStringPop(string sName, string sDimName, object oStorage=OBJECT_SELF);
 float GRFloatPop(string sName, string sDimName, object oStorage=OBJECT_SELF);
+
+// queue functions: pops (dequeues) item from front of list
+int GRIntPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF);
+int GRBooleanPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF);
+object GRObjectPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF);
+location GRLocationPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF);
+string GRStringPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF);
+float GRFloatPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF);
 
 int GRIntIndexOf(string sName, string sDimName, int iValueToFind, int iAtOrAfterPosition=1, object oStorage=OBJECT_SELF);
 int GRBooleanIndexOf(string sName, string sDimName, int bValueToFind, int iAtOrAfterPosition=1, object oStorage=OBJECT_SELF);
@@ -290,23 +300,29 @@ void GRDeletePosition(string sName, int iPosition, object oStorage=OBJECT_SELF) 
         iType = GRGetDimensionType(i, sName, oStorage);
         string sDimName = GRGetDimensionName(i, sName, oStorage);
         switch(iType) {
-            case VALUE_TYPE_INT:
+            case VALUE_TYPE_INT: {
                 int n = GRIntGetAndRemoveValue(sName, sDimName, iPosition, oStorage);
+				}
                 break;
-            case VALUE_TYPE_BOOLEAN:
+            case VALUE_TYPE_BOOLEAN: {
                 int b = GRBooleanGetAndRemoveValue(sName, sDimName, iPosition, oStorage);
+				}
                 break;
-            case VALUE_TYPE_FLOAT:
+            case VALUE_TYPE_FLOAT: {
                 float f = GRFloatGetAndRemoveValue(sName, sDimName, iPosition, oStorage);
+				}
                 break;
-            case VALUE_TYPE_OBJECT:
+            case VALUE_TYPE_OBJECT: {
                 object o = GRObjectGetAndRemoveValue(sName, sDimName, iPosition, oStorage);
+				}
                 break;
-            case VALUE_TYPE_LOCATION:
+            case VALUE_TYPE_LOCATION: {
                 location l = GRLocationGetAndRemoveValue(sName, sDimName, iPosition, oStorage);
+				}
                 break;
-            case VALUE_TYPE_STRING:
+            case VALUE_TYPE_STRING: {
                 string s = GRStringGetAndRemoveValue(sName, sDimName, iPosition, oStorage);
+				}
                 break;
         }
         //GRSetDimSize(sName, sDimName, GRGetDimSize(sName, sDimName, oStorage)-1, oStorage);   // update each dimension size
@@ -416,10 +432,8 @@ int GRIntPop(string sName, string sDimName, object oStorage=OBJECT_SELF) {
 
     if(iType==VALUE_TYPE_INT) {
         if(iSize>0) {
-            iValue = GetLocalInt(oStorage, GRGetFullDimName(sName, sDimName)+IntToString(iSize));
-            GRDeleteValue(sName, sDimName, iSize, oStorage);
-            GRSetDimSize(sName, sDimName, iSize--, oStorage);
-        }
+            iValue = GRIntGetAndRemoveValue(sName, sDimName, iSize, oStorage);
+		}
     }
     return iValue;
 }
@@ -431,9 +445,7 @@ int GRBooleanPop(string sName, string sDimName, object oStorage=OBJECT_SELF) {
 
     if(iType==VALUE_TYPE_BOOLEAN) {
         if(iSize>0) {
-            bValue = GetLocalInt(oStorage, GRGetFullDimName(sName, sDimName)+IntToString(iSize));
-            GRDeleteValue(sName, sDimName, iSize, oStorage);
-            GRSetDimSize(sName, sDimName, iSize--, oStorage);
+            bValue = GRBooleanGetAndRemoveValue(sName, sDimName, iSize, oStorage);
         }
     }
     return bValue;
@@ -446,9 +458,7 @@ object GRObjectPop(string sName, string sDimName, object oStorage=OBJECT_SELF) {
 
     if(iType==VALUE_TYPE_OBJECT) {
         if(iSize>0) {
-            oObject = GetLocalObject(oStorage, GRGetFullDimName(sName, sDimName)+IntToString(iSize));
-            GRDeleteValue(sName, sDimName, iSize, oStorage);
-            GRSetDimSize(sName, sDimName, iSize--, oStorage);
+            oObject = GRObjectGetAndRemoveValue(sName, sDimName, iSize, oStorage);
         }
     }
     return oObject;
@@ -461,9 +471,7 @@ location GRLocationPop(string sName, string sDimName, object oStorage=OBJECT_SEL
 
     if(iType==VALUE_TYPE_LOCATION) {
         if(iSize>0) {
-            lLoc = GetLocalLocation(oStorage, GRGetFullDimName(sName, sDimName)+IntToString(iSize));
-            GRDeleteValue(sName, sDimName, iSize, oStorage);
-            GRSetDimSize(sName, sDimName, iSize--, oStorage);
+            lLoc = GRLocationGetAndRemoveValue(sName, sDimName, iSize, oStorage);
         }
     }
     return lLoc;
@@ -476,9 +484,7 @@ string GRStringPop(string sName, string sDimName, object oStorage=OBJECT_SELF) {
 
     if(iType==VALUE_TYPE_STRING) {
         if(iSize>0) {
-            sValue = GetLocalString(oStorage, GRGetFullDimName(sName, sDimName)+IntToString(iSize));
-            GRDeleteValue(sName, sDimName, iSize, oStorage);
-            GRSetDimSize(sName, sDimName, iSize--, oStorage);
+            sValue = GRStringGetAndRemoveValue(sName, sDimName, iSize, oStorage);
         }
     }
     return sValue;
@@ -491,9 +497,85 @@ float GRFloatPop(string sName, string sDimName, object oStorage=OBJECT_SELF) {
 
     if(iType==VALUE_TYPE_FLOAT) {
         if(iSize>0) {
-            fValue = GetLocalFloat(oStorage, GRGetFullDimName(sName, sDimName)+IntToString(iSize));
-            GRDeleteValue(sName, sDimName, iSize, oStorage);
-            GRSetDimSize(sName, sDimName, iSize--, oStorage);
+            fValue = GRFloatGetAndRemoveValue(sName, sDimName, iSize, oStorage);
+        }
+    }
+    return fValue;
+}
+
+int GRIntPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF) {
+    int iSize = GRGetDimSize(sName, sDimName, oStorage);
+    int iType = GRGetDimensionType(GRGetDimNumber(sName, sDimName, oStorage), sName, oStorage);
+    int iValue = -9999;
+
+    if(iType==VALUE_TYPE_INT) {
+        if(iSize>0) {
+            iValue = GRIntGetAndRemoveValue(sName, sDimName, 1, oStorage);
+        }
+    }
+    return iValue;
+}
+
+int GRBooleanPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF) {
+    int iSize = GRGetDimSize(sName, sDimName, oStorage);
+    int iType = GRGetDimensionType(GRGetDimNumber(sName, sDimName, oStorage), sName, oStorage);
+    int bValue = FALSE;
+
+    if(iType==VALUE_TYPE_BOOLEAN) {
+        if(iSize>0) {
+            bValue = GRBooleanGetAndRemoveValue(sName, sDimName, 1, oStorage);
+        }
+    }
+    return bValue;
+}
+
+object GRObjectPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF) {
+    int iSize = GRGetDimSize(sName, sDimName, oStorage);
+    int iType = GRGetDimensionType(GRGetDimNumber(sName, sDimName, oStorage), sName, oStorage);
+    object oObject = OBJECT_INVALID;
+
+    if(iType==VALUE_TYPE_OBJECT) {
+        if(iSize>0) {
+            oObject = GRObjectGetAndRemoveValue(sName, sDimName, 1, oStorage);
+        }
+    }
+    return oObject;
+}
+
+location GRLocationPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF) {
+    int iSize = GRGetDimSize(sName, sDimName, oStorage);
+    int iType = GRGetDimensionType(GRGetDimNumber(sName, sDimName, oStorage), sName, oStorage);
+    location lLoc = GetLocation(oStorage);
+
+    if(iType==VALUE_TYPE_LOCATION) {
+        if(iSize>0) {
+            lLoc = GRLocationGetAndRemoveValue(sName, sDimName, 1, oStorage);
+        }
+    }
+    return lLoc;
+}
+
+string GRStringPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF) {
+    int iSize = GRGetDimSize(sName, sDimName, oStorage);
+    int iType = GRGetDimensionType(GRGetDimNumber(sName, sDimName, oStorage), sName, oStorage);
+    string sValue = "";
+
+    if(iType==VALUE_TYPE_STRING) {
+        if(iSize>0) {
+            sValue = GRStringGetAndRemoveValue(sName, sDimName, 1, oStorage);
+        }
+    }
+    return sValue;
+}
+
+float GRFloatPopFirst(string sName, string sDimName, object oStorage=OBJECT_SELF) {
+    int iSize = GRGetDimSize(sName, sDimName, oStorage);
+    int iType = GRGetDimensionType(GRGetDimNumber(sName, sDimName, oStorage), sName, oStorage);
+    float fValue = -9999.0f;
+
+    if(iType==VALUE_TYPE_FLOAT) {
+        if(iSize>0) {
+            fValue = GRFloatGetAndRemoveValue(sName, sDimName, 1, oStorage);
         }
     }
     return fValue;
@@ -665,7 +747,7 @@ int GRIntGetAndRemoveValue(string sName, string sDimName, int iArrayIndex, objec
     }
 
     GRDeleteValue(sName, sDimName, iDimSize, oStorage);
-    GRSetDimSize(sName, sDimName, iDimSize--, oStorage);
+    GRSetDimSize(sName, sDimName, --iDimSize, oStorage);
 
     return iValue;
 }
@@ -680,7 +762,7 @@ int GRBooleanGetAndRemoveValue(string sName, string sDimName, int iArrayIndex, o
     }
 
     GRDeleteValue(sName, sDimName, iDimSize, oStorage);
-    GRSetDimSize(sName, sDimName, iDimSize--, oStorage);
+    GRSetDimSize(sName, sDimName, --iDimSize, oStorage);
 
     return bValue;
 }
@@ -695,7 +777,7 @@ float GRFloatGetAndRemoveValue(string sName, string sDimName, int iArrayIndex, o
     }
 
     GRDeleteValue(sName, sDimName, iDimSize, oStorage);
-    GRSetDimSize(sName, sDimName, iDimSize--, oStorage);
+    GRSetDimSize(sName, sDimName, --iDimSize, oStorage);
 
     return fValue;
 }
@@ -710,7 +792,7 @@ object GRObjectGetAndRemoveValue(string sName, string sDimName, int iArrayIndex,
     }
 
     GRDeleteValue(sName, sDimName, iDimSize, oStorage);
-    GRSetDimSize(sName, sDimName, iDimSize--, oStorage);
+    GRSetDimSize(sName, sDimName, --iDimSize, oStorage);
 
     return oObject;
 }
@@ -725,7 +807,7 @@ location GRLocationGetAndRemoveValue(string sName, string sDimName, int iArrayIn
     }
 
     GRDeleteValue(sName, sDimName, iDimSize, oStorage);
-    GRSetDimSize(sName, sDimName, iDimSize--, oStorage);
+    GRSetDimSize(sName, sDimName, --iDimSize, oStorage);
 
     return lLoc;
 }
@@ -740,7 +822,7 @@ string GRStringGetAndRemoveValue(string sName, string sDimName, int iArrayIndex,
     }
 
     GRDeleteValue(sName, sDimName, iDimSize, oStorage);
-    GRSetDimSize(sName, sDimName, iDimSize--, oStorage);
+    GRSetDimSize(sName, sDimName, --iDimSize, oStorage);
 
     return sValue;
 }
@@ -1244,7 +1326,7 @@ int GRQSPartition(string sName, string sKey1, int iIndex1, int iIndex2, object o
     int j = iIndex2+1;
 
     switch(iType) {
-        case VALUE_TYPE_INT:
+        case VALUE_TYPE_INT: {
             int iPivot = GRIntGetValueAt(sName, sKey1, iIndex1, oStorage);
             do {
                 do {
@@ -1257,8 +1339,9 @@ int GRQSPartition(string sName, string sKey1, int iIndex1, int iIndex2, object o
             } while(i<j);
             GRSwapAll(sName, i, j, oStorage);
             GRSwapAll(sName, iIndex1, j, oStorage);
+			}
             break;
-        case VALUE_TYPE_FLOAT:
+        case VALUE_TYPE_FLOAT: {
             float fPivot = GRFloatGetValueAt(sName, sKey1, iIndex1, oStorage);
             do {
                 do {
@@ -1271,8 +1354,9 @@ int GRQSPartition(string sName, string sKey1, int iIndex1, int iIndex2, object o
             } while(i<j);
             GRSwapAll(sName, i, j, oStorage);
             GRSwapAll(sName, iIndex1, j, oStorage);
+			}
             break;
-        case VALUE_TYPE_STRING:
+        case VALUE_TYPE_STRING: {
             string sPivot = GRStringGetValueAt(sName, sKey1, iIndex1, oStorage);
             do {
                 do {
@@ -1285,6 +1369,7 @@ int GRQSPartition(string sName, string sKey1, int iIndex1, int iIndex2, object o
             } while(i<j);
             GRSwapAll(sName, i, j, oStorage);
             GRSwapAll(sName, iIndex1, j, oStorage);
+			}
             break;
     }
 

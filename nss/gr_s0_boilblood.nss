@@ -2,7 +2,8 @@
 //*:*  GR_S0_BOILBLOOD.NSS
 //*:**************************************************************************
 //*:* Boiling Blood
-//*:* Created By: Karl Nickels (Syrus Greycloak)  Created On: April 16, 2008
+//*:* Created By: Karl Nickels (Syrus Greycloak)  
+//*:* Created On: April 16, 2008
 //*:* Complete Mage (p. 97)
 //*:**************************************************************************
 
@@ -17,10 +18,16 @@
 #include "GR_IN_SPELLHOOK"
 
 #include "GR_IN_ENERGY"
+
+#include "GR_IN_DEBUG"
 //*:**************************************************************************
 //*:* Supporting functions
 //*:**************************************************************************
 void DoBoilingBlood(object oTarget, struct SpellStruct spInfo, int iRemainingRounds, int iVisualType) {
+    AutoDebugString("DoBoilingBlood");
+    AutoDebugString("Target: " + GetName(oTarget));
+    AutoDebugString("Remaining Rounds: " + IntToString(iRemainingRounds));
+
     int     iDamage         = 0;
     int     iSecDamage      = 0;
     int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, spInfo.oCaster));
@@ -122,18 +129,23 @@ void main() {
     //*:**********************************************
     //*:* Apply effects
     //*:**********************************************
+    AutoDebugString("Applying Boiling Blood effects");
+    AutoDebugString("Target: " + GetName(spInfo.oTarget));
     SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, SPELL_GR_BOILING_BLOOD));
     if(GRGetIsLiving(spInfo.oTarget) && !GetIsImmune(spInfo.oTarget, IMMUNITY_TYPE_CRITICAL_HIT)) {
         if(!GRGetSpellResisted(oCaster, spInfo.oTarget)) {
             if(GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC, iSaveType)) {
+                AutoDebugString("Saving throw success - duration set to 1");
                 iDurAmount = 1;
             }
             GRApplyEffectToObject(DURATION_TYPE_INSTANT, eLink, spInfo.oTarget);
             if(GRGetHasSpellEffect(SPELL_GR_INCENDIARY_SLIME, spInfo.oTarget) && (iEnergyType==DAMAGE_TYPE_FIRE || spInfo.iSecDmgType==DAMAGE_TYPE_FIRE)) {
+                AutoDebugString("Incendiary Slime explosion");
                 GRDoIncendiarySlimeExplosion(spInfo.oTarget);
             }
             iDurAmount--;
             if(iDurAmount>0) {
+                AutoDebugString("Duration remaining: " + IntToString(iDurAmount));
                 DelayCommand(GRGetDuration(1), DoBoilingBlood(spInfo.oTarget, spInfo, iDurAmount, iVisualType));
             }
         }

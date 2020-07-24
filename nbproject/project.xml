@@ -16,6 +16,11 @@ auxiliary.show.customizer.message=<message>
             <properties/>
             <folders>
                 <source-folder>
+                    <label>Grimoire</label>
+                    <location>.</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
                     <label>2da</label>
                     <type>java</type>
                     <location>2da</location>
@@ -25,11 +30,6 @@ auxiliary.show.customizer.message=<message>
                     <label>nss</label>
                     <type>java</type>
                     <location>nss</location>
-                    <encoding>windows-1252</encoding>
-                </source-folder>
-                <source-folder>
-                    <label>Grimoire</label>
-                    <location>.</location>
                     <encoding>windows-1252</encoding>
                 </source-folder>
             </folders>
@@ -65,6 +65,7 @@ auxiliary.show.customizer.message=<message>
                     <ide-action name="clean"/>
                 </context-menu>
             </view>
+            <subprojects/>
         </general-data>
         <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/1">
             <compilation-unit>
