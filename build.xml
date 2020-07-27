@@ -12,9 +12,30 @@
     <property file="${user.home}/build.properties"/>
 
     <!-- set global property defaults for this build -->
-    <property name="src"           value="."/>
-    <property name="build"         value="build"/>
-    <property name="dist"          value="dist"/>
+    <property name="src"           value="."/> <!-- i.e. the src directory is the location of this xml file -->
+    <property name="build"         value="build"/> <!-- main directory where to store files for packaging -->
+    <property name="dist"          value="dist"/> <!-- output directory for zipped package -->
+
+    <property name="source-scripts" value="${src}/nss" />    
+    <property name="source-items" value="${src}/items" />
+    <property name="source-creatures" value="${src}/blueprints" />
+    <property name="source-2da" value="${src}/2da" />
+    <property name="source-tlk" value="${src}/tlk" />
+    <property name="source-tgas" value="${src}/tgas" />
+    <property name="source-hak" value="${src}/hak" />
+    <property name="source-erf" value="${src}/erf" />
+    
+    <property name="compile-source" value="${src}/nss" />
+    <property name="compile-target" value="${build}/ncs" />
+    
+    <property name="script-source-target" value="${build}/nss" />
+    <property name="hak-target" value="${build}/hak" />
+    <property name="erf-target" value="${build}/erf" />
+    <property name="tlk-target" value="${build}/tlk" />
+    
+    <property name="hak-file-prefix" value="Grim3" />
+    
+    <property name="compiler-plus-args" value="d:/NWN/NwnSC/nwnsc.exe" />
 
 
     <!-- sets up the tasks for ant and creates the build directories -->
@@ -32,29 +53,29 @@
             <format property="build.time" pattern="MM/dd/yyyy hh:mm aa" />
         </tstamp>
 
-        <!-- Create the build directory structure used by compile -->
+        <!-- Create the build directory structure used by compile and packaging -->
         <mkdir dir="${build}"/>
-        <mkdir dir="${build}/erf"/>
-        <mkdir dir="${build}/ncs"/>
-        <mkdir dir="${build}/nss"/>
-        <mkdir dir="${build}/haks"/>
-        <mkdir dir="${build}/tlk"/>
+        <mkdir dir="${erf-target}"/>
+        <mkdir dir="${compile-target}"/>
+        <mkdir dir="${script-source-target}"/>
+        <mkdir dir="${hak-target}"/>
+        <mkdir dir="${tlk-target}"/>
         <mkdir dir="${dist}"/>
     </target>
 
         <!-- Compile the NWN sources. -->
-    <target name="compile-scripts" description="Compiles the Grimoire nss files" depends="init" >
-        <nwnc compiler="D:/NWN/NwnSC/nwnsc.exe" srcdir="nss" destdir="${build}/ncs" >
+    <target name="compile-scripts" description="Compile the nss files" depends="init, clean-compiled-scripts" >
+        <nwnc compiler="${compiler-plus-args}" srcdir="${compile-source}" destdir="${compile-target}" >
             <include name="*.nss" />
         </nwnc>
     </target>
 
     <!-- builds the various hak files for the project -->
     <target name="build-haks"
-               description="Builds the HAK files for the Grimoire." depends="init">
+               description="Builds the HAK files" depends="init">
         
         <!-- Put together the compiled script hak -->
-        <erfpacker basedir="${build}/ncs" erffile="${build}/haks/Grim3ncs.hak"
+        <erfpacker basedir="${compile-target}" erffile="${hak-target}/${hak-file-prefix}ncs.hak"
             minGameVersion="1.69" expansionPacks="3" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
@@ -64,7 +85,7 @@
         </erfpacker>
 
         <!-- Put together the source script hak -->
-        <erfpacker basedir="${build}/nss" erffile="${build}/haks/Grim3nss.hak"
+        <erfpacker basedir="${script-source-target}" erffile="${hak-target}/${hak-file-prefix}nss.hak"
             minGameVersion="1.69" expansionPacks="3" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
@@ -74,7 +95,7 @@
         </erfpacker>
 
         <!-- Put together the TGA hak -->
-        <erfpacker basedir="${src}/tgas" erffile="${build}/haks/Grim3tgas.hak" >
+        <erfpacker basedir="${source-tgas}" erffile="${hak-target}/${hak-file-prefix}tgas.hak" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
             <description line="This HAK contains all the TGA spell and scroll" />
@@ -83,7 +104,7 @@
         </erfpacker>
 
         <!-- Put together the 2da hak -->
-        <erfpacker basedir="${src}/2da" erffile="${build}/haks/Grim32das.hak" >
+        <erfpacker basedir="${source-2da}" erffile="${hak-target}/${hak-file-prefix}2das.hak" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
             <description line="This HAK contains all the 2da files" />
@@ -91,8 +112,8 @@
             <description line="Packaged: ${build.time}" />
         </erfpacker>
 
-        <!-- Put together the blueprints hak -->
-        <erfpacker basedir="${src}/blueprints" erffile="${build}/haks/Grim3blueprints.hak" >
+        <!-- Put together the creature blueprints hak -->
+        <erfpacker basedir="${source-creatures}" erffile="${hak-target}/${hak-file-prefix}blueprints.hak" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
             <description line="This HAK contains all the creature blueprint files" />
@@ -101,7 +122,7 @@
         </erfpacker>
 
         <!-- Put together the items hak -->
-        <erfpacker basedir="${src}/items" erffile="${build}/haks/Grim3items.hak" >
+        <erfpacker basedir="${source-items}" erffile="${hak-target}/${hak-file-prefix}items.hak" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
             <description line="This HAK contains all the item blueprint files" />
@@ -110,14 +131,14 @@
         </erfpacker>
  
         <!-- copy all the importable items to a single directory for the erf -->
-        <copy todir="${build}/erf">
-            <fileset dir="${src}/items"/>
-            <fileset dir="${src}/blueprints"/>
-            <fileset dir="${src}/nss"/>
+        <copy todir="${erf-target}">
+            <fileset dir="${source-items}"/>
+            <fileset dir="${source-creatures}"/>
+            <fileset dir="${source-scripts}"/>
         </copy>
 
         <!-- Put together the erf file -->
-        <erfpacker basedir="${build}/erf" erffile="${build}/Grimoire.erf" >
+        <erfpacker basedir="${erf-target}" erffile="${build}/Grimoire.erf" >
             <description line="Grimoire Spell System" />
             <description line="https://github.com/syrusgreycloak/nwn1grimoire" />
             <description line="This ERF contains all the item and creature blueprint files and spell scripts" />
@@ -130,13 +151,13 @@
     <!-- create a zip file of the script sources for people that don't want to extract them from the erf 
          to be able to view the sources in an external editor -->    
     <target name="archive-source" description="Package source files" depends="init">
-        <copy todir="${build}/nss" >
+        <copy todir="${script-source-target}" >
             <fileset dir="nss" includes="*.nss" />
         </copy>
 
 
-        <zip destfile="${build}/nss/Grim3source.zip"
-             basedir="${build}/nss"
+        <zip destfile="${script-source-target}/${hak-file-prefix}source.zip"
+             basedir="${script-source-target}"
              level="9"
              includes="*.nss"/>        
     </target>
@@ -148,9 +169,9 @@
         <zip destfile="${dist}/grimoire.zip"
              level="9">
         
-             <fileset dir="${build}/haks" />
-             <fileset dir="${build}/tlk" />
-             <fileset dir="${build}/nss">
+             <fileset dir="${hak-target}" />
+             <fileset dir="${tlk-target}" />
+             <fileset dir="${script-source-target}">
                  <exclude name="**/*.nss"/>
              </fileset>
              <fileset dir="${build}">
@@ -162,8 +183,8 @@
     
     <!-- copies the built files to project directories for committing to the git repository -->
     <target name="update-project">
-        <copy todir="${src}/hak" overwrite="true">
-            <fileset dir="${build}/haks">
+        <copy todir="${source-hak}" overwrite="true">
+            <fileset dir="${hak-target}">
                 <include name="**/*.hak"/>
             </fileset>
         </copy>
@@ -189,7 +210,7 @@
     <target name="clean-compiled-scripts">
         <!-- Delete the compiled ncs scripts -->
         <delete>
-            <fileset dir="${build}/ncs">
+            <fileset dir="${compile-target}">
                 <include name="*.ncs" />
             </fileset>
         </delete>
