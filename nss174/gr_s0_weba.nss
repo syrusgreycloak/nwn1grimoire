@@ -1,0 +1,141 @@
+//*:**************************************************************************
+//*:*  GR_S0_WEBA.NSS
+//*:**************************************************************************
+//:: Web: On Enter (NW_S0_WebA.nss) Copyright (c) 2001 Bioware Corp.
+//:: Created By: Preston Watamaniuk  Created On: Aug 8, 2001
+//*:* 3.5 Player's Handbook (p. 299)
+//*:**************************************************************************
+//*:* Choking Cobwebs
+//*:* Created By: Karl Nickels (Syrus Greycloak) Created On: April 21, 2008
+//*:* Complete Mage (p. 99)
+//*:**************************************************************************
+//*:* Updated On: April 21, 2008
+//*:**************************************************************************
+
+//*:**************************************************************************
+//*:* Include the following files
+//*:**************************************************************************
+//*:* Game Libraries
+
+//*:**********************************************
+//*:* Function Libraries
+#include "GR_IN_SPELLS"
+#include "GR_IN_SPELLHOOK"
+
+//*:* #include "GR_IN_ENERGY"
+
+//*:**************************************************************************
+//*:* Main function
+//*:**************************************************************************
+void main() {
+    //*:**********************************************
+    //*:* Declare major variables
+    //*:**********************************************
+    object  oCaster         = GetAreaOfEffectCreator();
+    struct  SpellStruct spInfo = GRGetSpellInfoFromObject(GRGetAOESpellId());
+
+    //*:* int     iDieType          = 0;
+    //*:* int     iNumDice          = 0;
+    //*:* int     iBonus            = 0;
+    //*:* int     iDamage           = 0;
+    //*:* int     iSecDamage        = 0;
+    //*:* int     iDurAmount        = spInfo.iCasterLevel;
+    //*:* int     iDurType          = DUR_TYPE_ROUNDS;
+
+    spInfo.oTarget = GetEnteringObject();
+    spInfo.iDC = (spInfo.iSpellID==731 ? 20 : GRGetSpellSaveDC(oCaster, spInfo.oTarget));
+
+    //*:* spInfo = GRSetSpellDamageInfo(spInfo, iDieType, iNumDice, iBonus);
+    //*:* spInfo = GRSetSpellDurationInfo(spInfo, iDurAmount, iDurType);
+
+    //*:**********************************************
+    //*:* Set the info about the spell on the caster
+    //*:**********************************************
+    GRSetSpellInfo(spInfo, oCaster);
+
+    //*:**********************************************
+    //*:* Energy Spell Info
+    //*:**********************************************
+    //*:* int     iEnergyType     = GRGetEnergyDamageType(GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster));
+    //*:* int     iSpellType      = GRGetEnergySpellType(iEnergyType);
+
+    //*:* spInfo = GRReplaceEnergyType(spInfo, GRGetSpellEnergyDamageType(spInfo.iSpellID, oCaster), iSpellType);
+
+    //*:**********************************************
+    //*:* Spellcast Hook Code
+    //*:**********************************************
+    //if(!GRSpellhookAbortSpell()) return;
+    //spInfo = GRGetSpellInfoFromObject(spInfo.iSpellID, oCaster);
+
+    //*:**********************************************
+    //*:* Declare Spell Specific Variables & impose limiting
+    //*:**********************************************
+
+    //*:* float   fDuration       = GRGetSpellDuration(spInfo);
+    //*:* float   fRange          = FeetToMeters(15.0);
+    int iStartPct = (spInfo.iSpellID==731 ? 85 : 65);
+    int iSlowPct = MaxInt(1, MinInt(99, iStartPct - (GetAbilityScore(spInfo.oTarget, ABILITY_STRENGTH)*2)));
+
+    if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS) iSlowPct = 50;
+
+    //*:**********************************************
+    //*:* Resolve Metamagic, if possible
+    //*:**********************************************
+    //*:* if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_EXTEND)) fDuration *= 2;
+    //*:* if(GRGetMetamagicUsed(spInfo.iMetamagic, METAMAGIC_WIDEN)) fRange *= 2;
+    //*:* iDamage = GRGetSpellDamageAmount(spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
+    /* if(GRGetSpellHasSecondaryDamage(spInfo)) {
+        iSecDamage = GRGetSpellSecondaryDamageAmount(iDamage, spInfo, SPELL_SAVE_NONE, oCaster, SAVING_THROW_TYPE_NONE, fDelay);
+        if(spInfo.iSecDmgAmountType==SECDMG_TYPE_HALF) {
+            iDamage = iSecDamage;
+        }
+    }*/
+
+    //*:**********************************************
+    //*:* Effects
+    //*:**********************************************
+    effect eWeb     = EffectEntangle();
+    effect eVis     = EffectVisualEffect(VFX_DUR_WEB);
+    effect eLink    = EffectLinkEffects(eWeb, eVis);
+    effect eSlow    = EffectMovementSpeedDecrease(iSlowPct);
+
+    effect eInvis   = EffectInvisibility(INVISIBILITY_TYPE_DARKNESS);
+    effect eSicken  = GREffectSickened();
+
+    if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS) eLink = EffectLinkEffects(eLink, eInvis);
+
+    //*:**********************************************
+    //*:* Apply effects
+    //*:**********************************************
+    if(GRGetIsSpellTarget(spInfo.oTarget, SPELL_TARGET_STANDARDHOSTILE, oCaster)) {
+        if(!GRGetIsIncorporeal(spInfo.oTarget) && !GetHasSpellEffect(SPELL_FREEDOM_OF_MOVEMENT, spInfo.oTarget)
+            && !GetHasSpellEffect(SPELLABILITY_GR_FREEDOM_OF_MOVEMENT, spInfo.oTarget)) {
+
+            SignalEvent(spInfo.oTarget, EventSpellCastAt(oCaster, spInfo.iSpellID));
+            if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS || !GRGetSpellResisted(oCaster, spInfo.oTarget)) {
+                if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS || !GRGetSaveResult(SAVING_THROW_REFLEX, spInfo.oTarget, spInfo.iDC)) {
+                    if(spInfo.iSpellSchool!=SPELL_SCHOOL_ILLUSION) {
+                        GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, GRGetDuration(1));
+                        if(spInfo.iSpellID==SPELL_GR_CHOKING_COBWEBS && !GRGetSaveResult(SAVING_THROW_FORT, spInfo.oTarget, spInfo.iDC)) {
+                            GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eSicken, spInfo.oTarget, GRGetDuration(1));
+                        }
+                    } else {
+                        if(GRGetSaveResult(SAVING_THROW_WILL, spInfo.oTarget, spInfo.iDC)) {
+                            SetLocalInt(spInfo.oTarget, "GR_"+IntToString(spInfo.iSpellID)+"_WILLDISBELIEF", TRUE);
+                        } else {
+                            GRApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spInfo.oTarget, GRGetDuration(1));
+                        }
+                    }
+                }
+                GRApplyEffectToObject(DURATION_TYPE_PERMANENT, eSlow, spInfo.oTarget);
+            }
+        }
+    }
+
+    //*:**********************************************
+    //*:* Remove spell info from caster
+    //*:**********************************************
+    GRClearSpellInfo(spInfo.iSpellID, oCaster);
+}
+//*:**************************************************************************
+//*:**************************************************************************
