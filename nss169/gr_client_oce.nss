@@ -14,7 +14,7 @@ Revision Summary:
 
 #include "GR_IN_DEITIES"
 #include "GR_IN_DOMAINS"
-#include "GR_IN_LIB"
+//#include "GR_IN_LIB"  --> included via GR_IN_DOMAINS
 
 void main() {
     object oPC = GetEnteringObject();

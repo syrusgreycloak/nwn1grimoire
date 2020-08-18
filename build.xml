@@ -2,6 +2,7 @@
 <project name="Grimoire" default="build" basedir=".">
     <description>Builds the project Grimoire</description>
 
+    <!-- Standard ANT file comment below about build.properties -->
     <!-- Load some build.properties files so that users can customize
     certain properties to their environment.  ANT only uses the first
     value encountered so any properties defined in these files will
